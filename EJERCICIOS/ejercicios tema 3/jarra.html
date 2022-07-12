@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        class Jarra {
+            constructor(capacidad, cantidad) {
+                this.capacidad = capacidad;
+                this.cantidad = cantidad;
+            }
+
+            // get undefined() {
+            //     return this.capacidad;
+            // }
+
+            // set undefined(x) {
+            //     if (this.capacidad !== x) this.capacidad = x;
+            // }
+
+            // get undefined() {
+            //     return this.cantidad;
+            // }
+
+            // set undefined(x) {
+            //     if (this.cantidad !== x) this.cantidad = x;
+            // }
+
+            toString() {
+                return "Capacidad: " + this.capacidad + " - Cantidad: " + this.cantidad;
+            }
+
+
+            //METODOS
+            //jarra1.llenar() : llenará completamente la jarra hasta la capacidad
+            llenar() {
+                this.cantidad = this.capacidad;
+            }
+
+            //jarra1.vaciar() : vaciará completamente la jarra.
+            vaciar() {
+                this.cantidad = 0;
+            }
+
+            /*
+            jarra1.llenarDesde(jarra2): se volcarán todos los litros que quepan de jarra2 en jarra1 
+            (si jarra2 contiene más litros de los que caben en jarra1) o todos los que contiene jarra2 
+            quedándose ésta vacía (si jarra2 contiene menos litros de los que caben en jarra1).
+            */
+            static llenarDesde(obj1, obj2) {
+                var capacidadRestante = obj1.capacidad - obj1.cantidad; //comprueba cuanta capacidad hay disponibles en obj1
+                var cantidadVertir = obj2.cantidad - capacidadRestante; //comprueba si cabe o no la cantidad en la capacidadRestante
+
+                if (cantidadVertir > 0 && cantidadVertir != 0) { //si es mayor a 0 caben los litros y es 0 no
+                    obj1.cantidad = obj1.capacidad; //Si da positivo es que ha vertido hasta el maximo
+                    obj2.cantidad = obj2.cantidad - capacidadRestante; //restamos la cantidadRestante a la capacidad que tenia que seria lo que volcó
+                } else {
+                    //si la capacidad actual del obj1 es mayor a la cantidad del obj2 vierte todo
+                    obj1.cantidad += obj2.cantidad;
+                    obj2.cantidad = 0;
+                }
+            }
+
+
+            //metodo de instancia
+            llenarDesde2(obj2) {
+                var capacidadRestante = this.capacidad - this.cantidad; //comprueba cuanta capacidad hay disponibles en obj1
+                var cantidadVertir = obj2.cantidad - capacidadRestante; //comprueba si cabe o no la cantidad en la capacidadRestante
+
+                if (cantidadVertir > 0 && cantidadVertir != 0) { //si es mayor a 0 caben los litros y si es 0 no cabe mas
+                    this.cantidad = this.capacidad; //Si da positivo es que ha vertido hasta el maximo
+                    obj2.cantidad = obj2.cantidad - capacidadRestante; //restamos la cantidadRestante a la capacidad que tenia que seria lo que volcó
+                } else {
+                    //si la capacidad actual del obj1 es mayor a la cantidad del obj2 vierte todo
+                    this.cantidad += obj2.cantidad;
+                    obj2.cantidad = 0;
+                }
+            }
+
+            /*Jarra.comparar(jarra1,jarra2) devolverá la jarra que más líquido contiene. 
+            Para implementar este método debes utilizar una función arrow (novedad introducida en ES6).*/
+            static comparar(obj1, obj2) {
+                var mayor = 0;
+                if (obj1.cantidad > obj2.cantidad) {
+                    mayor = 0; //si el primero es el mayor devuelve 0
+                } else {
+                    mayor = 1; //si el segundo es el mayor devuelve 1
+                }
+                return mayor;
+            }
+
+        }
+
+        var jarra1 = new Jarra(10, 10);
+        var jarra2 = new Jarra(15, 2);
+
+        document.write("Jarra 1: " + jarra1 + "<br>");
+        document.write("Jarra 2: " + jarra2 + "<br>");
+
+        Jarra.llenarDesde(jarra1, jarra2);
+        document.write("<p>VOLCAMOS DE LA 2 A LA 1</p>");
+
+        document.write("<p></p>");
+        document.write("Jarra 1: " + jarra1 + "<br>");
+        document.write("Jarra 2: " + jarra2 + "<br>");
+
+        document.write("<p></p>");
+        if (Jarra.comparar(jarra1, jarra2) == 0) {
+            document.write("<p>La jarra con mayor cantidad es la jarra 1 </p>");
+        } else {
+            document.write("<p>La jarra con mayor cantidad es la jarra 2 </p>");
+        }
+
+
+        var jarra3 = new Jarra(10, 4);
+        var jarra4 = new Jarra(15, 6);
+
+        jarra3.llenarDesde2(jarra4);
+        document.write("<p>VOLCAMOS DE LA 4 A LA 3 CON METODO DE INSTANCIA</p>");
+
+        document.write("<p></p>");
+        document.write("Jarra 3: " + jarra3 + "<br>");
+        document.write("Jarra 4: " + jarra4 + "<br>");
+    </script>
+
+
+</body>
+
+</html>

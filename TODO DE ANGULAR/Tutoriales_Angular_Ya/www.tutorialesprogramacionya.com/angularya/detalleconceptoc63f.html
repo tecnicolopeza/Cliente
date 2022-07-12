@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=52&codigo=52&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Menu - mat-card</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>52 - Angular Material: Menu - mat-card</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Otra componente visual que viene dentro de la librería de Angular Material son las tarjetas (mat-card) que nos permiten mostrar una serie de datos con una cabecera cuerpo y pie.</p>
+<p>Para probar esta componente repasaremos la creación de un servicio y consumo de un API público.</p>
+<h3>Problema</h3>
+<p>Recuperar del servidor <a href="https://randomuser.me/" target="_blank">RandoUser.me</a> un usuario aleatorio y mostrar los datos recuperados en una componente mat-card.<br>
+Disponer un botón que al ser presionado se refresque con un nuevo usuario.</p>
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto034
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+
+<li>
+<p>Crearemos el servicio que recuperará desde el servidor público los datos de un usuario aleatorio:</p>
+<pre>
+ng generate service usuario
+</pre>
+
+<p>Modificamos el archivo para recuperar los datos del servidor, debemos importar la clase 'HttpClient' e inyectar al constructor la referencia de un objeto de dicha clase al cual llamamos 'http':</p>
+<pre class="recuadro">
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService {
+
+    constructor(private http: HttpClient) { }  
+
+    retornar() {
+      return this.http.get("https://randomuser.me/api/");
+    }     
+}
+</pre>
+<p>El método 'retornar' será llamado desde la componente, este método mediante el objeto de la clase HttpClient llama al método get y le pasa como parámetro la URL del servidor que retornará el archivo JSON con los datos de un usuario aleatorio.</p>
+</li>
+
+<li>
+<p>Modificamos el archivo app.module.ts importando la clase HttpClientModule para poder emplear la clase 'HttpClient' que definimos en la clase 'UsuarioService'. Además importamos MatCardModule y MatButtonModule donde se definen las componentes visuales que requerimos en nuestro proyecto:</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo app.component.ts:</p>
+<pre class="recuadro">
+import { Component } from '@angular/core';
+import { UsuarioService} from './usuario.service';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  usuario:any;
+
+  constructor(private usuarioService: UsuarioService) {}  
+
+  ngOnInit() {
+    this.recuperarPersona();
+  }  
+
+  recargar() {
+    this.recuperarPersona();
+  }
+
+  recuperarPersona() {
+    this.usuarioService.retornar()
+      .subscribe( result =&gt;  {this.usuario = result});    
+  }
+}
+</pre>
+<p>Al constructor inyectamos un objeto de la clase 'UsuarioService':</p>
+<pre>
+  constructor(private usuarioService: UsuarioService) {}  
+</pre>
+<p>En los métodos ngOnInit y cuando se presiona un botón que tiene la tarjeta se llama al método 'recuperarPersona':</p>
+<pre>
+  ngOnInit() {
+    this.recuperarPersona();
+  }  
+
+  recargar() {
+    this.recuperarPersona();
+  }
+</pre>
+
+<p>El método recuperarPersona llama al método 'retornar' definido en la clase 'UsuarioService', como sabemos la recuperación de datos de un servidor se hace de forma asíncrona, para capturar los datos retornados del servidor procedemos a llamar al método 'subscribe' del objeto que retorna la clase 'UsuarioService'. En el método 'subscribe' procedemos a actualizar el atributo 'usuario' con el archivo en formato JSON, luego Angular se encarga de actualizar la vista, es decir el archivo 'app.component.html':</p>
+<pre>
+  recuperarPersona() {
+    this.usuarioService.retornar()
+      .subscribe( result =&gt;  {this.usuario = result});    
+  }
+</pre>
+
+</li>
+
+
+<li>
+<p>Modificamos el archivo app.component.html:</p>
+<pre class="recuadro">
+&lt;div class="contenedor"&gt;
+  &lt;mat-card class="tarjeta" *ngIf="usuario!=null"&gt;
+    &lt;mat-card-header&gt;
+      &lt;div mat-card-avatar&gt;&lt;img mat-card-image src="{{usuario.results[0].picture.thumbnail}}" class="circular"&gt;&lt;/div&gt;
+      &lt;mat-card-title&gt;{{usuario.results[0].name.last}}, {{usuario.results[0].name.first}}&lt;/mat-card-title&gt;
+      &lt;mat-card-subtitle&gt;{{usuario.results[0].gender=='male'?'varon':'mujer'}}&lt;/mat-card-subtitle&gt;
+    &lt;/mat-card-header&gt;
+    &lt;img mat-card-image src="{{usuario.results[0].picture.large}}"&gt;
+    &lt;mat-card-content&gt;
+      &lt;p&gt;Teléfono:{{usuario.results[0].phone}}&lt;/p&gt;
+      &lt;p&gt;Email:{{usuario.results[0].email}}&lt;/p&gt;
+    &lt;/mat-card-content&gt;
+    &lt;mat-card-actions&gt;
+      &lt;button mat-flat-button (click)="recargar()" color="primary"&gt;Otra persona?&lt;/button&gt;
+    &lt;/mat-card-actions&gt;
+  &lt;/mat-card&gt;
+&lt;/div&gt;
+</pre>
+<p>Se utilizan una serie de etiquetas definidas en Angular Material para componer una tarjeta: mat-card, mat-card-header, mat-card-title, mat-card-subtitle, mat-card-content y mat-card-action.</p>
+<p>Cuando se presiona el botón con la etiqueta "Otra persona?" se llama el método 'recargar' el cual hace una petición a la API pública y se nos retorna un nuevo usuario.</p>
+<p>Hasta que el atributo 'usuario' tenga un valor distinto a null no se procede a mostrar la tarjeta, esto lo logramos mediante ngIf:</p>
+<p>Los datos de la variable 'usuario' se muestran mediante interpolación y se los ubica dentro de las distintas secciones de la tarjeta.</p>
+<pre>
+  &lt;mat-card class="tarjeta" *ngIf="usuario!=null"&gt;  &lt;mat-card class="tarjeta" *ngIf="usuario!=null"&gt;
+</pre>
+</li>
+
+<li>
+<p>Modificamos el archivo app.component.css:</p>
+<pre class="recuadro">
+.tarjeta {
+    min-width: 400px;
+    max-width: 600px;
+}
+
+.circular {
+    border-radius: 50%;
+}
+
+.contenedor {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</pre>
+<p>La tarjeta aparece centrada en forma vertical y horizontal gracias a la clase 'contenedor'.</p>
+</li>
+
+
+<p>Si ejecutamos la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto102.jpg" alt="Angular Material mat-card" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto034/" target="_blank">aquí</a>.</p>
+
+
+</ul><div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=52&codigo=52&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+</html>

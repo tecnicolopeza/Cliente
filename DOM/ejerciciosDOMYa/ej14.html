@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Se debe crear una página que contenga un div con 5 párrafos.<br> Al presionar un botón insertar un nuevo párrafo al principio del div que contiene los 5 párrafos.
+    </h3>
+
+    <div id="divParrafos">
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+        <p>Parrafo 4</p>
+        <p>Parrafo 5</p>
+    </div>
+
+    <button onclick="insertarP()">insertar nuevo parrafo al principio</button>
+
+    <script>
+        let contador = 6;
+
+        function insertarP() {
+            let texto;
+            let padre;
+            let hijo;
+
+            padre = document.getElementById('divParrafos'); //padre == div
+
+            hijo = document.createElement('p'); //creamos p
+            texto = document.createTextNode('Parrafo ' + contador);
+            hijo.appendChild(texto);
+
+            let primerElemento = padre.firstElementChild;
+            padre.insertBefore(hijo, primerElemento); //insertamos el hijo(p) en el primer elemento
+            contador++;
+        }
+    </script>
+
+
+</body>
+
+</html>

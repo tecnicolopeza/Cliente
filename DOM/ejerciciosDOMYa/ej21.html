@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Vector dias = ['lunes','martes','miércoles','jueves','viernes','sábado','domingo']</p>
+
+    <ol id="lista">
+    </ol>
+
+    <button onclick="crearOl()">Crear lista ordenada con el vector dado</button>
+
+    <script>
+        function crearOl() {
+            const dias = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
+            for (let i = 0; i < dias.length; i++) {
+                document.getElementById("lista").innerHTML += "<li>" + dias[i] + "</li>"; //añadimos en cada vuelta el sig li
+            }
+        }
+    </script>
+</body>
+
+</html>

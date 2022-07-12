@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Div1: <br>
+    <div id="div1">
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+    <button onclick="moverDiv()">Mover div</button> <br><br> Div2:
+    <div id="div2">
+    </div>
+
+    <script>
+        function moverDiv() {
+            var puntero = document.getElementById('div1');
+            var puntero2 = document.getElementById('div2');
+            puntero2.appendChild(puntero);
+        }
+    </script>
+</body>
+
+</html>

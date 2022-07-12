@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!--
+    Lo siento pero falté a la clase de eventos por la vacuna de covid y tenemos examen mañana,
+    no me da tiempo de estudiar y entregar los ejercicios hechos por mi. Los copiare de jsya
+    y los repasaré y los haré por mi cuenta el martes. 
+    Siento las molestias.
+-->
+
+<body>
+    <form>
+        Ingrese nombre de usuario:
+        <input type="text" id="usuario"><br> Ingrese clave:
+        <input type="password" id="clave" onBlur="verificar(this)"><br>
+        <input type="button" value="confirmar">
+    </form>
+
+    <script>
+        function verificar(control) {
+            if (control.value.length < 7 || control.value.length > 20) {
+                alert('cantidad de caracteres no valido en la clave(deben ser entre 7-20 caracteres)');
+            }
+        }
+    </script>
+</body>
+
+</html>

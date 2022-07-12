@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        Crea un objeto utilizando la notación literal de objeto que permita almacenar los siguientes datos referente a una cuenta bancaria: el titular y el saldo. El objeto debe tener también un método para ingresar dinero y otro para extraerlo. Crea un array
+        de objetos cuenta y ordénalos de menor a mayor saldo.
+    </p>
+
+    <script>
+        let cuentas = [{
+                titular: "Alvaro",
+                saldo: 3000,
+
+                ingresar: function(dinero) {
+                    this.saldo += dinero;
+                },
+
+                extraer: function(dinero) {
+                    this.saldo -= dinero;
+                },
+
+                toString() {
+                    return "Titular: " + this.titular + " - Saldo: " + this.saldo;
+                },
+            },
+
+            {
+                titular: "David",
+                saldo: 1500,
+
+                ingresar: function(dinero) {
+                    this.saldo += dinero;
+                },
+
+                extraer: function(dinero) {
+                    this.saldo -= dinero;
+                },
+
+                toString() {
+                    return "Titular: " + this.titular + " - Saldo: " + this.saldo;
+                },
+            },
+
+            {
+                titular: "Juan",
+                saldo: 2000,
+
+                ingresar: function(dinero) {
+                    this.saldo += dinero;
+                },
+
+                extraer: function(dinero) {
+                    this.saldo -= dinero;
+                },
+
+                toString() {
+                    return (
+                        "Titular: " + this.titular + " - Saldo: " + this.saldo + "   "
+                    );
+                },
+            },
+        ];
+
+        document.write("Cuentas sin ordenar: " + cuentas + "<br><br>");
+
+        cuentas.sort(function(a, b) {
+            return b.saldo - a.saldo; //si queremos ordenar ascendente seria poner la a antes que la b
+        });
+
+        /*
+        cuentas.sort(function(a, b) {
+            return b.value - a.value; //value es el campo por el que queremos ordenar
+        });
+        */
+
+        document.write("Cuentas ordenadas por salario: " + cuentas + "<br><br>");
+
+        cuentas.forEach((element) => console.log(element));
+    </script>
+
+    <p>Probemos ahora a usar los métodos y a volver a mostrar los arrays: </p>
+
+    <p>Vamos a ingresarle 1000€ a David por lo que debera estar ahora en segundo puesto:</p>
+
+    <script>
+        cuentas[2].ingresar(1000); //ingresamos 
+        cuentas.sort(function(a, b) { //ordenamos desc
+            return b.saldo - a.saldo; //si queremos ordenar ascendente seria poner la a antes que la b
+        });
+
+        document.write("Cuentas ordenadas por salario: " + cuentas + "<br><br>");
+
+        document.write("Ahora extraeremos de Álvaro 2000€ por lo que deberá ser el último: " + "<br>");
+
+        cuentas[0].extraer(2000);
+        cuentas.sort(function(a, b) { //ordenamos desc
+            return b.saldo - a.saldo; //si queremos ordenar ascendente seria poner la a antes que la b
+        });
+        document.write("Cuentas ordenadas por salario: " + cuentas + "<br><br>");
+    </script>
+
+</body>
+
+</html>

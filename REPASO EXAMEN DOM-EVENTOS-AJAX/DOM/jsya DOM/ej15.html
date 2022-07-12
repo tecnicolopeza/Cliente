@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>15 - Eliminar un nodo de tipo elemento (removeChild)</h1>
+    <h3>Problema:Disponer un div con tres párrafos. Ingresar en un control de tipo text un valor entero entre 0 y 2. Luego borrar el párrafo que coincida con el valor ingresado (el valor ingresado representa la posición del nodo elemento a borrar).</h3>
+
+    <div id="parrafos">
+        <p>Parrafo </p>
+        <p>Parrafo </p>
+        <p>Parrafo </p>
+    </div>
+    <input type="text" name="valorBorrar" id="valorBorrar">
+    <button onclick="borrar_elegido()">Borrar</button>
+
+    <script>
+        function borrar_elegido() {
+            //primero voy a referenciar al div padre
+            var padre = document.getElementById('parrafos');
+            //sacamos el valor del type text
+            var valor = document.getElementById('valorBorrar').value;
+            //ahora vamos a borrar el hijo elegido
+            padre.removeChild(padre.children[valor]);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=51&codigo=51&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Menu - mat-menu anidados</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>51 - Angular Material: Menu - mat-menu anidados</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Podemos fácilmente crear menús anidados, es decir opciones del menú que despliegan otras opciones.</p>
+
+
+
+<h3>Problema</h3>
+<p>Disponer un botón con la etiqueta 'Periódicos', al ser presionado se debe mostrar un menú con los nombres de Argentina y Chile, al seleccionar algún país se muestran una serie de periódicos del respectivo país.<br>
+Crear un segundo botón con la etiqueta 'Buscadores de internet' que muestre una lista de buscadores famosos.</p>
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto033
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+
+
+
+<li>
+<p>Modificamos el archivo 'app.module.ts' para indicar que utilizaremos los módulos 'MatButtonModule' y 'MatMenuModule':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</li>
+
+
+<li>
+<p>Ahora nos queda modificar el archivo 'app.component.html' definiendo las etiquetas respectivas para implementar el menú utilizando las etiquetas de Angular Material:</p>
+<pre class="recuadro">
+&lt;button mat-button [matMenuTriggerFor]="periodicos"&gt;Periódicos&lt;/button&gt;
+
+&lt;mat-menu #periodicos="matMenu"&gt;
+  &lt;button mat-menu-item [matMenuTriggerFor]="argentina"&gt;Periódicos de Argentina&lt;/button&gt;
+  &lt;button mat-menu-item [matMenuTriggerFor]="chile"&gt;Periódicos de Chile&lt;/button&gt;
+&lt;/mat-menu&gt;
+
+&lt;mat-menu #argentina="matMenu"&gt;
+  &lt;a mat-menu-item href="https://www.lanacion.com.ar"&gt;La Nación&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.clarin.com"&gt;Clarin&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.ambito.com"&gt;Ambito&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.infobae.com"&gt;Infobae&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.cronista.com"&gt;Cronista&lt;/a&gt;
+&lt;/mat-menu&gt;
+
+&lt;mat-menu #chile="matMenu"&gt;
+  &lt;a mat-menu-item href="https://www.emol.com"&gt;El Mercurio&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.latercera.com"&gt;La Tercera&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.lacuarta.com"&gt;La Cuarta&lt;/a&gt;
+&lt;/mat-menu&gt;
+
+&lt;button mat-button [matMenuTriggerFor]="buscadores"&gt;Buscadores de Internet&lt;/button&gt;
+
+&lt;mat-menu #buscadores="matMenu"&gt;
+  &lt;a mat-menu-item href="https://www.google.com"&gt;Google&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.yahoo.com"&gt;Yahoo&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.bing.com"&gt;Bing&lt;/a&gt;
+  &lt;a mat-menu-item href="https://duckduckgo.com"&gt;DuckDuckGo&lt;/a&gt;
+&lt;/mat-menu&gt;
+</pre>
+<p>Podemos ver que para desplegar otros submenúes debemos agregar la propiedad [matMenuTriggerFor]:</p>
+<pre>
+&lt;mat-menu #periodicos="matMenu"&gt;
+  &lt;button mat-menu-item <strong>[matMenuTriggerFor]="argentina"</strong>&gt;Periódicos de Argentina&lt;/button&gt;
+  &lt;button mat-menu-item [matMenuTriggerFor]="chile"&gt;Periódicos de Chile&lt;/button&gt;
+&lt;/mat-menu&gt;
+</pre>
+<p>Luego especificamos el submenú:</p>
+<pre>
+&lt;mat-menu <strong>#argentina</strong>="matMenu"&gt;
+  &lt;a mat-menu-item href="https://www.lanacion.com.ar"&gt;La Nación&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.clarin.com"&gt;Clarin&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.ambito.com"&gt;Ambito&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.infobae.com"&gt;Infobae&lt;/a&gt;
+  &lt;a mat-menu-item href="https://www.cronista.com"&gt;Cronista&lt;/a&gt;
+&lt;/mat-menu&gt;
+</pre>
+<p>Como las opciones son enlaces o anclas a otros dominios de internet, lo más fácil es emplear la etiqueta 'a':</p>
+<pre>
+  &lt;a mat-menu-item href="https://www.lanacion.com.ar"&gt;La Nación&lt;/a&gt;
+</pre>
+<p>Angular Material utiliza elementos nativos &lt;button&gt; y &lt;a&gt; para garantizar una experiencia accesible de forma predeterminada. <br>El elemento &lt;button&gt; debe usarse para cualquier interacción que realice una acción en la página actual. El elemento &lt;a&gt; debe usarse para cualquier interacción que navegue a otra dirección.</p>
+</li>
+
+<p>Si ejecutamos la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto101.jpg" alt="Angular Material mat-menu" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto033/" target="_blank">aquí</a>.</p>
+
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=51&codigo=51&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+</html>

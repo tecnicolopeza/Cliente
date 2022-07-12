@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=81&codigo=81&inicio=80 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Directivas estructurales - creación de directivas personalizadas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>81 - Directivas estructurales - creación de directivas personalizadas</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Al igual que las directivas de atributo personalizadas, en Angular podemos crear nuestras propias directivas estructurales a parte de las internas de framework: *ngFor, *ngIf, *ngSwitchCase y *ngSwitchDefault.</p>
+<p>Recordemos que las directivas estructurales tienen por objetivo añadir, manipular o eliminar elementos del DOM (Document Object Model)</p>
+<p>Con un ejemplo veremos los pasos para su creación.</p>
+
+
+
+
+<h3>Problema 1</h3>
+<p>Crear una directiva estructural personalizada cuyo objetivo sea repetir n veces el texto que muestra. La sintaxis para luego utilizarla debe ser:</p>
+<pre>
+&lt;span *appRepetir="5"&gt;x&lt;/span&gt;
+</pre>
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto049
+</pre>
+</li>
+
+<li><p>Procedemos a crear la directiva personalizada llamando a la misma 'Repetir' (recordar que Angular CLI agrega por defecto el prefijo 'app'):</p>
+<pre>
+ng generate directive Repetir
+</pre>
+<p>Se crean dos archivos y se modifica uno.</p>
+<p>Por un lado se modifica el archivo 'app.module.ts' haciendo referencia a la clase 'RepetirDirective':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { RepetirDirective } from './repetir.directive';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    RepetirDirective
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+<p>Se crea propiamente el archivo que contendrá la lógica de la directiva y tiene como nombre 'repetir.directive.ts':</p>
+<pre class="recuadro">
+import { Directive } from '@angular/core';
+
+@Directive({
+  selector: '[appRepetir]'
+})
+export class RepetirDirective {
+
+  constructor() { }
+
+}
+</pre>
+
+
+<p>También se crea el archivo 'resaltado.directive.spec.ts' para especificar pruebas unitarias (por el momento no hemos trabajado con este tipo de archivos, no lo modificaremos ni analizaremos)</p>
+</li>
+
+
+
+<li>
+<p>Procedemos a codicar el archivo 'repetir.directive.ts' implementando la lógica de nuestra directiva:</p>
+<pre class="recuadro">
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appRepetir]'
+})
+export class RepetirDirective {
+
+  constructor(private templateRef: TemplateRef&lt;any&gt;,
+    private viewContainer: ViewContainerRef) { }
+
+  @Input() set appRepetir(numero: number) {
+    for (var i = 0; i &lt; numero; i++)
+      this.viewContainer.createEmbeddedView(this.templateRef);
+  }
+
+}
+</pre>
+
+<p>La diferencia con las directivas de atributo es que se inyectan al constructor dos objetos, uno de tipo TemplateRef&lt;any&gt; y otro de ViewContainerRef:</p>
+<pre>
+  constructor(private templateRef: TemplateRef&lt;any&gt;,
+    private viewContainer: ViewContainerRef) { }
+</pre>
+
+<p>Definimos un setter (método que define un valor a una propiedad) para capturar el valor que recibe la directiva:</p>
+<pre>
+  @Input() set appRepetir(numero: number) {
+    for (var i = 0; i &lt; numero; i++)
+      this.viewContainer.createEmbeddedView(this.templateRef);
+  }
+</pre>
+<p>El atrituto 'this.templateRef' tiene la referencia a la etiqueta HTML (en este caso 'span') que le aplicamos la directiva, por ejemplo:</p>
+<pre>
+&lt;span *appRepetir="5"&gt;x&lt;/span&gt;
+</pre>
+<p>Disponemos un 'for' que se repita la cantidad de veces asignada a la directiva:</p>
+<pre>
+    for (var i = 0; i &lt; numero; i++)
+</pre>
+<p>Dentro del for mediante el objeto 'this.viewContainer' procedemos mediante el método 'createEmbeddedView' a insertar la referencia de la etiqueta HTML (por ejemplo un 'span'):</p>
+<pre>
+      this.viewContainer.createEmbeddedView(this.templateRef);
+</pre>
+<p>Para entender como afecta la directiva creada debemos ver el resultado en el navegador:</p>
+<img src="imagentema/foto137.jpg" alt="directiva estructural personalizada" border="0"><br>
+</li>
+
+<li>
+<p>Para probar la directiva personalizada modificamos el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;span *appRepetir="5"&gt;x&lt;/span&gt;
+</pre>
+<p>Podemos probar esta aplicación en la web <a href="http://scratchya.com.ar/angular/proyecto049/" target="_blank">aquí</a>.</p>
+</li>
+</ul>
+
+
+
+
+
+<h3>Problema 2</h3>
+<p>Crear una directiva estructural personalizada que imite el funcionamiento de la directiva estructural que trae Angular por defecto: *ngIf (sin la parte del else). Debe emplear la siguiente sintaxis:</p>
+<pre>
+&lt;p *appSi="true"&gt;Se muestra el contenido del *appSi&lt;/p&gt;
+</pre>
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto050
+</pre>
+</li>
+
+<li><p>Procedemos a crear la directiva personalizada llamando a la misma 'Si' (recordar que Angular CLI agrega por defecto el prefijo 'app'):</p>
+<pre>
+ng generate directive Si
+</pre>
+<p>Se crean dos archivos y se modifica uno.</p>
+</li>
+
+<li>
+<p>Procedemos a codicar el archivo 'si.directive.ts' implementando la lógica de nuestra directiva:</p>
+<pre class="recuadro">
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appSi]'
+})
+export class SiDirective {
+
+  constructor(private templateRef: TemplateRef&lt;any&gt;,
+    private viewContainer: ViewContainerRef) { }
+
+  @Input() set appSi(visible: boolean) {
+    if (visible)
+      this.viewContainer.createEmbeddedView(this.templateRef);
+    else
+      this.viewContainer.clear();
+  }
+}
+</pre>
+<p>Dependiendo del parámetro del setter procedemos a insertar la etiqueta HTML a la que se le aplica la directiva 'appSi' o llamamos a 'clear' para dejar vacío su interior:</p>
+<pre>
+  @Input() set appSi(visible: boolean) {
+    if (visible)
+      this.viewContainer.createEmbeddedView(this.templateRef);
+    else
+      this.viewContainer.clear();
+  }
+</pre>
+</li>
+
+<li>
+<p>Para probar la directiva personalizada modificamos el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;p *ngIf="true"&gt;Se muestra el contenido del *ngIf&lt;/p&gt;
+&lt;p *appSi="true"&gt;Se muestra el contenido del *appSi&lt;/p&gt;
+</pre>
+<p>Podemos probar esta aplicación en la web y ver que el código HTML generado es exactamente igual ya sea que utilicemos la directiva '*ngIf' o la directiva personalizada que hemos creado '*ngSi':</p>
+<img src="imagentema/foto138.jpg" alt="directiva estructural personalizada" border="0"><br>
+<p>Para aprender más sobre directivas estructurales podemos consultar el código fuente de la directiva <a href="https://github.com/angular/angular/blob/master/packages/common/src/directives/ng_if.ts" target="_blank">*ngIf</a> en el repositorio oficial de Angular.</p>
+</li>
+
+</ul>
+
+<div class="botonretorno"><a href="index20ff.html?inicio=80">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=81&codigo=81&inicio=80 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:09 GMT -->
+</html>

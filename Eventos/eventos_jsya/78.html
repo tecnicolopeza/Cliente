@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Problemas 78: (^ principio $ fin) de cadena</h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Ingresar una oración y mostrar un mensaje si la misma comienza con el carácter - Otro mensaje si comienzo con la palabra hora."
+            );
+            let oracion = prompt('Ingrese una oración');
+            let patron1 = /^-/;
+            if (patron1.test(oracion))
+                alert('Comienza la oración con el carácter -');
+            else
+                alert('No comienza la oración con el carácter -');
+            let patron2 = /^hora/;
+            if (patron2.test(oracion))
+                alert('Comienza la oración con la palabra hora');
+            else
+                alert('No comienza la oración con la palabra hora');
+        }
+
+        function ej2() {
+            alert('Ingresar una palabra y mostrar un mensaje si la misma finaliza con el string ón ');
+            let oracion = prompt('Ingrese una palabra', '');
+            let patron = /ón$/;
+            if (patron.test(oracion))
+                alert('La palabra finaliza con los caracteres \'ón\'');
+            else
+                alert('La palabra no finaliza con los caracteres \'ón\'');
+        }
+    </script>
+</body>
+
+</html>

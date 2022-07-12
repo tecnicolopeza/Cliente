@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //EJERCICIO 1
+        function areaPiramide(lado, altura) {
+
+            function redondearDecimales(numero, decimales) {
+
+                return Math.round(numero * Math.pow(10, decimales)) / Math.pow(10, decimales);
+
+            }
+
+
+            var area = lado * (lado + (Math.sqrt(4 * Math.pow(altura, 2) + Math.pow(lado, 2))));
+            area = redondearDecimales(area, 5);
+
+            return area;
+        }
+
+        console.log(areaPiramide(13.1, 17.4));
+
+        function numeroDiasFechas(f1, f2) {
+
+            var aFecha1 = f1.split('/');
+            var aFecha2 = f2.split('/');
+            var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1], aFecha1[0]);
+            var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1], aFecha2[0]);
+            var dif = fFecha2 - fFecha1;
+            var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+            return dias;
+
+        }
+        console.log("Han trascurrido " + numeroDiasFechas("12/12/1997", "17/12/1997") + " días");
+
+
+        //EJERCICIO 2
+        let arrayNumeros = [6, 3, 45, 41, 8, 7, 12, 47, 10, 11, 24, 13];
+
+        function filtrarPrimos(arrayN) {
+            let arrayPrimos = arrayN.filter(numero => {
+                if (numero == 0 || numero == 1 || numero == 4) return false;
+                for (let x = 2; x < numero / 2; x++) {
+                    if (numero % x == 0) return false;
+                }
+                if (numero > 11) {
+                    return numero;
+                }
+
+            });
+            return arrayPrimos;
+        }
+
+        function ordenar_numeros(array_numeros) {
+            return array_numeros.sort(function(a, b) {
+                //return a - b; //para ordenar de menor a mayor
+                return b - a; //para ordenar de mayor a menor
+            });
+        }
+
+        let arrayP = filtrarPrimos(arrayNumeros);
+
+        console.log(arrayP);
+        console.log("Array ordenado: " + ordenar_numeros(arrayP));
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=18&codigo=18&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Servicios: recuperación de datos de un servidor web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>18 - Servicios: recuperación de datos de un servidor web</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Hemos dicho en el concepto anterior que en Angular se delega todas las responsabilidades de acceso a datos (peticiones y envío de datos) y lógica de negocios en otras clases que colaboran con las componentes y son llamados servicios.</p>
+<p>Veremos ahora como recuperar datos de un servidor web implementando dicha actividad en un servicio.</p>
+<h3>Problema</h3>
+<p>Confeccionar una aplicación que recupere una respuesta en JSON de la dirección:</p>
+<pre>
+https://scratchya.com.ar/vue/datos.php
+</pre>
+<p>La estructura del archivo JSON es:</p>
+<pre>
+[
+  {
+    "codigo": 1,
+    "descripcion": "papas",
+    "precio": 12.33
+  },
+  {
+    "codigo": 2,
+    "descripcion": "manzanas",
+    "precio": 54
+  }
+]
+</pre>
+<p>Mostrar en una tabla HTML todos los artículos recuperados.</p>
+<p>La recuperación de datos se debe hacer en un servicio.</p>
+
+
+
+
+<ol>
+<li>
+<p>Desde la línea de comandos de Node.js procedemos a crear el proyecto013:</p>
+<pre>
+f:\angularya&gt; ng new proyecto013
+</pre>
+</li>
+
+<li>
+<p>Crearemos el servicio que recuperará desde un servidor la lista de artículos</p>
+<pre>
+f:\angularya\proyecto13\&gt; ng generate service articulos
+</pre>
+<p>Con el comando anterior estamos creando la clase 'ArticulosService'</p>
+<p>Se crean dos archivos.</p>
+
+
+<p>El código generado de la clase 'ArticulosService' es:</p>
+<pre class="recuadro">
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ArticulosService {
+
+  constructor() { }
+}
+</pre>
+
+<p>Lo modificamos por el siguiente código que permita recuperar desde un servidor web el archivo JSON:</p>
+<pre class="recuadro">
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ArticulosService {
+
+  constructor(private http: HttpClient) { }
+
+  retornar() {
+    return this.http.get("https://scratchya.com.ar/vue/datos.php");
+  }  
+}
+</pre>
+
+<p>El archivo 'app.module.ts' se modifica con el siguiente código (se importa la clase HttpClientModule):</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule 
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+
+</li>
+
+<li>
+<p>Ahora veremos como consumimos el servicio desde nuestra componente. Procedemos a modificar la componente que se crea por defecto 'AppComponent' que tiene por responsabilidad mostrar en la página el listado de artículos:</p>
+
+<pre class="recuadro">
+import { Component, OnInit } from '@angular/core';
+import  { ArticulosService } from './articulos.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit{
+
+  articulos: any;
+
+  constructor(private articulosService: ArticulosService) {}
+
+  ngOnInit() {
+    this.articulosService.retornar()
+      .subscribe( result =&gt;  this.articulos = result)
+  }
+}
+</pre>
+
+<p>Primero importamos el servicio llamado ArticulosService que se almacena en el archivo 'articulos.service.ts':</p>
+<pre>
+import { ArticulosService } from './articulos.service';
+</pre>
+<p>Para inyectar el objeto de la clase 'ArticulosService' que crea Angular en forma automática lo hacemos en el parámetro del constructor:</p>
+<pre>
+  constructor(private articulosServicio: ArticulosService) {
+  }
+</pre>
+<p>Se almacena en el atributo 'articulosServicio' la referencia del objeto de la clase 'ArticulosService' que crea Angular.</p>
+<p>En el método ngOnInit actualizamos la propiedad 'articulos' con el resultado devuelto:</p>
+<pre>
+  ngOnInit() {
+    this.articulosService.retornar()
+      .subscribe( result =>  this.articulos = result)
+  }
+</pre>
+<p>Esta asignación dispara la actualización de la página HTML.</p>
+</li>
+
+<li>
+<p>Falta que codifiquemos la vista con los datos  recuperados:</p>
+<p>app.component.html</p>
+<pre class="recuadro">
+&lt;div *ngIf="articulos!=null; else espera"&gt;
+  &lt;table border="1"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Codigo&lt;/td&gt;&lt;td&gt;Descripcion&lt;/td&gt;&lt;td&gt;Precio&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr *ngFor="let art of articulos"&gt;
+      &lt;td&gt;{{art.codigo}}&lt;/td&gt;
+      &lt;td&gt;{{art.descripcion}}&lt;/td&gt;
+      &lt;td&gt;{{art.precio}}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;ng-template #espera&gt;Esperando datos...&lt;/ng-template&gt;
+</pre>
+
+</li>
+
+<li>
+<p>Si ejecutamos ahora el proyecto013 veremos en el navegador el listado de artículos, pero ahora recuperados de un servidor y no extraidos de un vector como en el concepto anterior:</p>
+<pre>
+ng server -o
+</pre>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto013/" target="_blank">aquí</a>.</p>
+</li>
+
+</ol>
+
+<div class="botonretorno"><a href="index2904.html?inicio=0">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=18&codigo=18&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:16 GMT -->
+</html>

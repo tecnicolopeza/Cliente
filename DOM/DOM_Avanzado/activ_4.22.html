@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: absolute;
+            left: 25%;
+            width: 50%;
+            font-family: sans-serif;
+            text-align: center;
+            background-color: rgb(29, 90, 202);
+            color: white;
+        }
+        
+        button {
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            background-color: black;
+            margin-left: 5px;
+        }
+        
+        button:hover {
+            cursor: pointer;
+            transition: 0.4s;
+            transform: scale(1.1);
+            font-weight: bold;
+        }
+        
+        input {
+            border-radius: 3px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Crea un documento HTML que contenga un cuadro de texto y dos botones de manera que permita añadir elementos de forma dinámica al DOM. Uno de los botones permitirá añadir elementos mediante insertAdjacentHTML y otro botón mediante createElement.</h3>
+
+    <div id="divBody"></div>
+    <!--contendrá los elementos que añadamos-->
+
+    <h4 style="font-weight: bolder;">PARA INSERTAR HTML INCLUIR SUS ETIQUETAS TALES COMO &lt;p&gt; &lt;/p&gt;</h4>
+    <textarea name="textoInsertar" id="textoInsertar" rows="10" cols="50"></textarea><br>
+    <button onclick="insertAdjacentHTM()">insertAdjacentHTML</button> <button onclick="createElemen()">createElement</button>
+
+    <script>
+        let padre = document.getElementById("divBody"); //padre == div;
+        function insertAdjacentHTM() {
+            var hijo;
+
+            hijo = document.getElementById('textoInsertar').value;
+            padre.insertAdjacentHTML("beforeend", hijo);
+        }
+
+        function createElemen() {
+            var texto = document.getElementById('textoInsertar').value; //sacamos el valor del input
+            var parrafo = document.createElement('p'); //creamos la etiqueta p
+
+            parrafo.innerHTML = texto; //metemos en el parrafo el valor del texto
+
+            padre.appendChild(parrafo); //añadimos el p al padre == div
+
+        }
+    </script>
+
+</body>
+
+</html>

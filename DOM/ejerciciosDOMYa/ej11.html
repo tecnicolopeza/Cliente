@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Confeccionar una página que contenga una lista de tipo (ul) y definir tres marcas de tipo (li) sin texto.<br> Luego al presionar un botón agregar un nodo de texto a cada marca (li).</h3>
+
+    <ul>
+        <li id="marca1"></li>
+        <li id="marca2"></li>
+        <li id="marca3"></li>
+    </ul>
+
+    <button value="textos" onclick="mostrarTexto()">mostrar texto</button>
+
+    <script>
+        function mostrarTexto() {
+            /*
+            • Leer: acceso a la variable HTMLElementObject.innerHTML
+            • Modificar: HTMLElementObject.innerHTML=text
+            */
+            document.getElementById('marca1').innerHTML = "Marca 1 - muestra su resultado";
+            document.getElementById('marca2').innerHTML = "Marca 2 - muestra su resultado";
+            document.getElementById('marca3').innerHTML = "Marca 3 - muestra su resultado";
+        }
+    </script>
+
+</body>
+
+</html>

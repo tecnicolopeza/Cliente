@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Creamos el obj Persona
+        class Persona {
+
+            static _cromosomas = 46;
+            constructor(_nombre, _edad, _fumador, _cromosomas) {
+                //constructor
+                this._nombre = _nombre;
+
+                if (_edad > 0) {
+                    this._edad = _edad;
+                } else {
+                    document.write("¡La edad debe ser mayor a 0!<br>");
+                    document.write("Se le pondrá por defecto 18 años.<br>");
+                    this._edad = 18;
+                }
+
+                this._fumador = _fumador;
+                //si el fumador no esta definido por defecto será false
+                if (this._fumador == undefined) {
+                    this._fumador = false;
+                }
+
+                this._cromosomas = _cromosomas;
+            }
+
+            //getters y setters
+            get nombre() {
+                return this._nombre;
+            }
+
+            set nombre(x) {
+                if (this._nombre !== x) this._nombre = x;
+            }
+
+            get edad() {
+                return this._edad;
+            }
+
+            set edad(x) {
+                if ((this._edad > 0) && (this._edad < 120)) {
+                    this._edad = x;
+                }
+            }
+
+            get fumador() {
+                return this._fumador;
+            }
+
+            set fumador(x) {
+                if (this._fumador != x) {
+                    this._fumador = x;
+                }
+            }
+
+            get cromosomas() {
+                return this._cromosomas;
+            }
+
+            set cromosomas(x) {
+                if (this._cromosomas !== x) this._cromosomas = x;
+            }
+
+            //toString
+            toString() {
+                return "Nombre: " + this._nombre + " - Edad: " + this._edad + " - Fumador: " + this._fumador;
+            }
+
+
+            //Metodos
+            //metodo comparaPersonas
+            static comparaPersonas(obj1, obj2) {
+                var mayor = 0;
+                if (obj1.edad > obj2.edad) {
+                    mayor = 0; //si el primero es el mayor devuelve 0
+                } else {
+                    mayor = 1; //si el segundo es el mayor devuelve 1
+                }
+                return mayor;
+            }
+
+            //Implementa un método cumplirEdad que incremente en una unidad el número de años 
+            cumplirEdad() {
+                this._edad = this._edad + 1;
+            }
+
+            /*Implementa una propiedad estática llamada NUMERO_CROMOSOMAS que devuelva el número de cromosomas 
+            de un ser humano (debe devolver 46, y será consultado usando Persona.NUMERO_CROSOMAS).*/
+            static NUMERO_CROMOSOMAS(obj) {
+                return this._cromosomas;
+            }
+
+            /*Implementa un método de instancia llamado personasConMasEdad al que le pasemos un número variable 
+            de objetos personas (usa parámetros Rest en la función) y debe devolver un array conteniendo todas 
+            las personas que tengan una edad superior a la de nuestro objeto. */
+            static personasConMasEdad(...personaMayor) {
+
+                for (let i = 0; i < personaMayor.length; i++) {
+                    var array = new Array();
+                    if (personaMayor[i].edad > personaMayor[0].edad) {
+                        array.push[personaMayor[i]];
+                    }
+                    return array;
+                }
+            }
+
+
+        }
+    </script>
+
+    <script>
+        //creamos una persona con el constructor
+        const persona1 = new Persona('Alvaro', 23);
+        document.write(persona1);
+        document.write("<p></p>");
+        const persona2 = new Persona('Ana', 19, true);
+        document.write(persona2);
+        document.write("<p></p>");
+        const persona3 = new Persona('Amanda', 29, true);
+        document.write(persona3);
+
+
+        document.write("<p>Ahora vamos a comparar las edades de " + persona1.nombre + " y " + persona2.nombre + ": </p>");
+
+        if (Persona.comparaPersonas(persona1, persona2) == 0) {
+            document.write("<p>El/La mayor es " + persona1.nombre + " con " + persona1.edad + "</p>");
+        } else {
+            document.write("<p>El/La mayor es " + persona2.nombre + " con " + persona2.edad + "</p>");
+        }
+
+        persona2.cumplirEdad();
+        document.write("Vamos a aumentar la edad de Ana en una unidad => " + persona2.edad + " años.<br>");
+
+        var crom = Persona.NUMERO_CROMOSOMAS(persona1);
+        var crom2 = persona1.cromosomas;
+
+        document.write(persona1.nombre + " tiene " + crom + " cromosomas");
+
+        document.write(Persona.personasConMasEdad(persona1, persona2, persona3));
+        //no se mostrarlo por lo que no se si esta bien
+    </script>
+
+    <!--CLASE CONDUCTOR QUE HEREDA DE PERSONA-->
+    <script>
+        class Conductor extends Persona {
+
+            constructor(_nombre, _edad, tipo_carnet, puntos) {
+                super(_nombre, _edad);
+                this.tipo_carnet = tipo_carnet;
+                this._puntos = puntos;
+                if (this._puntos == undefined) {
+                    this._puntos = 15;
+                }
+            }
+
+            get carnet() {
+                return this.tipo_carnet;
+            }
+
+            set carnet(x) {
+                if (this.tipo_carnet !== x) this.tipo_carnet = x;
+            }
+
+            get puntos() {
+                return this._puntos;
+            }
+
+            set undefined(x) {
+                if (this._puntos !== x) this._puntos = x;
+            }
+
+
+            //metodos
+            sancionPuntos(puntos_a_quitar) {
+                this._puntos -= puntos_a_quitar;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

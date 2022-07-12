@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>23 - Accediendo al estilo de una marca HTML.</h2>
+    <h4>Problema:Definir una lista con tres nombres de paises. Luego en tiempo de ejecución permitir cambiar el estilo de la lista.</h4>
+
+    <ul id="listaPaises">
+        <li>España</li>
+        <li>Italia</li>
+        <li>Francia</li>
+    </ul>
+
+    <label for="cambiarTamañoLetra">Cambiar font-size</label>
+    <select onChange="cambiarFontSize()" id="cambiarTamañoLetra">
+        <option value="10px">10px</option>
+        <option value="20px">20px</option>
+        <option value="30px">30px</option>
+    </select>
+
+    <label for="cambiarColorLetra">Cambiar color</label>
+    <select onChange="cambiarColor()" id="cambiarColorLetra">
+        <option value="red">rojo</option>
+        <option value="blue">azul</option>
+        <option value="green">verde</option>
+    </select>
+
+
+    <script>
+        function cambiarFontSize() {
+            var punteroLista = document.getElementById('listaPaises');
+            var punteroFontSize = document.getElementById('cambiarTamañoLetra');
+
+            punteroLista.style.fontSize = punteroFontSize.value;
+        }
+
+        function cambiarColor() {
+            var punteroLista = document.getElementById('listaPaises');
+            var punteroColor = document.getElementById('cambiarColorLetra');
+
+            punteroLista.style.color = punteroColor.value;
+        }
+    </script>
+</body>
+
+</html>

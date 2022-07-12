@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Solicitar el ingreso alguna de estas palabras (casa, mesa, perro, gato)<br />
+      luego mostrar la palabra traducida en inglés. Es decir, si se ingresa<br />
+      'casa' debemos mostrar el texto 'house' en la página.<br />
+    </p>
+
+    <script>
+      var palabra;
+      palabra = (prompt("Ingrese: casa, mesa, perro o gato se traduciran al inglés"));
+
+      palabra = palabra.toLowerCase();// hago un toLowerCase para que sin importar mayusculas o minusculas capte la palabra
+
+      switch (palabra) {
+        case "casa":
+          document.write("House");
+          break;
+        case "mesa":
+          document.write("Table");
+          break;
+        case "perro":
+          document.write("Dog");
+          break;
+        case "gato":
+          document.write("Cat");
+          break;
+        default:
+          document.write("Error esa palabra no está disponible");
+          break;
+      }
+      document.write("<br>");
+      var palabraF;
+      palabraF = (prompt("Ingrese: casa, puerta, chica o chico se traduciran al Frances"));
+
+      palabraF = palabraF.toLowerCase();// hago un toLowerCase para que sin importar mayusculas o minusculas capte la palabra
+      switch (palabraF) {
+        case "casa":
+          document.write("Maison");
+          break;
+        case "puerta":
+          document.write("Porte");
+          break;
+        case "chica":
+          document.write("Fille");
+          break;
+        case "chico":
+          document.write("Garçon");
+          break;
+        default:
+          document.write("Error esa palabra no está disponible");
+          break;
+      }
+
+
+    </script>
+    
+  </body>
+</html>

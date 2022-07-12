@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>Crea un documento HTML que permita seleccionar el tamaño de fuente de los párrafos mediante un desplegable que contenga los tamaños: Small, Medium y Large.</h4>
+
+    <h5 style="font-weight: bold;">Modificación tamaño de texto</h5>
+    <p>Parrafo 1</p>
+    <p>Parrafo 2</p>
+    <p>Parrafo 3</p>
+
+    Visibilidad<input type="checkbox" id="visibilidadFuente" name="hidden">
+
+    <label for="displayP">Selecciona un display: </label>
+    <select id="displayP" name="displayP">
+        <option value="inline">Inline</option> 
+        <option value="none">None</option> 
+     </select>
+    <button onclick="cambiarDisplay(); cambiarVisibilidad()">cambiar</button>
+
+    <script>
+        function cambiarDisplay() {
+            var value = document.getElementById('displayP').value;
+            var listaP = document.getElementsByTagName('p'); //los bytagname los trata como array
+            listaP[1].style.display = value;
+        }
+
+        function cambiarVisibilidad() {
+            var value = document.getElementById('visibilidadFuente').checked;
+            var listaP = document.getElementsByTagName('p'); //los bytagname los trata como array
+
+            if (value) {
+                listaP[1].style.visibility = "hidden";
+            }
+
+        }
+    </script>
+</body>
+
+</html>

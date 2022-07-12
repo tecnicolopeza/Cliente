@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=53&codigo=53&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Menu - mat-toolbar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>53 - Angular Material: Menu - mat-toolbar</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>mat-toobar es una componente contenedora donde podemos disponer un título, encabezados y otras componentes de acción como pueden ser botones y menúes.</p>
+
+
+<h3>Problema</h3>
+<p>Disponer una componente de tipo mat-toolbar y dentro de la misma insertar tres botones. Según que botón se presiona, se debe mostrar en un iframe los mapas que suministra Google, Microsoft y OpenStreetMap.</p>
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto035
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+
+<p>Modificamos el archivo 'app.module.ts' donde debemos importar MatButtonModule y MatToolbarModule:</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo 'app.component.ts' con la lógica de nuestra componente:</p>
+<pre class="recuadro">
+import { Component } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  direcciones:string[] = [
+    "https://www.openstreetmap.org/export/embed.html?bbox=-64.35224533081056%2C-31.474206377544593%2C-64.06557083129884%2C-31.340295938751318&amp;layer=mapnik",
+    "https://maps.google.com/maps?q=cordoba%20argentina&t=&z=13&ie=UTF8&iwloc=&output=embed",
+    "https://www.bing.com/maps/embed?h=800&w=800&cp=-31.416887181810054~-64.18859863281249&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
+  ];
+
+  urlSegura!: SafeResourceUrl;
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.fijar(0);
+  }
+
+  fijar(pos: number) {
+    this.urlSegura = this.sanitizer.bypassSecurityTrustResourceUrl(this.direcciones[pos]);
+  }
+}
+</pre>
+
+
+<p>Almacenamos las URL de los servicios de mapas en el arreglo 'direcciones:'</p>
+<pre>
+  direcciones:string[] = [
+    "https://www.openstreetmap.org/export/embed.html?bbox=-64.35224533081056%2C-31.474206377544593%2C-64.06557083129884%2C-31.340295938751318&amp;layer=mapnik",
+    "https://maps.google.com/maps?q=cordoba%20argentina&t=&z=13&ie=UTF8&iwloc=&output=embed",
+    "https://www.bing.com/maps/embed?h=800&w=800&cp=-31.416887181810054~-64.18859863281249&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
+  ];
+</pre>
+
+<p>Algo que no se nos había presentado hasta ahora es que cuando hacemos 'property binding' para enlazar la propiedad 'src' de un 'iframe', por seguridad Angular obliga analizar dicha URL mediante la clase DomSanitizer que la inyectamos como un servicio en el constructor.</p>
+<pre>
+  constructor(private sanitizer: DomSanitizer) {}
+</pre>
+<p>Cuando presionemos alguno de los tres botones llamaremos al método fijar y procederemos a almacenar en el atributo 'urlSegura' que es de la clase SafeResourceUrl la dirección URL:</p>
+<pre>
+  fijar(pos: number) {
+    this.urlSegura = this.sanitizer.bypassSecurityTrustResourceUrl(this.direcciones[pos]);
+  }
+</pre>
+</li>
+
+
+
+<li>
+<p>Codificamos la interfaz visual en el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div style="height: 100%;"&gt;
+    &lt;mat-toolbar&gt;
+        &lt;button mat-button (click)="fijar(0)"&gt;OpenStreetMap&lt;/button&gt;
+        &lt;button mat-button (click)="fijar(1)"&gt;Google Maps&lt;/button&gt;
+        &lt;button mat-button (click)="fijar(2)"&gt;Microsoft Maps&lt;/button&gt;
+    &lt;/mat-toolbar&gt;
+    &lt;iframe width="99%" height="92%" [src]="urlSegura"&gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;
+</pre>
+<p>Dentro de la etiqueta mat-toolbar disponemos las componentes que se deben mostrar en su interior, en este caso los tres botones:</p>
+<pre>
+    &lt;mat-toolbar&gt;
+        &lt;button mat-button (click)="fijar(0)"&gt;OpenStreetMap&lt;/button&gt;
+        &lt;button mat-button (click)="fijar(1)"&gt;Google Maps&lt;/button&gt;
+        &lt;button mat-button (click)="fijar(2)"&gt;Microsoft Maps&lt;/button&gt;
+    &lt;/mat-toolbar&gt;
+</pre>
+<p>Por otro lado para que se actualice el contenido del iframe definimos mediante la propiedad [src] la referencia al atributo "urlSegura" que dijimos que cambiaremos cada vez que se presiona un botón.</p>
+
+
+<p>Si ejecutamos la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto103.jpg" alt="Angular Material mat-toolbar" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto035/" target="_blank">aquí</a>.</p>
+
+
+</li>
+
+</ul>
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=53&codigo=53&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+</html>

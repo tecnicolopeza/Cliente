@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        alert('Si pulsas un boton no funcionara el otro a no ser que recargues');
+    </script>
+    <h1>14 - Agregar un nodo de tipo elemento en medio (insertBefore - createElement)</h1>
+    <h3>Problema: Se debe crear una página que contenga un div con 5 párrafos. Al presionar un botón insertar un nuevo párrafo al principio del div que contiene los 5 párrafos.</h3>
+
+    <div id="parrafos">
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+        <p>Parrafo 4</p>
+        <p>Parrafo 5</p>
+    </div>
+    <button onclick="insertarEntre2y3();">Insertar parrafo entre 2 y 3</button>
+    <button onclick="insertarPrincipio();">Insertar parrafo al principio</button>
+    <script>
+        function insertarEntre2y3() {
+            var contador = 0;
+            var puntero;
+            //creamos el elemento que vamos a insertar
+            var parrafo = document.createElement('p');
+            //creamos el texto para el elemento
+            var texto = document.createTextNode('Parrafo entre 2 y 3');
+            //ahora metemos el texto en el parrafo
+            parrafo.appendChild(texto);
+            //referenciamos al padre que tiene los p
+            var padreP = document.getElementById('parrafos');
+            //tomamos todos los p de parrafos y recorremos hasta llegar al tercero
+            var hijosP = document.getElementsByTagName('p');
+            // alert(hijosP);
+            for (var elemento of hijosP) {
+                if (contador == 2) {
+                    puntero = elemento; //meto en puntero el elemento en el nodo actual
+                }
+                contador++;
+                console.log(contador);
+            }
+            //meto en la referencia de puntero el parrafo creado
+            padreP.insertBefore(parrafo, puntero);
+        }
+
+        function insertarPrincipio() {
+            var contador = 0;
+            var puntero;
+            //creamos el elemento que vamos a insertar
+            var parrafo = document.createElement('p');
+            //creamos el texto para el elemento
+            var texto = document.createTextNode('Parrafo al principio');
+            //ahora metemos el texto en el parrafo
+            parrafo.appendChild(texto);
+            //referenciamos al padre que tiene los p
+            var padreP = document.getElementById('parrafos');
+            //tomamos todos los p de parrafos y recorremos hasta llegar al primero
+            var hijosP = document.getElementsByTagName('p');
+            // alert(hijosP);
+            for (var elemento of hijosP) {
+                if (contador == 0) {
+                    puntero = elemento; //meto en puntero el elemento en el nodo actual
+                }
+                contador++;
+                console.log(contador);
+            }
+            //meto en la referencia de puntero el parrafo creado
+            padreP.insertBefore(parrafo, puntero);
+        }
+    </script>
+</body>
+
+</html>

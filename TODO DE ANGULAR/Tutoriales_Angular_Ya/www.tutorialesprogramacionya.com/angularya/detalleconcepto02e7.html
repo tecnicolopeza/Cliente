@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=68&codigo=68&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular y Bootstrap - creación de una componente: tabla</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>68 - Angular y Bootstrap - creación de una componente: tabla</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<h3>Creación de una componente de tabla de datos.</h3>
+<p>Crear una componente llamada TablaComponent y cuyo selector debe llamarse 'boot-tabla'.<br>
+<p>Mediante dos propiedades se deben poder cargar los titulos y filas de la tabla.<p>
+<p>Probar la componente recuperando los datos de un servidor público. Recuperar del servidor <a href="https://jsonplaceholder.typicode.com/" target="_blank">jsonplaceholder.typicode.com</a> un archivo JSON con los datos de 100 post de un blog ficticio.
+</p>
+
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto041
+</pre>
+</li>
+
+
+<li><p>Instalamos el Bootstrap original con alguna de las tres formas vistas en conceptos anteriores, mediante CDN o localizandolo en la capeta 'assets' o mediante npm.</p>
+</li>
+
+
+<li>
+<p>Crearemos el servicio que recuperará desde el servidor público los datos de todos los post:</p>
+<pre>
+ng generate service postblog
+</pre>
+
+<p>Modificamos el archivo para recuperar los datos del servidor, debemos importar la clase 'HttpClient' e inyectar al constructor la referencia de un objeto de dicha clase al cual llamamos 'http':</p>
+<pre class="recuadro">
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostblogService {
+
+  constructor(private http: HttpClient) { }
+
+  retornar() {
+    return this.http.get("https://jsonplaceholder.typicode.com/posts");
+  }  
+}</pre>
+<p>El método 'retornar' será llamado desde la componente principal, este método mediante el objeto de la clase HttpClient llama al método get y le pasa como parámetro la URL del servidor que retornará el archivo JSON con los datos de 100 post.</p>
+</li>
+
+
+
+<li>
+<p>Modificamos el archivo app.module.ts importando la clase HttpClientModule para poder emplear la clase 'HttpClient' que definimos en la clase 'PostblogService':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule    
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</li>
+
+
+<li>
+<p>Crearemos la componente de tabla e indicamos como prefijo para la nueva etiqueta la cadena 'boot' (la idea es recordarnos que esta componente utiliza la librería de Bootstrap):</p>
+<pre>
+ng generate component tabla --prefix boot
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo 'tabla.component.ts':</p>
+<pre class="recuadro">
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'boot-tabla',
+  templateUrl: './tabla.component.html',
+  styleUrls: ['./tabla.component.css']
+})
+export class TablaComponent implements OnInit {
+  @Input() titulos: any;
+  @Input() filas: any;
+
+  objectKeys = Object.keys;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+</pre>
+
+<p>Definimos las dos propiedades que se inicializan los titulos y las filas de la componente:</p>
+<pre>
+  @Input() titulos: any;
+  @Input() filas: any;
+</pre>
+<p>Guardamos en un atributo la referencia del método keys del objeto 'Object', para usarlo luego en la plantilla:</p>
+<pre>
+  objectKeys = Object.keys;
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo 'tabla.component.html':</p>
+<pre class="recuadro">
+&lt;table class="table table-striped table-bordered"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col" *ngFor="let titulo of titulos"&gt;
+                {{titulo}}
+            &lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr *ngFor="let fila of filas"&gt;
+            &lt;td *ngFor="let key of objectKeys(fila)"&gt;
+                {{fila[key]}}
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+<p>Utilizamos dos for anidados para recorrer cada fila y el for interno recorre las celdas de cada fila:</p>
+<pre>
+        &lt;tr *ngFor="let fila of filas"&gt;
+            &lt;td *ngFor="let key of objectKeys(fila)"&gt;
+                {{fila[key]}}
+            &lt;/td&gt;
+        &lt;/tr&gt;
+</pre>
+</li>
+
+
+<li>
+<p>Ahora nos queda consumir la componente 'boot-tabla', esto lo haremos desde la componente principal de nuestra aplicación Angular.</p>
+<p>Modificamos el archivo 'app.component.ts':</p>
+<pre class="recuadro">
+import { Component, OnInit } from '@angular/core';
+import { PostblogService } from './postblog.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  post : any;
+  titulosColumnas = ['código de usuario', 'código de post', 'titulo', 'descripción'];
+  constructor(private postblogService: PostblogService) { }
+
+  ngOnInit() {
+    this.postblogService.retornar()
+      .subscribe(result =&gt; this.post = result)
+  }
+}
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div class="container"&gt;
+  &lt;boot-tabla [titulos]="titulosColumnas" [filas]="post" *ngIf="post!=null"&gt;&lt;/boot-tabla&gt;
+&lt;/div&gt;
+</pre>
+</li>
+
+<li>
+<p>Ahora ejecutemos la aplicación:</p>
+<pre>
+ng serve -o
+</pre>
+<p>Tenemos como resultado:</p>
+<img src="imagentema/foto125.jpg" alt="Angular Bootstrap componente tabla" border="0"><br>
+
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto041/" target="_blank">aquí</a>.</p><div class="botonretorno"><a href="indexd6cc.html?inicio=60">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=68&codigo=68&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:05 GMT -->
+</html>

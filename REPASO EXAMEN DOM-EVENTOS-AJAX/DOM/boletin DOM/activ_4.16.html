@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Modificación de tamaño de texto</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sequi minus voluptatem eligendi in totam quis esse cumque doloribus corrupti provident nobis quos deleniti! Velit laborum earum quas unde est?Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Accusantium odit similique voluptatibus iusto culpa eius ratione eum qui minima nisi, ducimus fugit mollitia. Est hic itaque recusandae sed laborum voluptas?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
+        consequatur, officiis molestiae, libero eum perspiciatis quas sit saepe quod perferendis optio excepturi nesciunt in itaque? Molestiae laudantium cupiditate laboriosam!</p>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sequi minus voluptatem eligendi in totam quis esse cumque doloribus corrupti provident nobis quos deleniti! Velit laborum earum quas unde est?Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Accusantium odit similique voluptatibus iusto culpa eius ratione eum qui minima nisi, ducimus fugit mollitia. Est hic itaque recusandae sed laborum voluptas?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
+        consequatur, officiis molestiae, libero eum perspiciatis quas sit saepe quod perferendis optio excepturi nesciunt in itaque? Molestiae laudantium cupiditate laboriosam!</p>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, sequi minus voluptatem eligendi in totam quis esse cumque doloribus corrupti provident nobis quos deleniti! Velit laborum earum quas unde est?Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Accusantium odit similique voluptatibus iusto culpa eius ratione eum qui minima nisi, ducimus fugit mollitia. Est hic itaque recusandae sed laborum voluptas?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
+        consequatur, officiis molestiae, libero eum perspiciatis quas sit saepe quod perferendis optio excepturi nesciunt in itaque? Molestiae laudantium cupiditate laboriosam!</p>
+    <br>
+    <br>
+
+    <label for="selecSize">Seleccionar tamaño:</label>
+    <select name="selecSize" id="selecSize" onchange="cambiarSize()">
+        <option value="10px">Small</option>
+        <option value="20px">Medium</option>
+        <option value="30px">Large</option>
+    </select>
+
+    <script>
+        function cambiarSize() {
+            var punteroP = document.getElementsByTagName('p'); //recordar que da un array
+            var punteroSelecSize = document.getElementById('selecSize').value;
+            for (let i = 0; i < punteroP.length; i++) {
+                punteroP[i].style.fontSize = punteroSelecSize;
+            }
+        }
+    </script>
+</body>
+
+</html>

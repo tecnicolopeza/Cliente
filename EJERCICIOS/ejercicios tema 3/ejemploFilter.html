@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Crear un array de numeros que tenga numeros menores que 0 y mayores de 10
+        //y con filter que devuelva los menores que 10 y ordenados de menor a mayor
+
+        let array = [-1, -13, -2, -5, 11, 23, 50];
+        //El filter()método crea una matriz llena de todos los elementos de la matriz que pasan una prueba (proporcionada por una función).
+        console.log(array.filter(checkMayor10));
+        console.log("Array ordenado de mayor a menor: " + array.filter(checkMayor10).sort().reverse());
+        console.log("Array ordenado de menor a mayor: " + array.filter(checkMayor10).sort());
+
+        function checkMayor10(n) {
+            return n >= 10;
+        }
+    </script>
+</body>
+
+</html>

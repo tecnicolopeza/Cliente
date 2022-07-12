@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="bloque1">
+        <p>Este es el primer párrafo</p>
+        <p>Este es el segundo párrafo</p>
+    </div>
+    <div id="bloque2">
+        <p>Este es el primer párrafo</p>
+        <p>Este es el segundo párrafo</p>
+    </div>
+
+    <button onclick="cantidadE()">Cantidad elementos hijos</button>
+    <button onclick="cantidadN()">Cantidad nodos hijos</button>
+
+    <script>
+        function cantidadN() {
+            var list1 = document.getElementById('bloque1');
+            alert('La cantidad de hijos de tipo elemento del div1 es: ' + list1.childNodes.length);
+
+            var list2 = document.getElementById('bloque2');
+            alert('La cantidad de hijos de tipo elemento del div2 es: ' + list2.childNodes.length);
+        }
+
+        function cantidadE() {
+            var lista = document.getElementById('bloque1');
+            alert('La cantidad de hijos de tipo elemento del div1 es: ' + lista.children.length);
+
+            var lista2 = document.getElementById('bloque2');
+            alert('La cantidad de hijos de tipo elemento del div2 es: ' + lista2.children.length);
+        }
+    </script>
+</body>
+
+</html>

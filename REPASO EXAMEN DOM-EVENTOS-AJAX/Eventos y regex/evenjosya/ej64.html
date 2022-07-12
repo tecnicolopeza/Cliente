@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #colores {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+        }
+        
+        #colores:hover {
+            cursor: pointer;
+        }
+        
+        #colores h1 {
+            line-height: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Eventos: mousedown y mouseup</h2>
+    <p>Elaborar un programa que muestre un div de color rojo. Cuando se presione cambiar el color a amarillo y luego de soltar el botón del mouse volver a pintar de rojo.</p>
+
+    <div id="colores">
+        <h1>PRESIONA</h1>
+    </div>
+
+    <script>
+        let div = document.getElementById('colores');
+        div.addEventListener('mouseup', upCambiar, false);
+        div.addEventListener('mousedown', downCambiar, false);
+
+        function upCambiar() {
+            div.style.backgroundColor = 'yellow';
+        }
+
+        function downCambiar() {
+            div.style.backgroundColor = 'red';
+        }
+    </script>
+</body>
+
+</html>

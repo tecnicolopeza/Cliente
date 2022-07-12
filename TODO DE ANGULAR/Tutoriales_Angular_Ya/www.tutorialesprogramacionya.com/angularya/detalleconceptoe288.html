@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=62&codigo=62&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Estructura y nombres de archivos y carpetas de un proyecto Angular - Carpeta 'environments'</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>62 - Estructura y nombres de archivos y carpetas de un proyecto Angular - Carpeta 'environments'</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>La carteta environments se encuentra localizada dentro de la carpeta 'src' del proyect Angular y tiene inicialmente 2 archivos:</p>
+<img src="imagentema/foto118.jpg" alt="Angular carpeta environments" border="0"><br>
+<p>Lo más común cuando uno construye un proyecto, el mismo pase como mínimo por dos estados:</p>
+<ol>
+  <li>Desarrollo: En esta etapa se construye la aplicación (es conveniente que el código incluya variables y métodos de depuración, test etc.)</li>
+  <li>Producción: El proyecto se encuentra termindo, instalado en el servidor y en uso por usuarios (Se borran todos los recursos que eran necesarios en el desarrollo para generar un código lo más conciso y seguro)</li>
+</ol>
+<p>Podemos ejecutar nuestra aplicación en modo de desarrollo mediante el código (normalmente siemple lo hemos hecho de esta forma):</p>
+<pre>
+ng serve -o
+</pre>
+<p>Pero si queremos ejecutarlo tal cual va a quedar cuando lo subamos al servidor de producción debemos ejecutar:</p>
+<pre>
+ng serve -o --configuration production
+</pre>
+<p>Tener en cuenta que cuando compilamos el proyecto para subirlo al servidor lo hacemos con la sintaxis:</p>
+<pre>
+ng build 
+</pre>
+<p>Es decir que el código generado es el mismo que obtenemos con la ejecución en forma local: ng serve -o --configuration production</p>
+
+
+<h3>Archivos de la carpeta environments</h3>
+<ul>
+<li>
+  <p><strong>environment.ts</strong> Se especifican todas las variables, constantes, funciones, clases, módulos etc. que se deben incluir cuando estamos en modo de desarrollo.</p>
+<p>Contenido inicial:</p>
+<pre>
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
+export const environment = {
+  production: false
+};
+
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+</pre>
+</li>
+<li>
+  <p><strong>environment.prod.ts</strong> Se especifican todas las variables, constantes, funciones, clases, módulos etc. que se deben incluir cuando estamos en modo de producción.</p>
+<p>Contenido inicial:</p>
+<pre>
+export const environment = {
+  production: true,
+};
+</pre>
+</li>
+</ul>
+
+<p>Angular CLI cuando creamos un proyecto solo crea la constante llamada 'environment' que se trata de un objeto literal con un atributo 'production'.</p>
+<p>Como es lógico en el archivo 'environment.ts' inicia el atributo con el valor 'false' ya que seguramente estamos desarrollando la aplicación y no se encuentra en producción. En cambio en el archivo 'environment.prod.ts' inicia el atributo 'production' con el valor 'true' ya que la aplicación se esta ejecutando en modo producción.</p>
+
+<p>Si ejecutamos la aplicación en modo desarrollo luego se carga en el proyecto el archivo 'environment.ts':</p>
+<pre>
+ng serve -o
+</pre>
+<p>Pero si ejecutamos la aplicación en modo producción luego se carga el archivo 'environment.prod.ts':</p>
+<pre>
+ng serve -o --configuration production
+</pre>
+<p>Significa que cuando construimos la aplicación que subiremos al servidor el contenido del archivo que se cargará será 'environment.prod.ts'.</p>
+
+<h3>Uso del archivo environmet.ts</h3>
+<p>Podemos abrir el archivo 'main.ts' que sabemos que se encuentra en la carpeta 'src':</p>
+<pre class="recuadro">
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+</pre>
+
+<p>Como vemos en este archivo se importa el contenido de 'environment':</p>
+<pre>
+import { environment } from './environments/environment';
+</pre>
+
+<p>Y luego según el estado del atributo 'production' se llama al método 'enableProdMode()':</p>
+<pre>
+if (environment.production) {
+  enableProdMode();
+}
+</pre>
+
+<p>Podríamos pensar que siempre se importa el archivo 'environment.ts' y nunca el archivo 'environment.prod.ts' ya que se importa siempre:</p>
+<pre>
+import { environment } from './environments/environment';
+</pre>
+<p>Lo que sucede es que Angular copia el contenido del archivo environment.prod.ts al archivo environment.ts cuando lo ejecutamos en modo producción o lo compilamos para producción:</p>
+<pre>
+ng serve -o --configuration production
+</pre>
+
+<p>En forma sencilla podemos comprobar si hacemos la siguente modificación al archivo 'main.ts':</p>
+<pre class="recuadro">
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+console.log(environment.production);
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+</pre>
+
+<p>Si ejecutamos en modo de desarrollo la aplicación:</p>
+<pre>
+ng serve -o
+</pre>
+<p>Luego en la consola se imprime el valor 'false'.</p>
+<p>Pero si ejecutamos la aplicación en modo producción o construimos la aplicación para producción:</p>
+<pre>
+ng serve -o --configuration production
+</pre>
+<p>Luego en la consola se imprime el valor 'true'.</p>
+<p>Este resultado se logra gracias a que el archivo 'enviroment.ts' es dinámico, depende del modo de compilación para que seleccione uno u otro archivo de la carpeta 'environments'.</p>
+
+<p>La acción de que archivo debe copiar al archivo 'enviroment.ts' depende de la configuración definida en el archivo 'angular.json':</p>
+<pre>
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+</pre>
+<p>Aquí es donde se especifica que si compilamos la aplicación en un ambiente de producción el archivo "src/environments/environment.ts" debe ser remplazado por "src/environments/environment.prod.ts".</p>
+
+<p>Dependiendo de la complejidad del proyecto, Angular permite crear más ambientes aparte de los de producción y desarrollo.</p>
+<div class="botonretorno"><a href="indexd6cc.html?inicio=60">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=62&codigo=62&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:03 GMT -->
+</html>

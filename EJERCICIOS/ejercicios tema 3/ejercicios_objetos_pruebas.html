@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta</title>
+</head>
+
+<body>
+
+    <script>
+        //Objeto Cuenta
+        class Cuenta {
+            //Constructores
+            constructor(titular, saldo) {
+                this._titular = titular;
+                this._saldo = saldo;
+            }
+
+            //Getters y setters
+            get titular() {
+                return this._titular;
+            }
+
+            set titular(x) {
+                if (this._titular !== x) this._titular = x;
+            }
+
+            get saldo() {
+                return this._saldo;
+            }
+
+            set saldo(x) {
+                if (this._saldo !== x) this._saldo = x;
+            }
+
+            //Métodos
+            ingresar(dinero) {
+                this._saldo += dinero;
+            }
+            extraer(dinero) {
+                this._saldo -= dinero;
+            }
+
+            //mostrar objeto como texto
+            toString() {
+                return "Titular: " + this._titular + " - Saldo: " + this._saldo;
+            }
+
+        }
+
+
+        //este array guardará los objetos
+        let arrayCuentas = [];
+        //Funcion para crear las cuentas
+        function crear_cuenta() {
+
+            //toma el valor con nombre titular del input
+            let n_titular = document.getElementById("titular").value;
+
+            //toma el valor con nombre saldo del input
+            let s_titular = document.getElementById("saldo").value;
+
+            //creamos el objeto
+            let cuenta = new Cuenta(n_titular, s_titular);
+
+            //metemos el objeto en el arrayCuentas
+            arrayCuentas.push(cuenta);
+
+            //document.write(JSON.stringify(arrayCuentas));
+        }
+
+        function mostrarUsuarios() {
+            //document.write(JSON.stringify(arrayCuentas));
+            console.log(arrayCuentas);
+        }
+    </script>
+
+    <!--No me funcionan los atributos de los inputs, ni las restricciones-->
+    <h1>Creación de Cuentas Bancarias</h1>
+
+    <form action="">
+        <p>Titular:
+            <input type="text" id="titular" name="titular" size="30" placeholder="Escriba el titular: " required>
+        </p>
+        <p>¿Qué saldo actual tiene?:
+            <input type="number" id="saldo" name="saldo" min="1" max="9999" required>
+        </p>
+        <input type="submit" value="Siguiente titular" onclick="crear_cuenta();" required>
+    </form>
+
+    <p><button onclick="mostrarUsuarios();">Mostrar usuarios</button></p>
+
+</body>
+
+</html>

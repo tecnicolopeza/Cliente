@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>
+        Expresiones regulares abreviadas: \d \w \s \D \W
+    </h1>
+    <h3>Código Equivalente \d [0-9] \D [^0-9] \w [a-zA-Z0-9_] \W [^a-zA-Z0-9_] \s espacio en blanco
+    </h3>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+    <button onclick="ej3()">ej3</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Verificar si un número ingresado por teclado tiene exactamente 5 dígitos."
+            );
+
+            let valor = prompt('Ingrese un valor numérico de 5 dígitos');
+            let patron = /^\d{5}$/;
+            if (patron.test(valor))
+                document.write('Tiene 5 dígitos');
+            else
+                document.write('No tiene 5 dígitos');
+        }
+
+        function ej2() {
+            alert(
+                "Ingresar una oración y mostrar un mensaje si tiene al menos una palabra de 4 caracteres."
+            );
+            let oracion = prompt('Ingrese una oracion');
+            let patron = /\s?\w{4}\s?/;
+            if (patron.test(oracion))
+                document.write('Tiene al menos una palabra de 4 caracteres');
+            else
+                document.write('No tiene una palabra de 4 caracteres');
+        }
+
+        function ej3() {
+            alert("Ingresar un valor numérico entero o real, se debe validar que se ingrese al menos un número previo al operador punto que es opcional y finalizar con un número obligatoriamente.");
+            let valor = prompt('Ingrese un valor numérico entero o real:');
+            let patron = /^[0-9]+\.?[0-9]+$/;
+            if (patron.test(valor))
+                document.write('Tiene un formato correcto');
+            else
+                document.write('Formato incorrecto');
+        }
+    </script>
+</body>
+
+</html>

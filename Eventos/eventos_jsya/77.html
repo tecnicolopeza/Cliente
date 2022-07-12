@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Problemas 77 expresiones regulares</h1>
+
+    <button onclick="ej1()">Validar entero 3 digitos RegExp</button><br /><br />
+    <button onclick="ej2()">Validar entero 3 digitos con expresiones regulares</button><br /><br />
+    <button onclick="ej3()">¿Contiene la palabra [hora]?</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Validar si se ingresa un valor entero con exactamente tres dígitos."
+            );
+            let valor = prompt("Ingrese un numero entero positivo de 3 dígitos");
+            let patron = new RegExp("^[0-9]{3}$"); //^inicio y $fin
+            if (patron.test(valor))
+                alert("Se ingresó un valor entero positivo de 3 dígitos");
+            else alert("No se ingresó un valor entero positivo de 3 dígitos");
+        }
+
+        function ej2() {
+            alert(
+                "Validar si se ingresa un valor entero con exactamente tres dígitos con expresiones regulares."
+            );
+            let valor = prompt("Ingrese un numero entero positivo de 3 dígitos");
+            let patron = /^[0-9]{3}$/;
+            if (patron.test(valor))
+                alert("Se ingresó un valor entero positivo de 3 dígitos");
+            else alert("No se ingresó un valor entero positivo de 3 dígitos");
+        }
+
+        function ej3() {
+            alert('Ingresar una oración por teclado y luego imprimir un mensaje si la oración ingresada contiene la palabra hora');
+            let oracion = prompt('Ingrese una oración');
+            let patron = /hora/;
+            if (patron.test(oracion))
+                alert('La oración ingresada contiene la palabra \'hora\'');
+            else
+                alert('La oración ingresada no contiene la palabra \'hora\'');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      1. Se cargan por teclado tres números distintos. Mostrar por pantalla el
+      mayor de ellos. <br /><br />
+
+      2. Se ingresa por teclado un valor entero, mostrar una<br />
+      leyenda que indique si el número es positivo, cero o negativo.<br /><br />
+
+      3. Confeccionar un programa que permita cargar un número entero positivo
+      de<br />
+      hasta tres cifras y muestre un mensaje indicando si tiene 1, 2, o 3<br />
+      cifras.<br /><br />
+
+      4. De un postulante a un empleo, que realizó un test de capacitación,<br />
+      se obtuvo la siguiente información: nombre del postulante, cantidad
+      total<br />
+      de preguntas que se le realizaron y cantidad de preguntas que contestó<br />
+      correctamente. Se pide confeccionar un programa que lea los datos del<br />
+      postulante e informe el nivel del mismo según el porcentaje de
+      respuestas<br />
+      correctas que ha obtenido, y sabiendo que: <br />
+      Nivel superior: Porcentaje>=90%. <br />
+      Nivel medio: Porcentaje>=75% y menor 90%. <br />
+      Nivel regular: Porcentaje>=50% y menor 75%. <br />
+      Fuera de nivel: Porcentaje menor 50%<br />
+    </p>
+
+    <script>
+      document.write("EJERCICIO 1<br>");
+      var n1 = parseInt(prompt("Introduce el primer numero: "));
+      var n2 = parseInt(prompt("Introduce el segundo numero: "));
+      var n3 = parseInt(prompt("Introduce el tercer numero: "));
+
+      if (n1 > n2 && n1 > n3) {
+        document.write(n1, " es el mayor<br><br>");
+      } else if (n2 > n1 && n2 > n3) {
+        document.write(n2, " es el mayor<br><br>");
+      } else {
+        document.write(n3, " es el mayor<br><br>");
+      }
+    </script>
+
+    <script>
+      document.write("EJERCICIO 2<br>");
+      var numero1 = parseInt(prompt("Introduce el primer numero: "));
+
+      if (numero1 < 0) {
+        document.write("El numero es negativo<br><br>");
+      } else if (numero1 > 0) {
+        document.write("El numero es positivo<br><br>");
+      } else {
+        document.write("El numero es 0<br><br>");
+      }
+    </script>
+
+
+    <script>
+      document.write("EJERCICIO 3<br>");
+      var numero = parseInt(prompt("Introduce un numero para saber sus cifras"));
+
+      if(numero<9){
+        document.write("El numero tiene una cifra");
+      }else if(numero>9 && numero<100){
+        document.write("El numero tiene dos cifras");
+      }else{
+        document.write("El numero tiene mas de dos cifras");
+      }
+
+
+    </script>
+
+    <script>
+      document.write("EJERCICIO 4<br>");
+      var nombre;
+      var preguntas;
+      var porcentaje;
+
+      nombre = prompt("Introduce tu nombre: ");
+      preguntas = parseInt(prompt("¿Cuantas preguntas tiene el test?"));
+      porcentaje = parseInt(
+        prompt("¿Cuanto fue tu porcentaje de aciertos(0-100)? ")
+      );
+
+      if (porcentaje >= 90) {
+        document.write("Nivel superior");
+      } else if (porcentaje >= 75 && porcentaje < 90) {
+        document.write("Nivel medio");
+      } else if (porcentaje >= 50 && porcentaje < 75) {
+        document.write("Nivel regular");
+      } else {
+        document.write("Fuera de nivel");
+      }
+    </script>
+
+    
+  </body>
+</html>

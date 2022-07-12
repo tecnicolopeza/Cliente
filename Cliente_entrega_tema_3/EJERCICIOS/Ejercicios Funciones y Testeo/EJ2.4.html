@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function europea2talla(europea) {
+        var europea;
+        var talla;
+
+        europea = europea.toUpperCase();
+
+        switch (europea) {
+          case "XS":
+            talla = "pequeña";
+            break;
+          case "S":
+            talla = "pequeña";
+            break;
+          case "M":
+            talla = "mediana";
+            break;
+          case "L":
+            talla = "grande";
+            break;
+          case "XL":
+            talla = "grande";
+            break;
+          case "XXL":
+            talla = "grande";
+            break;
+          default:
+            break;
+        }
+        return talla;
+      }
+
+      function test(){
+        var tallasEuropeas = ["XS", "xs", "S", "s", "M", "m", "L", "l", "XL", "xl", "XXL", "xxl"];
+
+        for (var index = 0; index < tallasEuropeas.length; index++) { 
+          document.write("La talla "+tallasEuropeas[index]+" es "+europea2talla(tallasEuropeas[index])+"<br>");
+        }
+
+      }
+
+    </script>
+    <input type="button" value="Ejecutar Script 1" onclick="test();">
+
+  </body>
+</html>

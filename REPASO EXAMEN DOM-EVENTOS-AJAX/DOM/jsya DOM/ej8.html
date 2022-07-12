@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>8 - Otras formas de acceder a los nodos hijos (firstChild y lastChild - firstElementChild y lastElementChild)</h1>
+    <h3>Definir un div con tres párrafos. Obtener la referencia del último hijo del div. Regresar desde el final con la propiedad previousElementSibling. Mostrar el contenido de cada párrafo.</h3>
+
+    <div id="div1">
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+    <button onclick="mostrar()">Mostrar desde el ultimo hijo</button>
+
+    <script>
+        function mostrar() {
+            var padre = document.getElementById('div1');
+            var hijo = padre.lastElementChild;
+
+            while (hijo != null) {
+                alert(hijo.childNodes[0].nodeValue); //valor elemento actual
+                hijo = hijo.previousElementSibling; //retrocedemos al hermano anterior
+            }
+        }
+    </script>
+
+</body>
+
+</html>

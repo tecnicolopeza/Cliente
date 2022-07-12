@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>EVENTOS</h1>
+
+    Localidad:
+    <select name="listaPueblos" id="lista">
+        <option value="Utrera">Utrera</option> 
+        <option value="Dos Hermanas">Dos Hermanas</option> 
+        <option value="Los Palacios">Los Palacios</option>
+    </select>
+
+    <p id="tiempoReal">Localidad seleccionada: </p>
+
+    <script>
+        addEventListener('load', iniciar);
+
+        function iniciar() { //aqui llamo a los listeners
+            document.getElementById('lista').addEventListener('click', cambiarLocalidad);
+            // document.getElementById('lista').addEventListener('change', cambiarLocalidad);
+        }
+
+        function cambiarLocalidad() {
+            var texto = document.getElementById('lista').value;
+            document.getElementById('tiempoReal').innerHTML = "Localidad seleccionada: " + texto;
+        }
+    </script>
+
+</body>
+
+</html>

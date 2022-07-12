@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Confeccionar una programa en JavaScript que defina e inicialice una<br />
+      variable de tipo cadena de caracteres donde almacenemos el nombre de un<br />
+      empleado y otra variable de tipo entera donde almacenar el sueldo.<br />
+      Imprimir cada variable en una línea distinta en pantalla.<br />
+    </p>
+
+    <script>
+      /*Modifica el programa para que también se pueda introducir los 
+        siguientes datos del usuario: DNI, edad y fecha de nacimiento. Estos nuevos datos también se deberán volcar a la página web.*/
+      var DNI, edad, fecha_nac;
+      DNI = "20099345A";
+      edad = 29;
+      fecha_nac = "27/03/1986";
+      var empleado = "Alvaro";
+      var sueldo = 1500;
+
+      document.write("El nombre del empleado es ", empleado, "<br>");
+      document.write("Su sueldo es de ", sueldo, " euros<br>");
+      document.write("El DNI es ",DNI," la edad es ",edad," con fecha de nacimiento a ",fecha_nac);
+
+    </script>
+  </body>
+</html>

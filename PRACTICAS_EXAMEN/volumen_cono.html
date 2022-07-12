@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Crea una función llamada volumenCono que calcule el volumen de un cono a partir del radio<br> y de la altura. Utiliza posteriormente esta función mediante un programa que solicite al usuario<br> el radio y la altura y posteriormente le muestre el
+        volumen del cono.</p>
+
+    <p>Formula: V = 1/3 * PI * R al cuadrado * h</p>
+    <script>
+        let altura, radio;
+        radio = parseFloat(prompt("Introduzca el radio del cono:"));
+        altura = parseFloat(prompt("Introduzca la altura del cono:"));
+
+        function volumenCono(radio, altura) {
+            var volumen = (1 / 3) * Math.PI * Math.pow(radio, 2) * altura;
+            return volumen;
+        }
+
+        //Calculamos el volumen del cono
+        volumen = volumenCono(radio, altura);
+        alert("El volumen de un cono de radio " + radio + " y altura " + altura + " es " + volumen);
+    </script>
+</body>
+
+</html>

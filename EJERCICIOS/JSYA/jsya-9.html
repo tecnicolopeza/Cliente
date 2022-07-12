@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Realizar un programa que pida cargar una fecha cualquiera, luego verificar
+      si dicha fecha corresponde a Navidad<br />
+      (se debe cargar por separado el dia, el mes y el año)<br />
+    </p>
+
+    <script>
+      document.write("EJERCICIO 1");
+
+      var dia, mes, anio;
+      dia = prompt("Introduce el dia");
+      mes = prompt("Introduce el mes");
+      anio = prompt("Introduce el año");
+
+      if (dia == 25 && mes == 12) {
+        document.write("<br>¡Es navidad!");
+      } else {
+        document.write("<br>Un dia como otro cualquiera");
+      }
+    </script>
+
+    <p>
+      Se ingresan tres valores por teclado, si todos son iguales se imprime
+      la<br />
+      suma del primero con el segundo y a este resultado se lo multiplica por
+      el<br />
+      tercero (tener en cuenta que puede haber tres condiciones simples)<br />
+    </p>
+
+    <script>
+      document.write("EJERCICIO 2");
+
+      var n1 = parseFloat(prompt("Introduce el primer numero: "));
+      var n2 = parseFloat(prompt("Introduce el segundo numero: "));
+      var n3 = parseFloat(prompt("Introduce el tercer numero: "));
+
+      if (n1 == n2 && n1 == n3) {
+        document.write("<br>", (n1 + n2) * n3);
+      }
+    </script>
+
+    <p>
+      Se ingresan por teclado tres números, si todos los valores ingresados
+      son<br />
+      menores a 10, imprimir en la página la leyenda ' Todos los números son<br />
+      menores a diez'.<br />
+    </p>
+    <script>
+      document.write("EJERCICIO 3");
+
+      var num1 = parseFloat(prompt("Introduce el primer numero: "));
+      var num2 = parseFloat(prompt("Introduce el segundo numero: "));
+      var num3 = parseFloat(prompt("Introduce el tercer numero: "));
+
+      if (num1 < 10 && num2 < 10 && num3 < 10) {
+        document.write("<br>Todos los numeros son menores a 10");
+      }
+    </script>
+
+    <p>
+      Escribir un programa que pida ingresar la coordenada de un punto en el
+      plano, es decir dos valores enteros x e y. Posteriormente imprimir en
+      pantalla en qué cuadrante se ubica dicho punto. (1º Cuadrante si x > 0 Y y
+      > 0 , 2º Cuadrante: x menor 0 Y y > 0, etc.)
+    </p>
+
+    <script>
+      document.write("EJERCICIO 4");
+
+      var x = parseFloat(prompt("Introduce el eje X"));
+      var y = parseFloat(prompt("Introduce el eje Y"));
+
+      if (x > 0 && y > 0) {
+        document.write("<br>Estan en el primer cuadrante");
+      } else if (x < 0 && y < 0) {
+        document.write("<br>Estan en el segundo cuadrante");
+      }
+    </script>
+
+    <p>
+      De un operario se conoce su sueldo y los años de antigüedad. Se pide
+      confeccionar un programa que lea los datos de entrada e informe <br />
+      a) Si el sueldo es inferior a 500 y su antigüedad es igual o superior a 10
+      años, otorgarle un aumento del 20 %, mostrar el sueldo a pagar.<br />
+      b) Si el sueldo es inferior a 500 pero su antigüedad es menor a 10 años,
+      otorgarle un aumento de 5 %.<br />
+      c) Si el sueldo es mayor o igual a 500 mostrar el sueldo en la página sin
+      cambios.<br />
+    </p>
+
+    <script>
+      document.write("EJERCICIO 5");
+      document.write("<br>");
+
+      var sueldo = parseFloat(prompt("Introduzca el sueldo: "));
+      var antig = parseFloat(prompt("Introduzca la antigüedad: "));
+
+      var sueldoF = 0;
+
+      if (sueldo < 500 && antig >= 10) {
+        sueldoF = sueldo + sueldo * 0.2;
+        document.write(sueldoF);
+      }
+
+      if (sueldo < 500 && antig < 10) {
+        sueldoF = sueldo + sueldo * 0.05;
+        document.write(sueldoF);
+      }
+
+      if (sueldo >= 500) {
+        sueldoF = sueldo;
+        document.write(sueldoF);
+      }
+    </script>
+
+    
+  </body>
+</html>

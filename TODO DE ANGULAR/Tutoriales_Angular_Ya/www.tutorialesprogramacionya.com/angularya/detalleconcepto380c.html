@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=35&codigo=35&inicio=20 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>35 - Angular Material</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Angular material es un conjunto de componentes visuales que nos permiten desarrollar interfaces de usuario consistentes.</p>
+<p>Este conjunto de componentes los desarrolla el mismo equipo de Angular y podemos visitar sus avances en el sitio <a href="https://material.angular.io/" target="_blank">material.angular.io/</a></p>
+<p>Disponemos de un gran conjunto de componentes:</p>
+<ul>
+<li>Autocomplete</li>
+<li>Badge</li>
+<li>Bottom Sheet</li>
+<li>Button</li>
+<li>Button toggle</li>
+<li>Card</li>
+<li>Checkbox</li>
+<li>Chips</li>
+
+<li>Core</li>
+<li>Datepicker</li>
+<li>Dialog</li>
+<li>Divider</li>
+
+<li>Expansion Panel</li>
+<li>Form field</li>
+<li>Grid list</li>
+<li>Icon</li>
+
+<li>Input</li>
+<li>List</li>
+<li>Menu</li>
+<li>Paginator</li>
+<li>Progress bar</li>
+<li>Progress spinner</li>
+<li>Radio button</li>
+<li>Ripples</li>
+<li>Select</li>
+<li>Slider toggle</li>
+<li>Slider</li>
+<li>Snackbar</li>
+<li>Sort header</li>
+<li>Stepper</li>
+<li>Table</li>
+<li>Tabs</li>
+<li>Toolbar</li>
+<li>Tooltip</li>
+<li>Tree</li>
+
+</ul>
+
+<h3>Creación del esqueleto básico de un proyecto con Angular Material.</h3>
+<p>Crearemos una aplicación que disponga un menú lateral a la izquierda con los nombres de tres países. Mediante el concepto que vimos de Router mostraremos en distintas componentes las informaciones de dichos países.</p>
+
+<ol>
+<li><p>Crearemos primero el proyecto (es importante la opción 'routing' ya que la aplicación la requiere, si no disponemos dicho valor elegir que queremos utilizar routing cuando nos consulte Angular CLI)</p>
+<pre>
+ng new proyecto018 --routing
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add' (se nos pide elegir el tema y algunos otros datos, podemos dejar los valores por defecto presionando la tecla 'Enter'):</p>
+<pre>
+ng add @angular/material
+</pre>
+<img src="imagentema/foto071.jpg" alt="Angular Material" border="0"><br>
+<p>Luego de esto ya tenemos en la carpeta node_modules/angular/material todas las componentes de Angular Material para ser utilizadas en nuestro proyecto.</p>
+</li>
+
+<li>
+<p>Crearemos la barra lateral que dispondrá los enlaces:</p>
+<pre>
+ng generate @angular/material:material-nav --name barraLateral
+</pre>
+<p>Se crea una componente llamada 'BarraLateralComponent' con los 4 archivos correspondientes y la modificación del archivo 'app.module.ts':</p>
+<img src="imagentema/foto072.jpg" alt="Angular Material" border="0"><br>
+</li>
+
+<li>
+<p>Modificamos ahora el archivo 'app.component.html' donde creamos una etiqueta de la componente que acabamos de crear en el paso anterior:</p>
+<p>app.component.html</p>
+<pre class="recuadro">
+&lt;app-barra-lateral&gt;&lt;/app-barra-lateral&gt;
+</pre>
+<p>Si en este momento ejecutamos la aplicación ya podemos ver la barra de navegación lateral:</p>
+<pre>
+ng serve -o
+</pre>
+<img src="imagentema/foto073.jpg" alt="Angular Material" border="0"><br>
+<p>Hasta ahora solo hemos empleado Angular CLI para llegar a este lugar, es decir crear el proyecto y la componente del menú lateral.</p>
+</li>
+
+
+<li>
+<p>Creamos las tres componentes pais1, pais2 y pais3 que tienen por objetivo mostrar datos de paises:</p>
+<pre>
+ng generate component pais1
+</pre>
+<pre>
+ng generate component pais2
+</pre>
+<pre>
+ng generate component pais3
+</pre>
+
+</li>
+
+<li>
+<p>Podemos abrir el archivo 'app.module.ts' y ver que se han importado las tres componentes que acabamos de crear:</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BarraLateralComponent } from './barra-lateral/barra-lateral.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+<strong>import { Pais1Component } from './pais1/pais1.component';
+import { Pais2Component } from './pais2/pais2.component';
+import { Pais3Component } from './pais3/pais3.component';</strong>
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    BarraLateralComponent,
+<strong>    Pais1Component,
+    Pais2Component,
+    Pais3Component</strong>
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+</li>
+
+
+<li>
+<p>Debemos ahora modificar el archivo 'app-routing.module.ts' con las tres rutas:</p>
+<pre class="recuadro">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { Pais1Component } from './pais1/pais1.component';
+import { Pais2Component } from './pais2/pais2.component';
+import { Pais3Component } from './pais3/pais3.component';
+
+const routes: Routes = [
+  {
+    path:'pais1',
+    component:Pais1Component
+  },
+  {
+    path:'pais2',
+    component:Pais2Component
+  },
+  {
+    path:'pais3',
+    component:Pais3Component
+  }  
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</pre>
+</li>
+
+<li>
+<p>Mediante la etiqueta 'router-outlet' indicamos el lugar que debe mostrar la componente especificada por la ruta configurada en el archivo 'app-routing.module.ts', para esto abrimos el archivo 'barra-lateral.component.html' y agregaremos la etiqueta  'router-outlet':</p>
+<p>barra-lateral.component.html</p>
+<pre class="recuadro">
+&lt;mat-sidenav-container class="sidenav-container"&gt;
+  &lt;mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"&gt;
+    &lt;mat-toolbar&gt;Menu&lt;/mat-toolbar&gt;
+    &lt;mat-nav-list&gt;
+      &lt;a mat-list-item routerLink="/pais1"&gt;Argentina&lt;/a&gt;
+      &lt;a mat-list-item routerLink="/pais2"&gt;Chile&lt;/a&gt;
+      &lt;a mat-list-item routerLink="/pais3"&gt;Uruguay&lt;/a&gt;    
+    &lt;/mat-nav-list&gt;
+  &lt;/mat-sidenav&gt;
+  &lt;mat-sidenav-content&gt;
+    &lt;mat-toolbar color="primary"&gt;
+      &lt;button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"&gt;
+        &lt;mat-icon aria-label="Side nav toggle icon"&gt;menu&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;span&gt;Datos generales de paises&lt;/span&gt;
+    &lt;/mat-toolbar&gt;
+    &lt;!-- Add Content Here --&gt;    
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  &lt;/mat-sidenav-content&gt;
+&lt;/mat-sidenav-container&gt;
+</pre>
+<p>Hemos modificado del código generado los hipervínculos a las distintas rutas:</p>
+<pre>
+      &lt;a mat-list-item routerLink="/pais1"&gt;Argentina&lt;/a&gt;
+      &lt;a mat-list-item routerLink="/pais2"&gt;Chile&lt;/a&gt;
+      &lt;a mat-list-item routerLink="/pais3"&gt;Uruguay&lt;/a&gt;
+</pre>
+<p>Y también es fundamental agregar la etiqueta 'router-outlet' para indicar donde se muestran las componentes.</p>
+<p>Si ejecutamos ahora la aplicación los tres hipervínculos activan la componente respectiva donde se mostrará información referente a cada pais:</p>
+<img src="imagentema/foto074.jpg" alt="Angular Material" border="0"><br> 
+</li>
+
+<li>
+<p>Solo nos queda componer los contenidos de las componentes 'Pais1Component', 'Pais2Component' y 'Pais3Component'.</p>
+<p>pais1.component.html</p>
+<pre class="recuadro">
+&lt;div class="datos"&gt;
+  &lt;p&gt;&lt;strong&gt;Nombre del país:&lt;/strong&gt;Argentina&lt;/p&gt;
+  &lt;p&gt;
+  &lt;img src="assets/imagenes/argentina.png"&gt;
+  &lt;/p&gt;
+  &lt;h3&gt;Datos generales.&lt;/h3&gt;
+  &lt;p&gt;Argentina, llamada oficialmente República Argentina,n 1? es un país soberano de América del Sur,
+    ubicado en el extremo sur y sudeste de dicho subcontinente. Adopta la forma de gobierno republicana,
+    democrática, representativa y federal.&lt;/p&gt;
+  &lt;p&gt;La Argentina está organizada como un Estado federal descentralizado, integrado desde 1994 por un 
+    Estado nacional y 24 estados autogobernados,11?12? siendo estos sus 23 provincias sumada la ciudad 
+    autónoma de Buenos Aires designada como Capital Federal del país. 
+    Cada estado tiene autonomía política, constitución, bandera y cuerpo de seguridad propios. 
+    Las 23 provincias mantienen todos los poderes no delegados al Estado nacional y
+    garantizan la autonomía de sus municipios.13?14?&lt;/p&gt;   
+&lt;/div&gt;
+</pre>
+
+<p>pais2.component.html</p>
+<pre class="recuadro">
+&lt;div class="datos"&gt;
+    &lt;p&gt;&lt;strong&gt;Nombre del país:&lt;/strong&gt;Chile&lt;/p&gt;
+    &lt;p&gt;
+    &lt;img src="assets/imagenes/chile.png"&gt;
+    &lt;/p&gt;
+    &lt;h3&gt;Datos generales.&lt;/h3&gt;
+    &lt;p&gt;Chile es un país de América ubicado en el extremo sudoeste de América del Sur. 
+      Su nombre oficial es República de Chile26? y su capital es la ciudad de Santiago.27?n 8?
+      Primer país sudamericano en ingresar a la Organización para la Cooperación y el 
+      Desarrollo Económicos, Chile es una de las economías de América Latina que más ha 
+      crecido desde mediados de la década de 1980.&lt;/p&gt;   
+    &lt;p&gt;Antes del descubrimiento de América, las tierras situadas al sur del desierto de Atacama ya
+      se llamaban Chili en la tradición indígena.46? Una vez instalados en Nueva Castilla y 
+      Nueva Toledo, los conquistadores españoles siguieron llamando de esa forma a la 
+      región del sur, a veces también conocida como «valle de Chile», nombre que se extendió
+      posteriormente a todo el actual país.47?&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<p>pais3.component.html</p>
+<pre class="recuadro">
+&lt;div class="datos"&gt;
+    &lt;p&gt;&lt;strong&gt;Nombre del país:&lt;/strong&gt;Uruguay&lt;/p&gt;
+    &lt;p&gt;
+    &lt;img src="assets/imagenes/uruguay.png"&gt;
+    &lt;/p&gt;
+    &lt;h3&gt;Datos generales.&lt;/h3&gt;
+    &lt;p&gt;Uruguay, oficialmente República Oriental del Uruguay, es un país de América del Sur, 
+      situado en la parte oriental del Cono Sur americano. Limita al noreste con Brasil —estado 
+      de Río Grande del Sur—, al oeste con Argentina —provincias de Entre Ríos y Corrientes— y
+      tiene costas en el océano Atlántico al sureste y sobre el Río de la Plata hacia el sur.
+      Abarca 176?215 km² y es el segundo país más pequeño de Sudamérica, después de Surinam.1? 
+      Según los datos del último censo del INE en 2011, la población de Uruguay es de 3.290.454 
+      habitantes, por lo que figura en la décima posición entre los países sudamericanos.Uruguay, 
+      oficialmente República Oriental del Uruguay, es un país de América del Sur, situado en la
+      parte oriental del Cono Sur americano. Limita al noreste con Brasil
+      —estado de Río Grande del Sur—, al oeste con Argentina —provincias de Entre Ríos y Corrientes— y
+      tiene costas en el océano Atlántico al sureste y sobre el Río de la Plata hacia el sur.
+      Abarca 176?215 km² y es el segundo país más pequeño de Sudamérica, después de Surinam.1? 
+      Según los datos del último censo del INE en 2011, la población de Uruguay 
+      es de 3.290.454 habitantes, por lo que figura en la décima posición entre los países 
+      sudamericanos.&lt;/p&gt;    
+&lt;/div&gt;
+</pre>
+
+<p>Lo nuevo es que hemos agregado las tres imágenes de las banderas en una carpeta llamada imagenes que se debe crear dentro de la carpeta 'assets':</p>
+<pre>
+    &lt;img src="assets/imagenes/uruguay.png"&gt;
+</pre>
+<p>Si ejecutamos nuevamente la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto075.jpg" alt="Angular Material" border="0"><br> 
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto018/" target="_blank">aquí</a>.</p>
+</li>
+
+</ol>
+
+<h3>Acotaciones</h3
+<p>Como podemos ver inmediatamente se inicia la aplicación no aparece la información de ningún país. Si necesitamos que se muestre el país 'Chile' por defecto debemos modificar el archivo 'app-routing.module.ts' con una nueva ruta:</p>
+<pre class="recuadro">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { Pais1Component } from './pais1/pais1.component';
+import { Pais2Component } from './pais2/pais2.component';
+import { Pais3Component } from './pais3/pais3.component';
+
+const routes: Routes = [
+  {
+    path:'',
+    component:Pais2Component
+  },
+  {
+    path:'pais1',
+    component:Pais1Component
+  },
+  {
+    path:'pais2',
+    component:Pais2Component
+  },
+  {
+    path:'pais3',
+    component:Pais3Component
+  }  
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</pre>
+
+<p>Agregamos una nueva ruta para el path con un string vacío indicando en la propiedad component cual es la que se debe mostrar:</p>
+<pre>
+const routes: Routes = [
+  {
+    path:'',
+    component:Pais2Component
+  },
+</pre><div class="botonretorno"><a href="index28fa.html?inicio=20">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=35&codigo=35&inicio=20 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:49 GMT -->
+</html>

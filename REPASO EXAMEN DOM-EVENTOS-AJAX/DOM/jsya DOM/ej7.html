@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 4px solid black;
+        }
+        
+        table td {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>7 - Accediendo a un nodo hermano (nextSibling y previousSibling - nextElementSibling y previousElementSibling)</h1>
+    <h3>Problema:Disponer una página que contenga una tabla HTML con dos filas y tres elementos cada una. Definir el id de la primera celda de la tabla (elemento "td"). Luego, mediante una estructura repetitiva, acceder y mostrar con un alert los nodos texto
+        de cada celda de la primer fila.</h3>
+
+    <table>
+        <tr>
+            <td id="elemento1">elemento 1</td>
+            <td>elemento 2</td>
+            <td>elemento 3</td>
+        </tr>
+        <tr>
+            <td>elemento 4</td>
+            <td>elemento 5</td>
+            <td>elemento 6</td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="mostrar()">Mostrar contenido primera fila</button>
+
+    <script>
+        function mostrar() {
+            var puntero = document.getElementById('elemento1');
+            while (puntero != null) {
+                alert(puntero.childNodes[0].nodeValue)
+                puntero = puntero.nextElementSibling
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=45&codigo=45&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Tablas - mat-table</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>45 - Angular Material: Tablas - mat-table</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Angular material dispone de una componente para mostrar datos en una tabla.</p>
+
+<h3>Problema</h3>
+<p>Mostrar un listado de artículos (codigo, descripción y precio) mediante la componente mat-table.<br>
+Permitir borrar y agregar artículos.</p>
+
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto027
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+
+<p>Modificamos el archivo 'app.module.ts' donde debemos importar MatTableModule, MatInputModule, MatButtonModule y FormsModule :</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+<strong>import { MatTableModule } from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';</strong>
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+<strong>    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule    </strong>
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+</li>
+
+
+<li>
+<p>Modificamos el archivo 'app.component.ts' con la lógica de nuestra componente:</p>
+<pre class="recuadro">
+import { Component, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  columnas: string[] = ['codigo', 'descripcion', 'precio', 'borrar'];
+
+  datos: Articulo[] = [new Articulo(1, 'papas', 55),
+  new Articulo(2, 'manzanas', 53),
+  new Articulo(3, 'naranjas', 25),
+  ];
+
+  articuloselect: Articulo = new Articulo(0, "", 0);
+
+  @ViewChild(MatTable) tabla1!: MatTable&lt;Articulo&gt;;
+
+  borrarFila(cod: number) {
+    if (confirm("Realmente quiere borrarlo?")) {
+      this.datos.splice(cod, 1);
+      this.tabla1.renderRows();
+    }
+  }
+
+  agregar() {
+    this.datos.push(new Articulo(this.articuloselect.codigo, this.articuloselect.descripcion, this.articuloselect.precio));
+    this.tabla1.renderRows();
+    this.articuloselect = new Articulo(0, "", 0);
+  }
+}
+
+
+export class Articulo {
+  constructor(public codigo: number, public descripcion: string, public precio: number) {
+  }
+}
+</pre>
+<p>En este archivo también importamos la clase MatTable debido a que debemos obtener una referencia de la componente hija que definimos en:</p>
+<pre>
+  @ViewChild(MatTable) tabla1: MatTable&lt;Articulo&gt;;
+</pre>
+<p>Luego mediante la variable tabla1 podemos llamar a métodos del objeto mat-table.</p>
+<p>El atributo columna almacena los nombres con que se inician las propiedades matColumnDef de cada columna de la tabla:</p>
+<pre>
+  columnas: string[] = ['codigo', 'descripcion', 'precio', 'borrar'];
+</pre>
+<p>La clase 'Articulo' se la declaró después de la clase 'AppComponent' (podemos perfectamente declararla en un archivo separado para mayor orden de nuestro código):</p>
+<pre>
+export class Articulo {
+  constructor(public codigo: number, public descripcion: string, public precio: number) {
+  }
+}
+</pre>
+<p>El segundo atributo es un vector con componentes de tipo 'Articulo', lo iniciamos con 3 componentes (esta variable es la fuente de datos de la componente):</p>
+<pre>
+  datos: Articulo[] = [new Articulo(1, 'papas', 55),
+  new Articulo(2, 'manzanas', 53),
+  new Articulo(3, 'naranjas', 25),
+  ];
+</pre>
+<p>El atributo 'articuloselect' tiene la referencia de los datos que se cargan en el formulario:</p>
+<pre>
+  articuloselect: Articulo = new Articulo(0, "", 0);
+</pre>
+
+<p>Los dos siguientes métodos permiten borrar y agregar una fila a la tabla:</p>
+<pre>
+  borrarFila(cod: number) {
+    if (confirm("Realmente quiere borrarlo?")) {
+      this.datos.splice(cod, 1);
+      this.tabla1.renderRows();
+    }
+  }
+
+  agregar() {
+    this.datos.push(new Articulo(this.articuloselect.codigo, this.articuloselect.descripcion, this.articuloselect.precio));
+    this.tabla1.renderRows();
+    this.articuloselect = new Articulo(0, "", 0);
+  }
+</pre> 
+</li>
+
+
+<li>
+<p>Codificamos la interfaz visual en el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;table mat-table [dataSource]="datos" class="mat-elevation-z8" #tabla1&gt;
+
+  &lt;ng-container matColumnDef="codigo"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Código &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.codigo}} &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container matColumnDef="descripcion"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Descripción &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.descripcion}} &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container matColumnDef="precio"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Precio &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.precio}} &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;ng-container matColumnDef="borrar"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Borra? &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let j = index;"&gt;
+      &lt;button mat-raised-button color="warn" focusable="false" (click)="borrarFila(j)"&gt;
+        Borra?
+      &lt;/button&gt;
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+
+  &lt;tr mat-header-row *matHeaderRowDef="columnas"&gt;&lt;/tr&gt;
+  &lt;tr mat-row *matRowDef="let row; columns: columnas;"&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;div class="contenedor"&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.codigo" type="number" placeholder="Ingrese código"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.descripcion" type="text" placeholder="Ingrese descripción"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.precio" type="number" placeholder="Ingrese precio"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;button mat-raised-button color="primary" (click)="agregar()"&gt;Agregar&lt;/button&gt;
+
+&lt;/div&gt;
+</pre>
+<p>Cuando definimos la etiqueta 'table' especificamos el enlace de la propiedad '[dataSource]' con nuestro vector definido en la clase:</p>
+<pre>
+&lt;table mat-table [dataSource]="datos" class="mat-elevation-z8" #tabla1&gt;
+</pre>
+
+<p>Para las columnas definimos etiquetas 'ng-container' iniciando la propiedad 'matColumnDef' con alguna de las componentes del atributo 'columnas', también creamos el título de la columna como su contenido:</p>
+<pre>
+  &lt;ng-container matColumnDef="codigo"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Código &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.codigo}} &lt;/td&gt;
+  &lt;/ng-container&gt;
+</pre>
+
+<p>La columna para borrar tiene una lógica distinta ya que debemos mostrar un botón el cual al ser presionado llama al método que elimina un elemento del vector y actualiza la tabla:</p>
+<pre>
+  &lt;ng-container matColumnDef="borrar"&gt;
+    &lt;th mat-header-cell *matHeaderCellDef&gt; Borra? &lt;/th&gt;
+    &lt;td mat-cell *matCellDef="let j = index;"&gt;
+      &lt;button mat-raised-button color="warn" focusable="false" (click)="borrarFila(j)"&gt;
+        Borra?
+      &lt;/button&gt;
+    &lt;/td&gt;
+  &lt;/ng-container&gt;
+</pre>
+<p>Luego tenemos el formulario, tema que ya hemos visto en conceptos anteriores:</p>
+<pre>
+&lt;div class="contenedor"&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.codigo" type="number" placeholder="Ingrese código"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.descripcion" type="text" placeholder="Ingrese descripción"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="articuloselect.precio" type="number" placeholder="Ingrese precio"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;button mat-raised-button color="primary" (click)="agregar()"&gt;Agregar&lt;/button&gt;
+
+&lt;/div&gt;
+</pre>
+
+</li>
+
+
+<li>
+<p>la hoja de estilo de la componente 'app.component.css':</p>
+<pre class="recuadro">
+table {
+    width: 90%;
+    margin:1rem auto;
+ }
+
+ .contenedor {
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 600px;
+    box-shadow: -1px 3px 66px 0px rgba(0,0,0,0.75);
+    padding: 1rem;
+}   
+</pre>
+</li>
+
+
+
+<p>Si ejecutamos la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto093.jpg" alt="Angular Material mat-table" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto027/" target="_blank">aquí</a>.</p>
+</li>
+
+</ul>
+
+<p>Es muy importante cuando trabajamos con Angular Material tener la documentación oficial de esta librería de componentes. En lo referente a tablas debemos acceder a <a href="https://material.angular.io/components/table/overview" target="_blank">table</a>.</p>
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=45&codigo=45&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:54 GMT -->
+</html>

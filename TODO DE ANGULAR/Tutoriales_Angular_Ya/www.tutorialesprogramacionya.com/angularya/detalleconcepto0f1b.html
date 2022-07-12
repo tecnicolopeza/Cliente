@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=73&codigo=73&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Directiva estructural *ngFor - Sintaxis completa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>73 - Directiva estructural *ngFor - Sintaxis completa</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Angular tiene por defecto varias directivas estructurales: *ngFor, *ngIf y *ngSwitchCase, las hemos estado utilizando constantemente desde los primeros conceptos de este curso, ahora veremos en más profundidad la directiva estructural *ng-For y sus posibilidades.</p>
+<p>Recordemos que las directivas estructurales se aplican a elementos HTML que permiten añadir, manipular o eliminar elementos del DOM (Document Object Model).</p>
+<p>Las directivas estructurales llevan el prefijo *.</p>
+<p>La directiva *ngFor permite añadir elementos HTML de acuerdo a la etiqueta HTML que se le aplica: &lt;tr&gt;, &lt;li&gt; etc.</p>
+<h3>Su sintaxis tiene partes obligatorias:</h3>
+<p>Si tenemos definido el siguiente arreglo en el archivo *.ts:</p>
+<pre>
+  arreglo1 = [10, 20, 30, 40, 50];
+</pre>
+<p>Luego podemos iterar sus elementos para mostrarlos en la vista:</p>
+<pre>
+&lt;ul&gt;
+  &lt;li *ngFor="let elemento of arreglo1"&gt;
+    {{elemento}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>En la primera iteración la variable 'elemento' almacena el valor 10, y mediante interpolación mostramos su valor dentro de la etiqueta 'li'.</p>
+<ul>
+<li>Declaración de la variable que contiene el valor de la iteración mediante la palabra clave 'let' : 'let elemento'.</li>
+<li>Palabra clave: 'of'</li>
+<li>Variable a iterar: 'arreglo1'</li>
+</ul>
+<p>Esta es la estructura mínima que podemos definir cuando utilizamos la directiva estructural *ngFor.</p>
+
+<h3>Su sintaxis extendida:</h3>
+
+<p>Si tenemos definido el siguiente arreglo y método en el archivo *.ts:</p>
+<pre>
+  arreglo1 = [10, 20, 30, 40, 50];
+
+  rastrearPor(indice: number, elemento: number) {
+    console.log(indice, elemento);
+  }
+</pre>
+<p>Luego podemos iterar sus elementos para mostrarlos en la vista junto con otros elementos de información que podemos rescatar:</p>
+<pre>
+&lt;ul&gt;
+  &lt;li *ngFor="let elemento of arreglo1; let indice=index; let impar=odd; trackBy: rastrearPor;let primero=first; let ultimo=last"&gt;
+    El {{elemento}} está en la posición {{indice}} se encuentra en una posición {{impar?'impar':'par'}}
+    {{primero?'es el primero del arreglo':''}} {{ultimo?'es el último del arreglo':''}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>Separamos por punto y coma cada uno de los otros datos opcionales que nos suministra la directiva estructural *ngFor:</p>
+<ul>
+<li><p>let indice=index : En la variable 'indice' se almacena el índice actual del elemento del arreglo1 que estamos procesando.</p></li>
+<li><p>let impar=odd : En la variable 'impar' se almacena true si el elemento del arreglo1 se encuentra en una posición impar.</p></li>
+<li><p>let primero=first : Almacena la variable 'primero' un valor true si estamos iterando el primer elemento del arreglo1.</p></li>
+<li><p>let ultimo=last : Almacena la variable 'ultimo' un valor true si estamos iterando el último elemento del arreglo1.</p></li>
+<li><p>trackBy: rastrearPor : Indicamos el nombre de una función que se ejecutará por cada iteración del arreglo1, pasando el índice y el elemento procesado.</p></li>
+</ul>
+<p>Como resultado de ejecutar la aplicación tenemos como impresión:</p>
+<img src="imagentema/foto130.jpg" alt="Directiva estructura *ngFor" border="0"><br>
+<p>La información extra que provee la directiva nos puede servir para tomar decisiones cuando tenemos que mostrar información, por ejemplo pintar de distinto color las filas pares e impares de una tabla, mostrar información extra para el primer elemento etc.</p>
+
+
+<h2>Microsintaxis</h2>
+<p>La microsintaxis de angular le permite configurar una directiva en una cadena compacta y amigable. El analizador de microsintaxis traduce esa cadena en atributos de una etiqueta  &lt;ng-template&gt;.</p>
+<p>Por ejemplo la sintaxis del problema anterior:</p>
+<pre>
+&lt;ul&gt;
+  &lt;li *ngFor="let elemento of arreglo1; let indice=index; let impar=odd; trackBy: rastrearPor;let primero=first; let ultimo=last"&gt;
+    El {{elemento}} está en la posición {{indice}} se encuentra en una posición {{impar?'impar':'par'}}
+    {{primero?'es el primero del arreglo':''}} {{ultimo?'es el último del arreglo':''}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>El transpilador de Angular procede a modificar la directiva estructural *ngFor por un elemento &lt;ng-template&gt; que envuelve a la etiqueta que le hemos definido la directiva estructural:</p>
+<pre>
+&lt;ul&gt;
+  &lt;ng-template ngFor let-elemento [ngForOf]="arreglo1" let-indice="index" let-impar="odd" let-primero="fist" let-ultimo="last" [ngForTrackBy]="rastrearPor"&gt;
+    &lt;li&gt;
+      El {{elemento}} está en la posición {{indice}} se encuentra en una posición {{impar?'impar':'par'}}
+      {{primero?'es el primero del arreglo':''}} {{ultimo?'es el último del arreglo':''}}
+    &lt;/li&gt;
+  &lt;/ng-template&gt;
+&lt;/ul&gt;
+</pre>
+<p>Si modificamos manualmente con el código anterior, el resultado es exactamente el mismo:</p>
+<img src="imagentema/foto130.jpg" alt="Directiva estructura *ngFor" border="0"><br>
+<p>Si bien el resultado es el mismo, podemos comprobar que es mucho más legible utilizar la sintaxis de la directiva *ngFor:</p>
+<pre>
+  &lt;li *ngFor="let elemento of arreglo1; let indice=index; let impar=odd; trackBy: rastrearPor;let primero=first; let ultimo=last"&gt;
+</pre>
+<p>En lugar de definir la etiqueta ng-template con sus propiedades:</p>
+<pre>
+  &lt;ng-template ngFor let-elemento [ngForOf]="arreglo1" let-indice="index" let-impar="odd" let-primero="fist" let-ultimo="last" [ngForTrackBy]="rastrearPor"&gt;
+</pre> 
+<p>Traemos el concepto de microsintaxis para entender porque las directivas estructurales requieren obligatoriamente el caracter '*' previo a su nombre. Angular sabe que las directivas estructurales deben ser transformadas previamente y expandidas en una etiqueta ng-template.</p>
+<p>Siempre es más conveniente utilizar la sintaxis *ngFor, pero es importante entender como Angular transforma este tipo de directivas para los casos que tengamos que codificar nuestras propieas directivas estructurales.</p><div class="botonretorno"><a href="indexd6cc.html?inicio=60">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=73&codigo=73&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+</html>

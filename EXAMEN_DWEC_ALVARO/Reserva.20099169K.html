@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Reserva {
+
+            constructor(nombre, DNI, fecha_entrada, fecha_salida) {
+                this._nombre = nombre;
+                this._DNI = DNI;
+                this._fecha_entrada = fecha_entrada; //FORMATO Y/m/d
+                this._fecha_salida = fecha_salida;
+            }
+
+            get nombre() {
+                return this._nombre;
+            }
+
+            set nombre(x) {
+                if (this._nombre !== x) this._nombre = x;
+            }
+
+            get DNI() {
+                return this._DNI;
+            }
+
+            set DNI(x) {
+                if (this._DNI !== x) this._DNI = x;
+            }
+
+            get entrada() {
+                return this.fecha_entrada;
+            }
+
+            set entrada(x) {
+                if (this.fecha_entrada !== x) this.fecha_entrada = x;
+            }
+
+            get salida() {
+                return this.fecha_salida;
+            }
+
+            set salida(x) {
+                if (this.fecha_salida !== x) this.fecha_salida = x;
+            }
+
+            numerosDiasEstancia() {
+                var fecha1 = this._fecha_entrada;
+                var fecha2 = this._fecha_salida;
+
+                function dias_transcurridos(f1, f2) {
+                    var aFecha1 = f1.split('/');
+                    var aFecha2 = f2.split('/');
+                    var fFecha1 = Date.UTC(aFecha1[2], aFecha1[1] - 1, aFecha1[0]);
+                    var fFecha2 = Date.UTC(aFecha2[2], aFecha2[1] - 1, aFecha2[0]);
+                    var dif = fFecha2 - fFecha1;
+                    var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+                    return dias;
+                }
+                var dias = dias_trancurridos(fecha1, fecha2);
+                return dias;
+            }
+
+
+        }
+
+        let reserva1 = new Reserva("Matías;Román;María", "44958636L", new Date('27/09/2021'), new Date('01/10/2021'));
+        console.log("Han trascurrido " + reserva1.dias_trancurridos + " días");
+    </script>
+</body>
+
+</html>

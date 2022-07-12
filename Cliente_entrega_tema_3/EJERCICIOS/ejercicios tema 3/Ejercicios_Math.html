@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../FUNCIONES/functionPasarRadianes.js"></script>
+    <script src="../../FUNCIONES/function_redondearDecimales.js"></script>
+    <script src="../../FUNCIONES/function_generarAleatorio.js"></script>
+    <!--Importar las funciones es con src-->
+</head>
+
+<body>
+    <h2>Los ejercicios se ejecutaran en la consola, abrir con F12.</h2>
+
+    <script>
+        //Calcula el valor absoluto de los siguientes números: 3, -5, 8, -3.5, 12.2
+        function ej1() {
+            let array = [3, -5, 8, -3.5, 12.2];
+            console.log("El array " + array + " en valor absoluto es: ");
+            for (let i = 0; i < array.length; i++) {
+                console.log(Math.abs(array[i]));
+            }
+        }
+    </script>
+
+    <script>
+        //Muestra por la consola el valor de la constante PI definida en la clase Math.
+        function ej2() {
+            console.log("El valor de PI es " + Math.PI);
+        }
+    </script>
+
+    <script>
+        /*Calcula el coseno de 30º. Haz el mismo cálculo usando la calculadora de Windows. 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Compara ambos resultados y si no coinciden investiga el motivo y corrige tu código de JS. 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Calcula el seno de 45º en JS y con la calculadora y comprueba que coincidan. 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Calcula el coseno de /3radianes y comprueba con la calculadora que es correcto.*/
+        function ej3() {
+            let n = 30;
+            console.log("El angulo 30 en radianes es " + PasarRadianes(n));
+            console.log("El coseno de 30º es " + Math.cos(PasarRadianes(n)));
+            console.log("El seno de 45º es " + Math.sin(PasarRadianes(45)));
+            console.log("El PI/3 radianes es " + Math.cos(Math.PI / 3));
+        }
+    </script>
+
+    <script>
+        function ej4() {
+            console.log("El e3 es primera forma " + Math.pow(Math.E, 3));
+            console.log("El e3 es segunda forma " + Math.exp(3)); //me lo ha dicho mi novia yo no doy para tanto
+        }
+    </script>
+
+    <script>
+        /*Calcula  log 12.5 (logaritmo en base 10). Calcula ln 15.7 (logaritmo neperiano). 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Compara ambos resultados con la calculadora.*/
+        function ej5() {
+            console.log("El log en base 10 de 12.5 es " + Math.log10(12.5));
+            console.log("El log neperiano de 15.7 es " + Math.log(15.7));
+        }
+    </script>
+
+    <script>
+        function ej6() {
+            /*Calcula 128.12 comparando con la calculadora que el resultado es correcto.*/
+            console.log(
+                "La raiz cuadrada de 128.12 es " +
+                redondearDecimales(Math.sqrt(128.12), 2)
+            );
+        }
+    </script>
+
+    <script>
+        //Redondea los siguientes números al entero más cercano: 2.7, -2.7, 12.4, 12.5, -0.6, 0.6
+        function ej7() {
+            let array = [2.7, -2.7, 12.4, 12.5, -0.6, 0.6];
+            console.log("Vamos a redondear los siguientes numeros: " + array);
+
+            console.log("El array redondeado sería: ");
+            for (let i = 0; i < array.length; i++) {
+                console.log(redondearDecimales(array[i], 0));
+            }
+        }
+    </script>
+
+    <script>
+        function ej8() {
+            //Calcula el techo (ceil) de los siguientes números: 2.7, -2.7, 12.4, 12.5, -0.6, 0.6
+            let array = [2.7, -2.7, 12.4, 12.5, -0.6, 0.6];
+            console.log("Usando ceil redondeare el siguiente array: " + array);
+            console.log("Array con ceil: ");
+            for (let i = 0; i < array.length; i++) {
+                console.log(Math.ceil(array[i]));
+            }
+        }
+    </script>
+
+    <script>
+        function ej9() {
+            //Calcula el suelo (floor) de los siguientes números: 2.7, -2.7, 12.4, 12.5, -0.6, 0.6
+            let array = [2.7, -2.7, 12.4, 12.5, -0.6, 0.6];
+            console.log("Usando floor redondeare el siguiente array: " + array);
+            console.log("Array con floor: ");
+            for (let i = 0; i < array.length; i++) {
+                console.log(Math.floor(array[i]));
+            }
+        }
+    </script>
+
+    <script>
+        function ej10() {
+            //Calcula el menor de los valores de estos pares de números: (-8, 7), (12, 5), (-12, 5)
+
+            let min = 999; //Esto le da el maximo numero posible
+            let valorMinimo = 0; //resultado del minimo de los dos valores
+
+            var nuevoArray = new Array(2); //creamos un array multidimensional con un array de dos elementos en cada celda
+            nuevoArray[0] = new Array(2);
+            nuevoArray[1] = new Array(2);
+            nuevoArray[2] = new Array(2);
+
+            nuevoArray[0][0] = -8;
+            nuevoArray[0][1] = 7;
+
+            nuevoArray[1][0] = 12;
+            nuevoArray[1][1] = 5;
+
+            nuevoArray[2][0] = -12;
+            nuevoArray[2][1] = 5;
+
+            nuevoArray.forEach(miFuncion);
+
+            function miFuncion(elemento, indice) {
+                //esto solo vale para mostrarlo pero no para comparar los valores
+                console.log("Indice: " + indice + " Valor: " + elemento);
+            }
+
+            //contador para determinar que cada dos arrays internos vuelva a comparar
+            //contador_min cuenta en que array interno estamos
+            //valorMinimo resultado del minimo de los dos valores
+
+            for (let i = 0; i < nuevoArray.length; i++) { //Recorremos la fila
+
+                for (let j = 0; j < nuevoArray[i].length; j++) {
+                    //La columna
+
+                    if (min > nuevoArray[i][j]) {
+                        //si es mayor
+                        min = nuevoArray[i][j];
+                        valorMinimo = min; //valorMinimo sera el nuevo minimo
+                    }
+
+                }
+                //i+1 para mostrar la fila (0,1,2) serian las filas del array
+                console.log("El minimo del array " + (i + 1) + " es " + valorMinimo); //pintamos cuando salga de la ultima columna
+                min = 999; //reseteamos el min
+            }
+            console.log("Comprobamos los minimos ahora con la funcion min() de Math los valores:  (-8, 7), (12, 5), (-12, 5)");
+            console.log("Primer par el minimo es " + Math.min(-8, 7));
+            console.log("Segundo par el minimo es " + Math.min(12, 5));
+            console.log("Tercer par el minimo es " + Math.min(-12, 5));
+
+        }
+    </script>
+
+    <script>
+        function ej11() {
+            //Calcula el mayor de los valores de estos pares de números: (-8, 7), (12, 5), (-12, 5)
+
+            let max = -999; //Esto le da el maximo numero posible
+            let valorMaximo = 0; //resultado del minimo de los dos valores
+
+            var nuevoArray = new Array(2); //creamos un array multidimensional con un array de dos elementos en cada celda
+            nuevoArray[0] = new Array(2);
+            nuevoArray[1] = new Array(2);
+            nuevoArray[2] = new Array(2);
+
+            nuevoArray[0][0] = -8;
+            nuevoArray[0][1] = 7;
+
+            nuevoArray[1][0] = 12;
+            nuevoArray[1][1] = 5;
+
+            nuevoArray[2][0] = -12;
+            nuevoArray[2][1] = 5;
+
+            nuevoArray.forEach(miFuncion);
+
+            function miFuncion(elemento, indice) {
+                //esto solo vale para mostrarlo pero no para comparar los valores
+                console.log("Indice: " + indice + " Valor: " + elemento);
+            }
+
+            //contador para determinar que cada dos arrays internos vuelva a comparar
+            //contador_min cuenta en que array interno estamos
+            //valorMinimo resultado del minimo de los dos valores
+
+            for (let i = 0; i < nuevoArray.length; i++) { //Recorremos la fila
+
+                for (let j = 0; j < nuevoArray[i].length; j++) {
+                    //La columna
+
+                    if (max < nuevoArray[i][j]) {
+                        //si es mayor
+                        max = nuevoArray[i][j];
+                        valorMaximo = max; //valorMinimo sera el nuevo minimo
+                    }
+
+                }
+                //i+1 para mostrar la fila (0,1,2) serian las filas del array
+                console.log("Usando array multidimensional: ");
+                console.log("El maximo del array " + (i + 1) + " es " + valorMaximo); //pintamos cuando salga de la ultima columna
+                max = -999; //reseteamos el min
+            }
+
+            console.log("Comprobamos los maximos ahora con la funcion max() de Math los valores:  (-8, 7), (12, 5), (-12, 5)");
+            console.log("Primer par el maximo es " + Math.max(-8, 7));
+            console.log("Segundo par el maximo es " + Math.max(12, 5));
+            console.log("Tercer par el maximo es " + Math.max(-12, 5));
+
+        }
+    </script>
+
+
+    <script>
+        function ej12() {
+            //Queremos simular el lanzamiento de un dado. Genera un número aleatorio entre 1 y 6.
+            console.log("La cara del dado ha salido " + generarAleatorio(1, 6));
+        }
+    </script>
+
+    <script>
+        function ej13() {
+            //Genera un número aleatorio entre 26 y 79.
+            console.log("Genera un numero aleatorio entre 26 y 79 ==> " + generarAleatorio(26, 79));
+        }
+    </script>
+
+
+
+    <script>
+        function ej14() {
+            //Redondea la constante Math.PI a dos decimales. 
+            //Haz lo mismo pero redondeando a tres, cuatro y cinco decimales.
+
+            console.log("Redondeando dos decimales la constante PI: " + redondearDecimales(Math.PI, 2));
+            console.log("Redondeando tres decimales la constante PI: " + redondearDecimales(Math.PI, 3));
+            console.log("Redondeando cuatro decimales la constante PI: " + redondearDecimales(Math.PI, 4));
+            console.log("Redondeando cinco decimales la constante PI: " + redondearDecimales(Math.PI, 5));
+
+        }
+    </script>
+
+
+    <!--Botones ejercicios-->
+    <button onclick="ej1()">Ejercicio 1</button>
+    <br /><br />
+    <button onclick="ej2()">Ejercicio 2</button>
+    <br /><br />
+    <button onclick="ej3()">Ejercicio 3</button>
+    <br /><br />
+    <button onclick="ej4()">Ejercicio 4</button>
+    <br /><br />
+    <button onclick="ej5()">Ejercicio 5</button>
+    <br /><br />
+    <button onclick="ej6()">Ejercicio 6</button>
+    <br /><br />
+    <button onclick="ej7()">Ejercicio 7</button>
+    <br /><br />
+    <button onclick="ej8()">Ejercicio 8</button>
+    <br /><br />
+    <button onclick="ej9()">Ejercicio 9</button>
+    <br /><br />
+    <button onclick="ej10()">Ejercicio 10</button>
+    <br /><br />
+    <button onclick="ej11()">Ejercicio 11</button>
+    <br /><br />
+    <button onclick="ej12()">Ejercicio 12</button>
+    <br /><br />
+    <button onclick="ej13()">Ejercicio 13</button>
+    <br /><br />
+    <button onclick="ej14()">Ejercicio 14</button>
+</body>
+
+</html>

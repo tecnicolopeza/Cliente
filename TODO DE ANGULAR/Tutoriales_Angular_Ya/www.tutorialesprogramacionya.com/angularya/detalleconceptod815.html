@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=49&codigo=49&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Diálogos - MatDialog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>49 - Angular Material: Diálogos - MatDialog</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Para crear diálogos modales en Angular Material debemos utilizar el servicio 'MatDialog'.</p>
+<p>Se debe crear una componente nueva y luego hacer referencia desde nuestra componente principal.</p>
+
+
+
+<h3>Problema</h3>
+<p>Mostrar un listado de artículos ficticios(codigo, descripción y precio), disponer un botón que al ser presionado nos muestre un diálogo modal para permitir la carga de un artículo.</p>
+
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto031
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+<li><p>Para un mayor orden creamos la clase 'Articulo' en un archivo independiente:</p>
+<pre>
+ng generate class Articulo
+</pre>
+<p>El código fuente de la clase debe ser (articulo.ts):</p>
+<pre class="recuadro">
+export class Articulo {
+    constructor(public codigo: number, public descripcion: string, public precio: number) {
+    }
+}
+</pre>
+</li>
+
+<li><p>Creamos ahora la componente que administrará el diálogo modal:</p>
+<pre>
+ng generate component dialogoarticulo
+</pre>
+<p>Se crea la capeta 'dialogoarticulo' con los 4 archivos.</p>
+<p>Modificamos el archivo 'dialogoarticulo.component.ts'
+<pre class="recuadro">
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Articulo} from '../articulo';
+@Component({
+  selector: 'app-dialogoarticulo',
+  templateUrl: './dialogoarticulo.component.html',
+  styleUrls: ['./dialogoarticulo.component.css']
+})
+export class DialogoarticuloComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef&lt;DialogoarticuloComponent&gt;,
+    @ Inject(MAT_DIALOG_DATA) public data: Articulo) {}
+
+  ngOnInit() {
+  }
+
+  cancelar() {
+    this.dialogRef.close();
+  }
+
+}</pre>
+<p>El constructor recibe un servicio de tipo 'MatDialogRef' y se inyecto los datos que se mostrarán inicialmente:</p>
+<pre>
+  constructor(
+    public dialogRef: MatDialogRef&lt;DialogoarticuloComponent&gt;,
+    @ Inject(MAT_DIALOG_DATA) public data: Articulo) {}
+</pre>
+<p>El método 'cancelar' procede a cerrar el diálogo:</p>
+<pre>
+  cancelar() {
+    this.dialogRef.close();
+  }
+</pre>
+
+<p>También hacemos los mismo con el archivo 'dialogoarticulo.component.html':</p>
+<pre class="recuadro">
+&lt;div&gt;
+    &lt;h1 mat-dialog-title&gt;Artículo&lt;/h1&gt;
+    &lt;div mat-dialog-content&gt;
+        &lt;div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;"&gt;
+
+            &lt;mat-form-field&gt;
+                &lt;input matInput [(ngModel)]="data.codigo" type="number" placeholder="Ingrese código"&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field&gt;
+                &lt;input matInput [(ngModel)]="data.descripcion" type="text" placeholder="Ingrese descripción"&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;mat-form-field&gt;
+                &lt;input matInput [(ngModel)]="data.precio" type="number" placeholder="Ingrese precio"&gt;
+            &lt;/mat-form-field&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div mat-dialog-actions&gt;
+        &lt;button mat-button (click)="cancelar()"&gt;Cancelar&lt;/button&gt;
+        &lt;button mat-button [mat-dialog-close]="data" cdkFocusInitial&gt;Confirmar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</li>
+
+
+<li>
+<p>Procedemos a modificar ahora el archivo 'app.module.ts':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogoarticuloComponent } from './dialogoarticulo/dialogoarticulo.component';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DialogoarticuloComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    FormsModule,
+    MatTableModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+</li>
+
+<li>
+Modificamos el archivo 'app.component.ts' con la lógica de nuestra componente principal:</p>
+<pre class="recuadro">
+import { Component, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { Articulo } from './articulo';
+import { DialogoarticuloComponent } from './dialogoarticulo/dialogoarticulo.component'
+import { MatTableDataSource } from '@angular/material/table';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  columnas: string[] = ['codigo', 'descripcion', 'precio', 'borrar'];
+
+  datos: Articulo[] = [new Articulo(1, 'papas', 55),
+  new Articulo(2, 'manzanas', 53),
+  new Articulo(3, 'naranjas', 25),
+  ];
+
+  ds = new MatTableDataSource&lt;Articulo&gt;(this.datos);
+
+  @ViewChild(MatTable) tabla1!: MatTable&lt;Articulo&gt;;
+
+  constructor(public dialog: MatDialog) { }
+
+  abrirDialogo() {
+    const dialogo1 = this.dialog.open(DialogoarticuloComponent, {
+      data: new Articulo(0, '', 0)
+    });
+
+    dialogo1.afterClosed().subscribe(art =&gt; {
+      if (art != undefined)
+        this.agregar(art);
+    });
+  }
+
+  borrarFila(cod: number) {
+    if (confirm("Realmente quiere borrarlo?")) {
+      this.datos.splice(cod, 1);
+      this.tabla1.renderRows();
+    }
+  }
+
+  agregar(art: Articulo) {
+    this.datos.push(new Articulo(art.codigo, art.descripcion, art.precio));
+    this.tabla1.renderRows();
+  }
+}
+</pre>
+<p>Como dijimos se debe emplear un servicio de tipo 'MatDialog', el mismo llega como parámetro al constructor:</p>
+<pre>
+  constructor(public dialog: MatDialog) { }
+</pre>
+<p>Luego en el evento de 'abrirDialogo' procedemos a llamar al método 'open' del servicio y le pasamos la referencia de la componente del diálogo y un objeto literal al cual le podemos enviar datos iniciales que se mostrarán en el formulario del diálogo:</p>
+<pre>
+  abrirDialogo() {
+    const dialogo1 = this.dialog.open(DialogoarticuloComponent, {
+      data: new Articulo(0, '', 0)
+    });
+</pre>
+<p>También en el mismo método 'abrirDialogo' podemos fijar un método anónimo que se ejecutará cuando se cierre el diálogo (si se presión el botón confirmar luego el parámetro 'art' tiene la referencia de un objeto de tipo Articulo, es decir es distinto a undefined, en dicho caso llamamos al método 'agregar'):</p>
+<pre>
+    dialogo1.afterClosed().subscribe(art =&gt; {
+      if (art != undefined)
+        this.agregar(art);
+    });
+  }
+</pre>
+
+<p>El método 'agregar' procede a insertar un dato en el arreglo y actualizar la tabla de datos en pantalla:</p>
+<pre>
+  agregar(art: Articulo) {
+    this.datos.push(new Articulo(art.codigo, art.descripcion, art.precio));
+    this.tabla1.renderRows();
+  }
+</pre>
+
+</li>
+
+
+
+<li>
+<p>Codificamos la interfaz visual en el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div style=" margin: auto; width: 80%"&gt;
+  &lt;table mat-table [dataSource]="ds" class="mat-elevation-z8" #tabla1 style="width: 90%;margin-bottom: 1rem;"&gt;
+    &lt;ng-container matColumnDef="codigo"&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt; Código &lt;/th&gt;
+      &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.codigo}} &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef="descripcion"&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt; Descripción &lt;/th&gt;
+      &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.descripcion}} &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef="precio"&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt; Precio &lt;/th&gt;
+      &lt;td mat-cell *matCellDef="let articulo"&gt; {{articulo.precio}} &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef="borrar"&gt;
+      &lt;th mat-header-cell *matHeaderCellDef&gt; Borra? &lt;/th&gt;
+      &lt;td mat-cell *matCellDef="let j = index;"&gt;
+        &lt;button mat-raised-button color="warn" focusable="false" (click)="borrarFila(j)"&gt;
+          Borra?
+        &lt;/button&gt;
+      &lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;tr mat-header-row *matHeaderRowDef="columnas"&gt;&lt;/tr&gt;
+    &lt;tr mat-row *matRowDef="let row; columns: columnas;"&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;button mat-raised-button (click)="abrirDialogo()"&gt;Agregar artículo&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+</li>
+
+
+<p>Si ejecutamos la aplicación tenemos como resultado:</p>
+<img src="imagentema/foto097.jpg" alt="Angular Material diálogos modales" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto031/" target="_blank">aquí</a>.</p>
+</li>
+
+</ul>
+
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=49&codigo=49&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:56 GMT -->
+</html>

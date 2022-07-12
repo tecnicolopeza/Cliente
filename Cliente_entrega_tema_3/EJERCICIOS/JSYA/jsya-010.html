@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Se ingresan por teclado tres números, si al menos uno de los valores<br />
+      ingresados es menores a 10, imprimir en la página la leyenda 'Alguno de<br />
+      los números es menor a diez'.<br />
+    </p>
+    <script>
+      document.write("EJERCICIO 1");
+
+      var num1 = parseFloat(prompt("Introduce el primer numero: "));
+      var num2 = parseFloat(prompt("Introduce el segundo numero: "));
+      var num3 = parseFloat(prompt("Introduce el tercer numero: "));
+
+      if(num1<10 || num2<10 || num3<10){
+        document.write("<br>Alguno es menor a 10");
+      }
+
+    </script>
+
+
+
+  </body>
+</html>

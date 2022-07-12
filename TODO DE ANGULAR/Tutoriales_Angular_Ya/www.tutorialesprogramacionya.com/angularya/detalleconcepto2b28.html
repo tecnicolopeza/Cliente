@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=50&codigo=50&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Menu - mat-menu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>50 - Angular Material: Menu - mat-menu</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Un menú es un panel flotante que muestra una lista de opciones. Haremos un problema para recordar el tema de rutas e incorpararemos Angular Material con un menú de opciones.</p>
+
+
+<h3>Problema</h3>
+<p>Implementar una aplicación que muestre un menú de opciones en la parte superior de la página que acceda el primero al juego de tres dados que habíamos desarrollado en ejercicios anteriores. El segundo enlace debe mostrar mediante otra ruta el nombre del programador, versión y fecha de desarrollo.</p>
+
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto032 --routing
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add':</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+
+<li>
+<p>En la carpeta app se crea el archivo 'app-routing.module.ts', lo modificamos con el siguiente contenido:</p>
+<pre class="recuadro">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { JuegodadosComponent } from './juegodados/juegodados.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+
+const routes: Routes = [
+  {
+    path:'juegodados',
+    component:JuegodadosComponent
+  },
+  {
+    path:'acercade',
+    component:AcercadeComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</pre>
+<p>Por el momento debe mostrar un error cuando iniciamos los nombres de las componentes 'JuegodadosComponent' y 'AcercadeComponent' debido que no las hemos codificado aún.</p>
+</li>
+
+<li>
+<p>Desde la línea de comandos de Node.js procedemos a crear cada una de las tres componentes que faltan en la aplicación:</p>
+<pre>
+ng generate component juegodados
+</pre>
+<p>Codificamos dos archivos:</p>
+<p>juegodados.component.ts</p>
+<pre class="recuadro">
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-juegodados',
+  templateUrl: './juegodados.component.html',
+  styleUrls: ['./juegodados.component.css']
+})
+export class JuegodadosComponent implements OnInit {
+  valor1: number;
+  valor2: number;
+  valor3: number;
+  resultado!: string;
+  constructor() {
+    this.valor1 = this.retornarAleatorio();
+    this.valor2 = this.retornarAleatorio();
+    this.valor3 = this.retornarAleatorio();
+  }
+
+  retornarAleatorio() {
+    return Math.trunc(Math.random() * 6) + 1;
+  }
+
+  tirar() {
+    this.valor1 = this.retornarAleatorio();
+    this.valor2 = this.retornarAleatorio();
+    this.valor3 = this.retornarAleatorio();
+    if (this.valor1==this.valor2 && this.valor1==this.valor3)    
+      this.resultado='Ganó';
+    else
+      this.resultado='Perdió';
+  }
+  
+  ngOnInit() {
+  }
+
+}
+</pre>
+
+<p>juegodados.component.html</p>
+<pre class="recuadro">
+&lt;app-dado [valor]="valor1"&gt;&lt;/app-dado&gt;
+&lt;app-dado [valor]="valor2"&gt;&lt;/app-dado&gt;
+&lt;app-dado [valor]="valor3"&gt;&lt;/app-dado&gt;
+&lt;hr&gt;
+&lt;button mat-raised-button (click)="tirar()"&gt;Tirar&lt;/button&gt;  
+&lt;hr&gt;
+&lt;p&gt;Resultado:{{resultado}}&lt;/p&gt;
+</pre>
+
+<p>Generamos ahora la componente 'dado':</p>
+<pre>
+ng generate component dado
+</pre>
+<p>Codificamos sus tres archivos:</p>
+<p>dado.component.ts</p>
+<pre class="recuadro">
+import { Component, OnInit,Input } from '@angular/core';
+
+@Component({
+  selector: 'app-dado',
+  templateUrl: './dado.component.html',
+  styleUrls: ['./dado.component.css']
+})
+export class DadoComponent implements OnInit {
+
+  @Input() valor!: number;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+</pre>
+
+<p>dado.component.html</p>
+<pre class="recuadro">
+&lt;div class="forma"&gt;
+  {{valor}}
+&lt;/div&gt;
+</pre>
+
+<p>dado.component.css</p>
+<pre class="recuadro">
+.forma {
+  width: 5rem;  
+  height: 5rem;
+  font-size: 3rem;
+  color:white;
+  background-color: black;
+  border-radius: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin:10px;
+}
+</pre>
+
+<p>Finalmente creamos la última componente:</p>
+<pre>
+ng generate component acercade
+</pre>
+
+<p>Modificamos el archivo 'acercade.component.html':</p>
+<pre class="recuadro">
+&lt;h1&gt;Programa: xxxxxxxxx&lt;/h1&gt;
+&lt;p&gt;Desarrollado: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/p&gt;
+&lt;p&gt;Fecha: xxxxxxxx&lt;/p&gt;
+</pre>
+</li>
+
+
+
+<li>
+<p>Si abrimos ahora el archivo app.module.ts tenemos declarados las 4 componentes e importado el módulo AppRoutingModule, también importamos los módulos MatButtonModule y MatMenuModule:</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JuegodadosComponent } from './juegodados/juegodados.component';
+import { DadoComponent } from './dado/dado.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+@NgModule({
+  declarations: [
+    AppComponent,
+    JuegodadosComponent,
+    DadoComponent,
+    AcercadeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+
+<li>
+<p>Nos queda modificar la componente principal 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div style="text-align:left"&gt;
+  &lt;button mat-flat-button [matMenuTriggerFor]="menu" color="primary"&gt;Opciones del sitio&lt;/button&gt;
+  &lt;mat-menu #menu="matMenu"&gt;
+    &lt;button mat-menu-item routerLink="/juegodados"&gt;Juego de Dados&lt;/button&gt;
+    &lt;button mat-menu-item routerLink="/acercade"&gt;Acerca de ...&lt;/button&gt;
+  &lt;/mat-menu&gt;
+&lt;/div&gt;
+&lt;div style="text-align:center"&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/div&gt;
+</pre>
+<p>Para crear las distintas opciones del menú disponemos la etiqueta mat-menu y dentro de esta una serie de botones con la propiedad mat-menu-item:</p>
+<pre>
+  &lt;button mat-flat-button [matMenuTriggerFor]="menu" color="primary"&gt;Opciones del sitio&lt;/button&gt;
+  &lt;mat-menu #menu="matMenu"&gt;
+    &lt;button mat-menu-item routerLink="/juegodados"&gt;Juego de Dados&lt;/button&gt;
+    &lt;button mat-menu-item routerLink="/acercade"&gt;Acerca de ...&lt;/button&gt;
+  &lt;/mat-menu&gt;
+</pre>
+<p>Además hay una etiqueta button siempre visible con la propiedad [matMenuTriggerFor] que hace referencia a la propiedad #menu de la etiqueta mat-menu.</p>
+
+<p>Mediante la etiqueta 'router-outlet' indicamos el lugar que debe mostrar la componente especificada por la ruta configurada en el archivo 'app-routing.module.ts'</p>
+<p>Para cambiar de ruta mediante las opciones del menú debemos iniciar la propiedad 'routerLink' asignando la ruta respectiva.</p>
+
+<p>Si ejecutamos ahora el proyecto:</p>
+<pre>
+ng server -o
+</pre>
+<p>Podemos ver distintos resultados según la ruta indicada y si esta visible el menú:</p>
+<img src="imagentema/foto098.jpg" border="0" alt="Router Angular Angular Material mat-menu"><br>
+<p>Si accedemos a la primer opción del menú(tener en cuenta que no se recarga la página, no hay una petición al servidor, sino se resuelve la ruta con aplicación Angular en el navegador):</p>
+<img src="imagentema/foto099.jpg" border="0" alt="Router Angular Angular Material mat-menu"><br>
+<p>Finalmente si accedemos a la otra opción:</p>
+<img src="imagentema/foto100.jpg" border="0" alt="Router Angular Angular Material mat-menu"><br>
+
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto032/" target="_blank">aquí</a>.</p>
+</li>
+
+</ol>
+
+
+
+
+
+
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=50&codigo=50&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:57 GMT -->
+</html>

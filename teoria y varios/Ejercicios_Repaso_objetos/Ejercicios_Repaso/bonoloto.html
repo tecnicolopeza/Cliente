@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script> 
+
+
+        function testearBonoloto() {
+            let numCombinaciones=100000;
+            let combinacion;
+            let pasaTest=true;
+            for(let i=0; i< numCombinaciones;i++){
+                combinacion=bonoloto();
+                if(!compruebaEltosArrayEnRango(combinacion)){
+                    console.log(combinacion.toString() + " => ELTOS NO EN RANGO 1-49");
+                    pasaTest=false;
+                }
+                if(compruebaDuplicidadArray(combinacion)){
+                    console.log(combinacion.toString() + " => ELTOS DUPLICADOS");
+                    pasaTest=false;
+                }
+            }
+            if(pasaTest) console.log("¡bonoloto() PASA TEST!");
+            else console.log("¡bonoloto() FALLA TEST");
+
+            alert("Ver consola depuración");
+        }
+
+        function recuentoNumeroVecesSaleUnaBola(){
+            let numCombinaciones=100000;
+            let recuento_bola=[]; // En este array almacenamos el número de veces que aparece cada bola
+            let combinacion; 
+            for(let i=1;i <= 49; i++){
+                recuento_bola[i]=0; //Incializamos el recuento de bolas
+            }
+            for(let i=0; i< numCombinaciones;i++){
+                combinacion=bonoloto();
+                for (let j=0; j< combinacion.length; j++){
+                    recuento_bola[combinacion[j]]=recuento_bola[combinacion[j]] + 1;
+                }
+            }
+            //Mostramos el recuento de cuántas veces ha aparecido cada bola
+            for(let i=1;i <= 49; i++){
+                console.log(`Bola ${i} ha salido ${recuento_bola[i]} veces`);
+            }
+
+            
+        }
+
+    </script>
+    <script src="src/bonoloto.js"></script>
+    <input type="button" onclick="testearBonoloto();" value="Testear función bonoloto()">
+    <input type="button" onclick="recuentoNumeroVecesSaleUnaBola();" value="Recuento número de veces aparce una bola">
+</body>
+
+</html>

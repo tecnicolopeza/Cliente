@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>24 - Creación de controles de tipo input dinámicamente.</h2>
+    <h4>Problema:Disponer un control de tipo select con los valores enteros entre 0 y 5. Crear tantos controles de tipo input tipo text como indique el control select. Efectuar dicha creación cuando se dispara el evento onChange.</h4>
+
+    <select id="crearInputs" onchange="crearInputs()">
+        <option value="0">crear 0 inputs</option>
+        <option value="1">crear 1 inputs</option>
+        <option value="2">crear 2 inputs</option>
+        <option value="3">crear 3 inputs</option>
+        <option value="4">crear 4 inputs</option>
+        <option value="5">crear 5 inputs</option>
+    </select>
+    <div id="divDinamico">
+    </div>
+
+    <script>
+        let contadorInputs = 0;
+
+        function crearInputs() {
+            var punteroCrearInputs = document.getElementById('crearInputs');
+            var punteroDivDinamico = document.getElementById('divDinamico');
+
+            if (punteroCrearInputs.value > 0) {
+                for (let i = 0; i < punteroCrearInputs.value; i++) {
+                    contadorInputs++;
+                    var node = document.createElement("input"); // Create a <input> node
+                    var nodeTexto = document.createTextNode("Input-" + contadorInputs + ": ");
+                    var nodeSaltoLinea = document.createElement("br"); // Create a <br> node
+                    punteroDivDinamico.appendChild(nodeTexto);
+                    punteroDivDinamico.appendChild(node);
+                    punteroDivDinamico.appendChild(nodeSaltoLinea);
+                }
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #numero {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Eventos: click y dblclick</h2>
+    <p>Realizar un programa que muestre en un div el número 2. Cada vez que se hace doble clic sobre el mismo duplicar el valor contenido en el div.</p>
+
+    <div id="numero">2</div>
+
+    <script>
+        var divNumero = document.getElementById('numero');
+        divNumero.addEventListener('dblclick', duplicar, false);
+
+        function duplicar() {
+            let valor = document.getElementById('numero').innerHTML;
+            alert('el valor es' + valor);
+            valor = parseInt(valor);
+            let resultado = valor * 2;
+            divNumero.innerHTML = resultado;
+
+        }
+    </script>
+</body>
+
+</html>

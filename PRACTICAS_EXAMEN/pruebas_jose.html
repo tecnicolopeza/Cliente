@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pruebas</title>
+</head>
+
+<body>
+  <script>
+    //Math
+    console.log("Round 1.2: " + Math.round(1.2));
+    console.log("Round 1.6: " + Math.round(1.6));
+    console.log("Trunc 1.6: " + Math.trunc(1.6));
+    console.log("Floor 1.6: " + Math.floor(1.6));
+    console.log("Ceil 1.6: " + Math.ceil(1.6));
+    console.log("Exp 14: " + Math.exp(14));
+
+    //Arrow
+    hola = (v1, v2) => {
+      let saludo2 = "noches";
+      return "Saludos " + v1 + " " + v2 + saludo2;
+    }
+    console.log("Función arrow: " + hola("Piter", "Parquer"));
+    
+    //Funcion alcanceProyectil
+    function pasarRadianes(grados) {
+      return (grados * 2 * Math.PI) / 360;
+    }
+    function alcanceProyectil(angulo, velocidad) {
+      const g = 9.8;
+      return ((Math.pow(velocidad, 2) * Math.sin(2 * pasarRadianes(angulo))) / g);
+    }
+    console.log("Alcance proyectil: " + alcanceProyectil(45, 30));
+
+    //Max y lo de los ...
+    let n = [1, 2, 3, 4, 5];
+    console.log(Math.max(...n));
+
+    //Date
+    let fechaActual = new Date();
+    console.log(fechaActual);
+    let fecha = new Date(2021, 9, 26, 4, 5, 6); //Año, mes, dia, hora, minutos, segundos, milisegundos
+    console.log(fecha);
+    console.log(Date.now());
+    console.log(fecha.getTime());
+  </script>
+</body>
+
+</html>

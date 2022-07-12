@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>
+        Confeccionar una página que muestre dos div que contengan 3 párrafos cada uno.<br> Cuando se presione un botón ocultar todos los párrafos del segundo div.
+    </h4>
+
+    <div id="div1">
+        <h3>Div 1</h3>
+        <p>parrafo1</p>
+        <p>parrafo2</p>
+        <p>parrafo3</p>
+    </div>
+    <br>
+
+    <div id="div2">
+        <h3>Div 2</h3>
+        <p>parrafo1</p>
+        <p>parrafo2</p>
+        <p>parrafo3</p>
+    </div>
+
+    <button value="ocultarP" onclick="ocultar()">Mostrar/Ocultar</button>
+
+    <script>
+        let activado = 0; //por defecto la primera vez siempre apagado
+
+        function ocultar() {
+            let padre = document.getElementById('div2'); //primero buscamos al padre
+            let hijos = padre.getElementsByTagName('p'); //toma los p de div2
+            if (activado == 0) {
+                for (let elemento of hijos) {
+                    elemento.style.visibility = 'hidden';
+                }
+                activado = 1;
+            } else {
+                for (let elemento of hijos) {
+                    elemento.style.visibility = 'visible';
+                }
+                activado = 0;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

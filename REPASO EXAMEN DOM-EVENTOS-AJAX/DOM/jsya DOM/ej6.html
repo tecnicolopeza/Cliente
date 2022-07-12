@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>6 - Accediendo a un nodo padre (parentNode)</h1>
+    <h3>Problema: una página html que contenga tres párrafos y definir su propiedad id para el primero de ellos. Cambiar el tamaño de fuente por '40px' para todos los elementos de la página.</h3>
+    <div>
+        <p id="parrafo1">Parrafo 1 contiene el id</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+    <button onclick="cambiar()">Cambiar tamaño fuente</button>
+    <script>
+        function cambiar() {
+            var hijo = document.getElementById('parrafo1');
+            var padre = hijo.parentNode;
+            padre.style.fontSize = '40px';
+        }
+    </script>
+</body>
+
+</html>

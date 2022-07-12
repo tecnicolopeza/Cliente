@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="functionPasarRadianes.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <img src="m_parabolico.jpg" alt="tiro_parabolico" style="height: 500px;">
+
+    <form action="">
+        <p>¿En que ángulo disparamos el proyectil?
+            <input type="number" id="angulo" name="angulo" placeholder="Escriba el angulo: " required>
+        </p>
+        <p>¿Y a qué velocidad de lanzamiento?
+            <input type="number" id="velocidad" name="velocidad" placeholder="Escriba la velocidad: " min="1" max="9999" required>
+        </p>
+        <input type="submit" value="Lanzar" onclick="lanzar_proyectil();" required>
+    </form>
+
+
+    <script>
+        function lanzar_proyectil() {
+            let angulo = document.getElementById("angulo").value;
+            let velocidad = document.getElementById("velocidad").value;
+
+            let distancia = (Math.pow(velocidad, 2) * (Math.sin(2 * PasarRadianes(angulo)))) / 9.8;
+            document.write("El proyectil ha recorrido una distancia de " + distancia + " metros.");
+            //console.log("El proyectil ha recorrido una distancia de " + distancia + " metros.");
+        }
+    </script>
+
+</body>
+
+</html>

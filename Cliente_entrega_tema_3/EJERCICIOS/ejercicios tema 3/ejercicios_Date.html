@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../FUNCIONES/function_devolver_mes.js"></script>
+    <script src="../../FUNCIONES/function_devolver_dia.js"></script>
+</head>
+
+<body>
+    <h2>Los ejercicios se ejecutaran en la consola, abrir con F12.</h2>
+
+    <script>
+        function ej1() {
+            /*Crea un objeto Date que contenga la fecha actual y guárdalo en una variable. 
+                    Vuelca el contenido a la consola. Vuelca también a la consola el año, el mes (en formato numérico), 
+                    el día(en formato numérico), el día de la semana (en formato numérico), 
+                    la hora, los minutos y los segundos. Fíjate en el valor devuelto por el mes 
+                    y deduce qué número asigna JavaScript al mes Enero.*/
+
+            var fecha_actual = new Date();
+            var dia = fecha_actual.getDate();
+            var mes = fecha_actual.getMonth() + 1; //el mes 0 es enero hay que sumarle 1
+            var año = fecha_actual.getFullYear();
+
+            console.log("La fecha actual es " + fecha_actual);
+            console.log(
+                "La fecha actual en formato numerico es " +
+                dia +
+                "/" +
+                mes +
+                "/" +
+                año
+            );
+        }
+    </script>
+
+    <script>
+        function ej2() {
+            /*Crea un objeto Date que contenga la fecha de tu nacimiento. 
+                    Muestra dicha fecha por consola. Si el mes no aparece correctamente busca en la documentación 
+                    qué número de mes asigna JavaScript a Enero y corrige el problema.*/
+
+            var fecha_nac = new Date("02,27,1998");
+            console.log("Mi fecha de nacimiento es " + fecha_nac);
+        }
+    </script>
+
+    <script>
+        function ej3() {
+            /*Los objetos Date tienen un método llamado getMonth que devuelve el mes en formato numérico. 
+                    Crea una función a la cual le pases como argumento ese número y devuelva un string con el mes 
+                    (‘Enero’, ‘Febrero’, …, ‘Diciembre’).*/
+            var numero_mes = 2;
+            console.log("El mes " + numero_mes + " es " + devolver_mes(numero_mes));
+        }
+    </script>
+
+    <script>
+        function ej4() {
+            /*Los objetos Date tienen un método llamado getDay que devuelve el día de la semana  
+                en formato numérico. Crea una función a la cual le pases como argumento ese número y 
+                devuelva un string con el día de la semana (‘Lunes’, ‘Martes’, …, ‘Domingo’)*/
+            var numero_dia = 2;
+            console.log(
+                "El dia " +
+                numero_dia +
+                " de la semana es el " +
+                devolver_dia(numero_dia)
+            );
+        }
+    </script>
+
+    <script>
+        function ej5() {
+            /*Muestra por la consola el número de milisegundos que han transcurrido desde el 1 de enero de 1970 
+                hasta el momento actual.*/
+            var d = new Date();
+            console.log(
+                "Han trascurrido " + d.getTime() + " segundos desde el 01/01/1970"
+            );
+        }
+    </script>
+
+    <script>
+        function ej6() {
+            /*Usando la página web https://www.epochconverter.com/ averigua el número de milisegundos transcurridos 
+                hasta la fecha de tu nacimiento. Crea un objeto Date con los milisegundos averiguados anteriormente. 
+                Vuelca el contenido del objeto fecha a la consola y comprueba que contiene la fecha correcta.*/
+            var fecha = new Date(888534000000);
+            console.log("La fecha es " + fecha);
+        }
+    </script>
+
+    <script>
+        function ej7() {
+            /*Los objetos Date contienen un método llamado getTimezoneOffset
+                que devuelven la diferencia entre la hora UTC y la local. 
+                Crea un objeto que contenga la hora actual y ejecuta el método anterior para ver el valor devuelto 
+                (debe ser -120). Analiza el significado de -120 devuelto por el método.*/
+            var fecha = new Date();
+            console.log("La diferencia horaria es de " + fecha.getTimezoneOffset());
+            console.log(
+                "Es 120 minutos respecto a la de UTC. Podemos comprobarlo comparandolo con la actual local: " +
+                fecha.getHours() +
+                ":" +
+                fecha.getMinutes()
+            );
+            console.log(
+                "Y la hora de UTC es: " +
+                fecha.getUTCHours() +
+                ":" +
+                fecha.getUTCMinutes()
+            );
+        }
+    </script>
+
+    <script>
+        function ej8() {
+            /*Crea un objeto que contenga la fecha actual. 
+                Compara la diferencia devuelta por getUTCHours y getHours. 
+                ¿A qué se debe esa diferencia?*/
+            var fecha = new Date();
+            console.log("La diferencia horaria es de " + fecha.getTimezoneOffset());
+            console.log(
+                "Es 120 minutos respecto a la de UTC. Podemos comprobarlo comparandolo con la actual local: " +
+                fecha.getHours() +
+                ":" +
+                fecha.getMinutes()
+            );
+            console.log(
+                "Y la hora de UTC es: " +
+                fecha.getUTCHours() +
+                ":" +
+                fecha.getUTCMinutes()
+            );
+            console.log(
+                "Se debe a que es el tiempo universal coordinado o UTC es el principal estándar de tiempo por el cual el mundo regula los relojes y el tiempo."
+            );
+        }
+    </script>
+
+    <script>
+        function ej9() {
+            /*Crea un objeto Date que contenga la fecha 28/2/2021. 
+                Obtén el día posterior a la fecha anterior y muéstralo por consola. 
+                Crea un nuevo objeto que contenga la fecha 28/2/2020 y obtén el día posterior.
+                (Observación: Para asegurarte que has obtenido las fechas correctas utiliza algún calendario) 
+                ¿Por qué los resultados obtenidos han sido diferentes con ambas fechas?*/
+            var fecha = new Date(2021, 01, 28);
+            fecha.setDate(fecha.getDate() + 1);
+            console.log("fecha 28/02/2021 + 1 dia: " + fecha);
+            var fecha2 = new Date(2021, 01, 28);
+            fecha2.setDate(fecha2.getDate() - 1);
+            console.log("fecha 28/02/2021 - 1 dia: " + fecha2);
+        }
+    </script>
+
+    <script>
+        function ej10() {
+            /*Intenta crear un objeto Date con la fecha 35/1/2021. 
+                ¿Se ha producido algún error? ¿Qué fecha almacena realmente el objeto anterior?*/
+            var fecha = new Date(2021, 01, 35);
+            console.log(fecha);
+        }
+    </script>
+
+    <script>
+        function ej11() {
+            /*Crea una función a la que le puedas pasar dos fechas como entrada y devuelva el número de días 
+                transcurridos entre esas dos fechas. Para comprobar que el cálculo es correcto utiliza alguna web 
+                que devuelva el número de días transcurridos entre dos fechas.*/
+
+            let fecha_i = new Date(2001, 01, 23);
+            console.log((fecha_i = Date.now()));
+            let fecha_f = new Date();
+            console.log((fecha_i = Date.now()));
+        }
+    </script>
+
+    <button onclick="ej1()">Ejercicio 1</button>
+    <br /><br />
+    <button onclick="ej2()">Ejercicio 2</button>
+    <br /><br />
+    <button onclick="ej3()">Ejercicio 3</button>
+    <br /><br />
+    <button onclick="ej4()">Ejercicio 4</button>
+    <br /><br />
+    <button onclick="ej5()">Ejercicio 5</button>
+    <br /><br />
+    <button onclick="ej6()">Ejercicio 6</button>
+    <br /><br />
+    <button onclick="ej7()">Ejercicio 7</button>
+    <br /><br />
+    <button onclick="ej8()">Ejercicio 8</button>
+    <br /><br />
+    <button onclick="ej9()">Ejercicio 9</button>
+    <br /><br />
+    <button onclick="ej10()">Ejercicio 10</button>
+    <br /><br />
+    <button onclick="ej11()">Ejercicio 11</button>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      1. Realizar un programa que lea por teclado dos números, si el primero es<br>
+      mayor al segundo informar su suma y diferencia, en caso contrario informar<br>
+      el producto y la división del primero respecto al segundo. <br><br>
+      
+      2.Se ingresan tres notas de un alumno, si el promedio es mayor o igual a 4 mostrar un<br>
+      mensaje 'regular', sino 'reprobado'.<br><br>
+      
+      3. Se ingresa por teclado un número positivo de uno o dos dígitos (1..99)<br>
+      mostrar un mensaje indicando si el número tiene uno o dos dígitos <br>
+      (recordar de convertir a entero con parseFloat para preguntar posteriormente por una variable entera). <br>
+      Tener en cuenta qué condición debe cumplirse para tener dos dígitos un número entero.<br><br>
+    </p>
+
+    <script>
+        /*Apartado 1) Prepara el programa para que pregunte al usuario cuántas notas quiere introducir.
+       Además las notas podrán tener decimales.*/
+        document.write("EJERCICIO 1<br>");
+        var n1 = parseFloat(prompt("Introduce el primer numero: "));
+        var n2 = parseFloat(prompt("Introduce el segundo numero: "));
+
+        if(n1>n2){
+            document.write("La suma es ",n1+n2," y  la diferencia es ",n1-n2);
+        }else{
+            document.write("El producto es ",n1*n2," y  la division es ",n1/n2);
+        }
+        document.write("<br><br>");
+
+
+        document.write("EJERCICIO 2<br>");
+
+        var nNotas;
+
+        nNotas = parseFloat(prompt("¿Cuantas notas desea introducir?"));
+
+        do{
+          
+
+          var nota1 = parseFloat(prompt("Introduce la primera nota: "));
+          var nota2 = parseFloat(prompt("Introduce la segunda nota: "));
+          var nota3 = parseFloat(prompt("Introduce la cuarta nota: "));
+
+          var promedio = (nota1+nota2+nota3)/3;
+
+        if(promedio>=4){
+            document.write("regular<br>");
+        }else{
+            document.write("reprobado<br>");
+        }
+          nNotas--;
+        }while(nNotas>0);
+       
+
+        document.write("<br><br>");
+
+        
+        document.write("EJERCICIO 3<br>");
+        var digito = parseFloat(prompt("ingresa por teclado un número positivo de uno o dos dígitos (1..99)"));
+
+        if(digito>9){
+            document.write("dos digitos");
+        }else{
+            document.write("un digito");
+        }
+
+    </script>
+
+
+  </body>
+</html>

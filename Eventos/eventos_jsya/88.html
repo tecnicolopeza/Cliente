@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Expresiones regulares: métodos search, replace, split, match del objeto String.</h1>
+
+    <button onclick="ej1()">ej1</button><br /><br/>
+    <button onclick="ej2()">ej2</button><br /><br/>
+    <button onclick="ej3()">ej3</button><br /><br/>
+    <button onclick="ej4()">ej4</button><br /><br/>
+
+    <script>
+        function ej1() {
+            let oracion = 'La noche está muy oscura y estrellada.';
+            if (oracion.search(/estrella/) != -1)
+                alert('el string estrella está contenido en la variable oracion');
+        }
+
+        function ej2() {
+            let oracion = 'uno dos tres uno dos tres uno dos tres';
+            let cadena = oracion.replace(/uno/g, '1');
+            alert(cadena); //1 dos tres 1 dos tres 1 dos tres
+        }
+
+        function ej3() {
+            let cadena = '(2,3)-(4,4)-(9,3)';
+            let vec = cadena.split(/-/);
+            for (let x = 0; x < vec.length; x++) {
+                document.write(vec[x] + '<br>');
+            }
+        }
+
+        function ej4() {
+            let cadena = 'juan 10 luis 43 pedro 21 carlos 33';
+            let vec = cadena.match(/\d+/g);
+            for (let x = 0; x < vec.length; x++) {
+                document.write(vec[x] + '<br>');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

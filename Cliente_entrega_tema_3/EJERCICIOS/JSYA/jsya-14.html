@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <!--
+    <p>
+      Realizar un programa que acumule (sume) valores ingresados por teclado<br />
+      hasta ingresa el 9999 (no sumar dicho valor, solamente indica que ha<br />
+      finalizado la carga). Imprimir el valor acumulado e informar si dicho<br />
+      valor es cero, mayor a cero o menor a cero.<br />
+    </p>
+
+    <script>
+      var valor;
+      var suma = 0;
+
+      do {
+        valor = parseFloat(prompt("Ingrese un valor: y 9999 para salir"));
+        if (valor != 9999) {
+          suma = suma + valor;
+        }
+      } while (valor != 9999);
+      document.write("Total = ", suma, "<br>");
+
+      if (suma > 0) {
+        document.write("Total mayor que 0");
+      } else {
+        if (suma == 0) {
+          document.write("Total es 0");
+        } else {
+          document.write("Total menor que 0");
+        }
+      }
+    </script>
+
+
+
+    <p>
+      En un banco se procesan datos de las cuentas corrientes de sus
+      clientes.<br />
+      De cada cuenta corriente se conoce: número de cuenta, nombre del cliente y
+      saldo actual.<br />
+      El ingreso de datos debe finalizar al ingresar un valor negativo en el
+      número de cuenta.<br />
+      Se pide confeccionar un programa que lea los datos de las cuentas
+      corrientes e informe:<br />
+      a) De cada cuenta: número de cuenta, nombre del cliente y estado de la
+      cuenta según su saldo, sabiendo que:<br />
+      Estado de la cuenta 'Acreedor' si el saldo es >0.<br />
+      'Deudor' si el saldo es <0.<br />
+      'Nulo' si el saldo es =0.<br />
+      b) La suma total de los saldos acreedores.<br />
+    </p>
+
+    <script>
+
+      var nCuenta;
+      var nombre;
+      var saldo = 0;
+      var saldoA = 0;
+
+      do {
+        nCuenta = parseFloat(prompt("Introduzca el numero de cuenta: "));
+        if (nCuenta >= 0) {
+          nombre = prompt("Introduzca su nombre: ");
+          saldo = parseFloat(prompt("Introduzca su saldo actual: "));
+
+          if (saldo > 0) {
+            saldoA = saldoA + saldo;
+            document.write(nombre , " tiene saldo acredor<br>");
+          } else if (saldo < 0) {
+              document.write(nombre , " tiene saldo con deudor<br>");
+            } else {
+              document.write(nombre , " tiene saldo nulo<br>");
+            }
+          }
+      } while (nCuenta > 0);
+      document.write("Saldos acreedores:" + saldoA);
+    </script>
+-->
+
+    <p>
+      Se realizó un censo provincial y se desea procesar la información obtenida
+      en dicho censo.<br />
+      De cada una de las personas censadas se tiene la siguiente información:
+      número de documento, edad y sexo ('femenino' o 'masculino')<br />
+      Se pide confeccionar un programa que lea los datos de cada persona censada
+      <br />
+      (para finalizar ingresar el valor cero en el número de documento) e
+      informar:<br />
+
+      a) Cantidad total de personas censadas.<br />
+      b) Cantidad de varones.<br />
+      c) Cantidad de mujeres.<br />
+      d) Cantidad de varones cuya edad varía entre 16 y 65 años.<br />
+    </p>
+
+    <script>
+        var nDocumento;
+        var edad = 0;
+        var sexo =" ";
+        var mujer = 0;
+        var hombre = 0;
+        var varonesE = 0;
+        var contador;
+
+        do {
+            nDocumento = parseFloat(prompt("DNI"));
+            edad = parseFloat(prompt("Edad"));
+            sexo = prompt("Hombre o mujer");
+
+            if(sexo == "hombre"){
+                varon++;
+            }else{
+                mujer++;
+            }
+
+            if(sexo == "hombre" && edad>16 && edad<65){
+                varonesE++;
+            }
+            contador++;
+        }while(nDocumento!=0);
+
+        document.write("<br>Se censaron ",contador," personas de las cuales ",varon," eran varones y ",mujer," mujeres");
+        document.write("Varones entre 16 y 65 años: ",varonesE);
+    </script>
+
+  </body>
+</html>

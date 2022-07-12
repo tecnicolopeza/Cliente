@@ -1,0 +1,11 @@
+table.imagetable th{
+	padding:5px;
+	font-weight:bold;
+    border: 5px solid #C1DAD7;
+	background:#4b8c74;
+}
+table.imagetable td{
+	padding:5px;
+    border: 5px solid #C1DAD7;
+	background:#cffc83;
+}

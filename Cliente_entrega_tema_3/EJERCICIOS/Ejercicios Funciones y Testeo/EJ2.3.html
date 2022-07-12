@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        function comprobarEsPar(numero){
+            var par = true;
+            if(numero%2 == 0){
+                return true;
+            }else{
+                return false;
+            }
+
+        } //numero es un entero
+
+        function test1(){
+            
+            for(var i = 0; i<100; i++){
+                if(comprobarEsPar(i)){
+                    document.write(i+": Es par <br>");
+                }else{
+                    document.write(i+": Es impar <br>");
+                }
+                
+            }
+
+        }
+
+
+        function test2(){
+
+            var valoresEntrada=[1,2,5,8,9,12,16];
+            var valoresEsperados=[false,true,false,true,false,true,true];
+
+            for (var index = 0; index < valoresEntrada.length; index++) {
+
+                if(valoresEsperados[index]!=comprobarEsPar(valoresEntrada[index])){
+                    document.write("El valor "+index+" no ha superado el testeo<br>");
+                }else{
+                    document.write("El valor "+index+" ha superado el testeo<br>");
+                }
+
+            }
+
+        }
+
+
+    </script>
+
+    <input type="button" value="Ejecutar Script 1" onclick="test1();">
+    <input type="button" value="Ejecutar Script Caja Negra" onclick="test2();">
+
+</body>
+</html>

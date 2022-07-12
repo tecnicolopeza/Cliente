@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {
+            display: inline;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <span>Texto</span>
+    <input type="text" id="txtCaja" autofocus>
+    <input type="button" onclick="insertar();" value="Insertar texto nuevo">
+    <table id="tabla" style="border:1px dashed greed;"></table>
+    <script>
+        function insertar() {
+            var texto = document.getElementById('txtCaja').value; //pilla el valor del input text
+            var codigoFila = "<td>" + texto + "</td>"; //valor de la fila es el valor input text
+            //estos son los botones el this es para pasar ese boton en concreto
+            codigoFila += "<td><input type='button' onclick='copiarEncima(this);' value='Copiar encima'></td>";
+            codigoFila += "<td><input type='button' onclick='borrar(this);' value='Borrar'></td>";
+            codigoFila += "<td><input type='button' onclick='actualizar(this);' value='Actualizar'></td>";
+
+            var fila = document.createElement('tr'); //creamos el tr 
+            fila.innerHTML = codigoFila; //metemos en el tr el valor de text y todos los botones
+            document.getElementById('tabla').appendChild(fila); //añadimos la fila a la tabla
+
+        }
+
+        function borrar(boton) {
+            var filaABorrar = boton.parentElement.parentElement; //el boton pasado por parametros su padre y luego abuelo lo que seria el primer td
+
+            // Manera 1 de eliminar el elto tr
+            // filaABorrar.remove();
+
+            // Manera 2 de eliminar el elto tr
+            document.getElementById('tabla').removeChild(filaABorrar);
+        }
+
+        function copiarEncima(boton) {
+            var filaActual = boton.parentElement.parentElement; //fila actual hasta su primer pariente
+            var filaACopiar = boton.parentElement.parentElement.cloneNode(true); //copia la fila actual
+            document.getElementById('tabla').insertBefore(filaACopiar, filaActual); //la copia antes de la actual
+        }
+
+        function actualizar(boton) {
+            var filaActual = boton.parentElement.parentElement; //fila actual hasta su primer pariente
+            var texto = document.getElementById('txtCaja').value;
+            filaActual.firstChild.innerHTML = texto;
+        }
+    </script>
+</body>
+
+</html>

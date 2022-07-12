@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>(Esto es un h4)Confeccionar una página que fije el color rojo a todos los párrafos.(/Esto es un h4)</h4>
+
+    <p>Primer párrafo</p>
+    <p>Segundo párrafo</p>
+    <p>Tercer párrafo</p>
+    <p>Cuarto párrafo</p>
+    <p>Quinto párrafo</p>
+    <br>
+
+    <button values="rojo" onclick="cambiarColor('red')">Cambiar "p" rojo</button>
+    <button values="blue" onclick="cambiarColor('blue')">Cambiar "p" azul</button>
+    <button values="green" onclick="cambiarColor('green')">Cambiar "p" verde</button>
+
+    <script>
+        function cambiarColor(color) {
+            let listaP = document.getElementsByTagName('p');
+            for (let i = 0; i < listaP.length; i++) {
+                listaP[i].style.color = color;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

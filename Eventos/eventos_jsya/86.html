@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Expresiones regulares: métodos test y exec del objeto RegExp</h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "La clase RegExp cuenta con otro método llamado exec que retorna un vector con más datos en caso que el string cumpla el patrón propuesto o null si no cumple el patrón. Veamos con un problema que datos extras retorna este vector."
+            );
+
+            let oracion = "saliendo de la casa que esta en la montaña";
+            let patron1 = /la/;
+            let vector1 = patron1.exec(oracion);
+            document.write(vector1.index);
+            document.write("<br>");
+            document.write(vector1.input);
+            document.write("<br>");
+            let patron2 = /lax/;
+            let vector2 = patron2.exec(oracion);
+            document.write(vector2);
+        }
+    </script>
+    <pre>
+Hemos definido en la variable oracion el valor : 'saliendo de la casa que esta en la montaña'. El primer patrón de búsqueda es verificar si contiene los caracteres 'la' la oración:
+        let oracion = 'saliendo de la casa que esta en la montaña';
+        let patron1 = /la/;
+        let vector1 = patron1.exec(oracion);
+El método exec retornará un valor distinto a null (tener en cuenta que retorna un vector) ya que la palabra 'la' está contenida en la oración.
+El vector devuelto por el método exec tiene dos propiedades llamadas index e input:
+La propiedad index almacena la posición dentro del string donde se cumple el patrón, en nuestro ejemplo retorna un 12 que es la posición donde se encuentra la l:
+saliendo de la casa que esta en la montaña
+La propiedad input almacena la cadena que se está analizando.
+La segundo parte del problema define un segundo patrón:
+        let patron2 = /lax/;
+        let vector2 = patron2.exec(oracion);
+Como no se encuentra en el string la cadena 'lax' el método exec retorna un valor null, es decir no retorna un vector.
+</pre>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=37&codigo=37&inicio=20 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: Extensiones para el editor VS Code</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>37 - Angular Material: Extensiones para el editor VS Code</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>La complejidad actual en el desarrollo de aplicaciones web hace necesario disponer de herramientas que nos faciliten su construcción.</p>
+<p>La cantidad de componentes creciente de Angular Material y su variedad de propiedades hacen necesario una gran cantidad de práctica para que lleguemos a dominarla y ser eficientes con el tiempo.</p>
+<p>Al utilizar el editor VS Code podemos valernos de las extensiones especialmente desarrolladas para Angular.</p>
+<p>La primer extensión que instalaremos con el objetivo de facilitar el desarrollo de aplicaciones que hagan uso de Angular Material es:</p>
+<a href="https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode" target="_blank">Angular 10 Snippets - TypeScript, Html, Angular Material, ngRx, RxJS & Flex Layout</a> (bajar la última versión disponible):</p>
+
+<img src="imagentema/foto078.jpg" alt="extensiones de VS Code para angular material" border="0"><br>
+<p>Los más de 2000000 de instalaciones nos muestran la cantidad de desarrolladores que utilizan Angular en la construcciones de aplicaciones web.</p>
+
+<p>Una vez instalada la extensión disponemos de Intellisense para la codificación de las componentes Angular Material:</p>
+<img src="imagentema/foto079.jpg" alt="intellisense extensiones de VS Code para angular material" border="0"><br>
+<p>Cuando codificamos la plantilla HTML al escribir 'm-' nos aparece una lista con todas las componentes Angular Material y en segundo cuadro una descripción de la componente seleccionada y el trozo de código a generar.</p>
+<p>Una vez confirmado el 'snippet' se agreda donde se encuentra el cursor el trozo de código:</p>
+<img src="imagentema/foto080.jpg" alt="intellisense extensiones de VS Code para angular material" border="0"><br>
+<p>Además si hay que configurar varias partes del trozo de código añadido mediante la tecla 'tabulación' vamos saltando a cada uno de dichos puntos.</p>
+<h3>Directivas</h3>
+<p>La extensión que acabamos de instalar no solo nos facilita la creación de componentes Material sino que además nos ayuda en la codificación de directivas.</p>
+<p>Supongamos que tenemos un vector con nombres de sitios webs definidos en el archivo *.ts:</p>
+<pre>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  sitios: string[] =["http://www.google.com", 
+                     "http://www.yahoo.com",
+                     "http://www.bing.com"];
+}
+</pre>
+<p>Luego cuando queremos mostrar los datos del vector podemos utilizar la extensión instalada para generar la directiva ng-for escribiendo 'ng-':</p>
+<img src="imagentema/foto081.jpg" alt="intellisense extensiones de VS Code para angular" border="0"><br>
+<p>Luego de confirmar el 'snippet' nos muestra un nombre genérico para las variables del for:</p>
+<img src="imagentema/foto082.jpg" alt="intellisense extensiones de VS Code para angular" border="0"><br>
+<p>Cambiamos cada nombre y presionamos la tecla 'tab':</p>
+<img src="imagentema/foto083.jpg" alt="intellisense extensiones de VS Code para angular" border="0"><br>
+<p>Como podemos comprobar es una excelente herramienta para recordarnos los nombres de las directivas disponibles en Angular y generar en forma automática un trozo de código que requiere solo que lo configuremos a nuestras necesidades.</p>
+<div class="botonretorno"><a href="index28fa.html?inicio=20">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=37&codigo=37&inicio=20 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:51 GMT -->
+</html>

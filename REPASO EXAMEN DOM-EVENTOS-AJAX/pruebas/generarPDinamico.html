@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <input type="number" name="nP" id="nP"><button onclick="crearParrafosDinamicos()">Crear parrafos</button> -->
+
+    <H1>ZONA 1</H1>
+    <div id="parrafosDinamicos"></div>
+
+    <script>
+        addEventListener('load', iniciar);
+
+        function iniciar() {
+            let contador = 1;
+
+            // var numeroP = document.getElementById('nP').value; //numero de div que quieres
+            var puntero = document.getElementById('parrafosDinamicos');
+
+            for (let i = 0; i < 5; i++) {
+                var p = document.createElement('p');
+                var texto = document.createTextNode('Parrafo ' + contador);
+                p.appendChild(texto);
+                puntero.appendChild(p);
+                contador++;
+                p.setAttribute('id', contador);
+                document.getElementById(contador).addEventListener('click', mostrar);
+            }
+        }
+
+        function mostrar(parrafo) {
+            alert(parrafo.target.innerHTML);
+        }
+    </script>
+</body>
+
+</html>

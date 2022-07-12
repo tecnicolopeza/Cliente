@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Problema:Permitir cambiar el tamaño de la fuente de un párrafo. Para esto crear tres botones (fuente pequeña (10), fuente mediana(13) y fuente grande(20))</h2>
+    <p>Parrafo 1</p>
+    <p>Parrafo 2</p>
+    <p>Parrafo 3</p>
+
+    <button id="btn1" value="10px" onclick="cambiarTamano('10px')">Tamaño pequeño</button>
+    <button id="btn2" value="20px" onclick="cambiarTamano('20px')">Tamaño mediano</button>
+    <button id="btn3" value="30px" onclick="cambiarTamano('30px')">Tamaño grande</button>
+
+    <script>
+        function cambiarTamano(tamano) {
+            var parrafo = document.querySelectorAll('p'); //pilla todos los p
+            for (let index = 0; index < parrafo.length; index++) {
+                parrafo[index].style.fontSize = tamano;
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=74&codigo=74&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Directiva estructural *ngIf - Sintaxis completa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>74 - Directiva estructural *ngIf - Sintaxis completa</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>En el concepto anterior trabajamos en profundidad la sintaxis de la directiva estructural *ngFor, ahora nos toca trabajar con la directiva estructural *ngIf.</p>
+<p>La directiva estructural *ngIf permite mostrar u ocultar elementos del DOM.</p>
+<p>Si tenemos un atributo en el archivo *.ts:</p>
+<pre>
+  alerta=true;
+</pre>
+<p>Luego en el archivo HTML mediante la directiva *ngIf:</p>
+<pre>
+&lt;h1 *ngIf="alerta"&gt;Todos los precios se encuentran rebajados 50%&lt;/h1&gt;
+</pre>
+<p>Como la variable almacena un 'true', luego la etiqueta 'h1' se muestra en la página. Si la variable 'alerta' se le asigna un 'false' la etiqueta 'h1' no se muestra en la página (no se inserta en el DOM)</p>
+<p>Recordemos que una etiqueta solo puede tener una directiva estructural, luego si podemos disponer dentro de una etiqueta interior otro directiva estructural.</p>
+<p>Por ejemplo si tenemos declarado el siguiente array en el archivo *.ts:</p>
+<pre>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  personas: Persona[] = [
+    new Persona('juan', 33),
+    new Persona('ana', 15),
+    new Persona('luis', 56),
+    new Persona('carla', 45)
+  ];
+
+}
+
+class Persona {
+  constructor(public nombre: string, public edad: number) { }
+}
+</pre>
+<p>Luego podemos recorrer mediante un *ngFor el arreglo y verificar cada edad para ver si mostramos el elemento HTML 'span':</p>
+<pre>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nombre&lt;/td&gt;
+    &lt;td&gt;Edad&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr *ngFor="let persona of personas"&gt;
+    &lt;td&gt;{{persona.nombre}} &lt;span *ngIf="persona.edad&gt;=18"&gt;(Mayor)&lt;/span&gt;&lt;/td&gt;
+    &lt;td&gt;{{persona.edad}}&lt;/td&gt;   
+  &lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+<p>Se verifica la edad de cada persona y si es mayor o igual a 18 luego la directiva estructural *ngIf se verifica verdadera por lo que la etiqueta 'span' se incorpora al DOM de la página web:</p>
+<pre>
+*ngIf="persona.edad&gt;=18"&gt;(Mayor)&lt;/span&gt;
+</pre>
+
+<h3>Directiva *ngIf con else</h3>
+<p>Una parte opcional de la directiva estructural *ngIf es la sección del else. La sintaxis que debemos utilizar para el else es:</p>
+
+<p>Si tenemos un atributo en el archivo *.ts:</p>
+<pre>
+  estado=true;
+</pre>
+<p>Luego en el archivo HTML mediante la directiva *ngIf con else podemos mostrar uno u otro título:</p>
+<pre>
+&lt;h1 *ngIf="estado; else fueradeservicio"&gt;Bienvenido al sitio&lt;/h1&gt;
+&lt;ng-template #fueradeservicio&gt;&lt;h1&gt;Sitio fuera de servicio&lt;/h1&gt;&lt;/ng-template&gt;
+</pre>
+<p>Es obligatorio cuando definimos la sección del else definir una etiqueta 'ng-template', ya que no podemos disponer #fueradeservicio en la etiqueta 'h1'.</p>
+
+<h3>Uso de operadores lógicos</h3>
+<p>Podemos disponer operadores lógicos en el valor asignado a la directiva estructural *ngIf, si tenemos los atributos definidos en la clase:</p>
+<pre>
+  estado=true;
+  dia=9;
+</pre>
+<p>Luego podemos disponer una condición compuesta:</p>
+<pre>
+&lt;h1 *ngIf="estado && dia&gt;=10; else fueradeservicio"&gt;Bienvenido al sitio&lt;/h1&gt;
+&lt;ng-template #fueradeservicio&gt;&lt;h1&gt;Sitio fuera de servicio&lt;/h1&gt;&lt;/ng-template&gt;
+</pre>
+<p>En este caso se ejecuta el else debido a que el atributo dia tiene un valor que no es mayor o igual a 10.</p>
+
+
+
+<h3>Llamada a un método.</h3>
+<p>Podemos disponer la llamada a un método o función que retorne un valor boolean en la directiva estructural *ngIf:</p>
+<pre>
+export class AppComponent {
+
+  edad = 52;
+
+  mayorEdad(): boolean {
+    if (this.edad &gt;= 18)
+      return true;
+    else
+      return false;
+  }
+}
+</pre>
+<p>Luego llamamos al método en la directiva:</p>
+<pre>
+&lt;p *ngIf="mayorEdad()"&gt;Es mayor de edad&lt;/p&gt;
+</pre>
+<p>Retorna true el método y por lo tanto se muestra el párrafo.</p>
+
+
+<h3>Variante de sintaxis con then else.</h3>
+<p>Hay otra sintaxis que podemos utilizar cuando tenemos tanto actividades por el verdadero como por el falso.</p>
+<p>Si tenemos el atributo:</p>
+<pre>
+estado=true;
+</pre>
+<p>Luego tenemos la sintaxis:</p>
+<pre>
+&lt;ng-template *ngIf="estado;then serviciocorrecto else fueradeservicio"&gt;&lt;/ng-template&gt;
+&lt;ng-template #serviciocorrecto&gt;&lt;h1&gt;Bienvenido al sitio&lt;/h1&gt;&lt;/ng-template&gt;
+&lt;ng-template #fueradeservicio&gt;&lt;h1&gt;Sitio fuera de servicio&lt;/h1&gt;&lt;/ng-template&gt;
+</pre>
+<p>Es una alternativa poco usada, pero disponible.</p>
+
+
+
+<h2>Microsintaxis</h2>
+<p>La microsintaxis de angular le permite configurar una directiva en una cadena compacta y amigable. El analizador de microsintaxis traduce esa cadena en atributos de una etiqueta  &lt;ng-template&gt;. La microsintaxis se aplica también para la directiva *ngIf.</p>
+<p>Por ejemplo la sintaxis del problema anterior:</p>
+<pre>
+&lt;h1 *ngIf="alerta"&gt;Todos los precios se encuentran rebajados 50%&lt;/h1&gt;
+</pre>
+
+<p>El transpilador de Angular procede a modificar la directiva estructural *ngIf por un elemento &lt;ng-template&gt;:</p>
+<pre>
+&lt;ng-template [ngIf]="alerta"&gt;
+  &lt;h1&gt;Todos los precios se encuentran rebajados 50%&lt;/h1&gt;
+&lt;/ng-template&gt;
+</pre>
+<p>Es decir encierra el elemento HTML 'h1' por el elemento 'ng-template', el cual define un enlace de propiedad al encerrarlo entre corchetes.</p>
+<p>Si disponemos de else la transformación es:</p>
+<pre>
+&lt;ng-template [ngIf]="estado" [ngIfElse]="fueradeservicio"&gt;
+  &lt;h1&gt;Bienvenido al sitio&lt;/h1&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #fueradeservicio&gt;
+  &lt;h1&gt;Sitio fuera de servicio&lt;/h1&gt;
+&lt;/ng-template&gt;
+</pre>
+
+<p>Recordar que normalmente se utiliza la sintaxis *ngIf para implementar esta directiva estructural, el conocer la transformación es importante para cuando creemos nuestras propias directivas.</p>
+<div class="botonretorno"><a href="indexd6cc.html?inicio=60">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=74&codigo=74&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+</html>

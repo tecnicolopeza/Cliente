@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Escribir un programa que lea 10 notas de alumnos y nos informe cuántos<br />
+      tienen notas mayores o iguales a 7 y cuántos menores.<br />
+    </p>
+
+    <script>
+        
+        var cont = 0;
+        var n1;
+        var mayores = 0;
+        var menores = 0;
+
+        while(cont<5){
+            n1 = parseFloat(prompt("Introduce la nota: "));
+
+            if(n1>=7){
+                mayores++;
+            }else{
+                menores++;
+            }
+
+            cont++;
+        }
+        
+        document.write("Hay ",mayores," notas mayores a siete y ",menores," notas menores a siete.");
+
+    </script>
+
+    <p>
+      Se ingresan un conjunto de 5 alturas de personas por teclado. Mostrar la
+      altura promedio de las personas.
+    </p>
+
+    <script>
+      var cont = 0;
+      var altura;
+      var promedio = 0;
+
+      while (cont < 5) {
+        altura = parseFloat(prompt("Introduce la altura: "));
+        promedio = promedio + altura;
+        cont++;
+      }
+
+      promedio = promedio / 5;
+
+      document.write("<br>El promedio es de ", promedio);
+    </script>
+
+    <p>
+      En una empresa trabajan 5 empleados cuyos sueldos oscilan entre $100 y<br />
+      $500, realizar un programa que lea los sueldos que cobra cada empleado
+      e<br />
+      informe cuántos empleados cobran entre $100 y $300 y cuántos cobran más
+      de<br />
+      $300. Además el programa deberá informar el importe que gasta la
+      empresa<br />
+      en sueldos al personal.<br />
+    </p>
+
+    <script>
+      var cont = 0;
+      var sueldo = 0;
+      var mayor = 0;
+      var menor = 0;
+      var sueldoT = 0;
+
+      while (cont < 5) {
+        sueldo = parseFloat(prompt("Introduce el sueldo "));
+        sueldoT = sueldoT + sueldo;
+
+        if (sueldo >= 100 && sueldo <= 300) {
+          menor++;
+        } else {
+          mayor++;
+        }
+        cont++;
+      }
+
+      document.write(
+        "<br>El sueldo total es ",
+        sueldoT,
+        "€ y cobran entre 100 y 300 ",
+        menor,
+        " empleados y mas de 500 los cobran ",
+        mayor,
+        " empleados."
+      );
+    </script>
+
+    <p>
+      Realizar un programa que imprima 20 términos de la serie 5 - 10 - 15 - 20,
+      etc. (No se ingresan valores por teclado)
+    </p>
+
+    <script>
+      var x = 0;
+      var cont = 0;
+
+      while (cont < 20) {
+        x = x + 5;
+        document.write(x, ", ");
+        cont++;
+      }
+    </script>
+
+    <p>
+      Mostrar los múltiplos de 10 hasta el valor 1500. Debe aparecer en pantalla
+      10 - 20 -30 etc.
+    </p>
+
+    <script>
+        var z = 0;
+
+        while(z<1500){
+            z = z+10;
+            document.write(z," - ");
+        }
+    </script>
+
+
+    <p>
+      Realizar un programa que permita cargar dos listas de 3 valores cada
+      una.<br />
+      Informar con un mensaje cual de las dos listas tiene un valor acumulado<br />
+      mayor (mensajes 'Lista 1 mayor', 'Lista 2 mayor', 'Listas iguales')
+      Tener<br />
+      en cuenta que puede haber dos o más estructuras repetitivas en un
+      algoritmo.<br />
+    </p>
+
+    <script>
+      var lista1, lista2;
+      var cont = 0;
+      var cont2 = 0;
+      var total1 = 0;
+      var total2 = 0;
+
+      while (cont < 3) {
+        lista1 = parseFloat(prompt("Introduce un numero: "));
+        total1 = total1+lista1;
+        cont++;
+      }
+
+      while (cont2 < 3) {
+        lista2 = parseFloat(prompt("Introduce un numero: "));
+        total2 = total2+lista2;
+        cont2++;
+      }
+
+
+      document.write("<br>Total1 = ",total1," Total2 = ",total2,"<br>")
+      if(total1>total2){
+          document.write("La primera lista es mayor");
+      }else if(total2>total1){
+        document.write("La segunda lista es mayor");
+      }else{
+        document.write("Son iguales las listas");
+      }
+
+    </script>
+
+
+    <p>
+      Desarrollar un programa que permita cargar 5 números enteros y luego nos
+      informe cuántos valores fueron pares y cuántos impares. Emplear el
+      operador "%" en la condición de la estructura condicional. if (valor%2==0)
+      El operador "%" retorna el resto de la división valor / 2. Por ejemplo: 12
+      % 2, retorna 0; 13 % 2, retorna 1, porque el resto de dividir 13 en 2 es 1.
+    </p>
+
+    <script>
+        var x = 0;
+        var contador = 0;
+        var contador3 = 0;
+        var par = 0;
+        var impar = 0;
+
+        while(contador<5){
+            x = parseFloat(prompt("Introduzca un numero: "));
+            if(x%2==0){
+                par++;
+            }else{
+                impar++;
+            }
+            if(x%3==0){
+              contador3++;
+            }
+
+            contador++;
+        }
+        document.write("<br>Hay ",par," pares y ",impar," impares y ",contador3," divisibles entre 3.");
+    </script>
+
+  </body>
+</html>

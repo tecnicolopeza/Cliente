@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>
+        Listado completo de tutoriales Expresiones regulares: modificadores i (insensitive) g (global) m (multiline)
+    </h1>
+    <pre>
+El objeto RegExp se le puede aplicar tres modificadores que actúan sobre el patrón completo.
+    i: especifica que la búsqueda se realiza sin 
+        diferenciar entre mayúsculas y minúsculas.
+    g: indica que los caracteres a buscar pueden 
+        ser encontrados varias veces en la cadena 
+        de caracteres.
+    m: el modificador m realiza coincidencia de
+        patrones en el modo multilínea. En este modo, 
+        si la cadena a buscar contiene varias líneas, 
+        el metacaracter ^ y $ deben coincidir con el
+        inicio y final de una línea, además de que 
+        coincida con el comienzo y el final de una cadena.
+
+Estos modificadores pueden aplicarse en forma independiente o conjunta a una expresión regular.
+
+Veamos un ejemplo del modificador i sobre una expresión regular:
+    </pre>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+
+    <script>
+        function ej1() {
+            let palabra = 'Administracion';
+            let patron = /adm/i;
+            if (patron.test(palabra))
+                document.write('La palabra ' + palabra + ' contiene la cadena adm sin tener en cuenta mayúsculas/minúsculas');
+        }
+
+        function ej2() {
+            let oracion = 'El auto tiene el mejor motor que elegimos';
+            let patron = /el/gi;
+            let vec = patron.exec(oracion);
+            document.write(vec.index); //0
+            document.write('<br>');
+            vec = patron.exec(oracion);
+            document.write(vec.index); //14
+            document.write('<br>');
+            vec = patron.exec(oracion);
+            document.write(vec.index); //33
+            document.write('<br>');
+            vec = patron.exec(oracion);
+            document.write(vec); //null
+        }
+    </script>
+
+    <pre>
+Los modificadores se ubican luego de la segundo barra donde declaramos la expresión regular:
+
+    let patron = /adm/i;
+Ahora veamos un problema donde activamos dos modificadores:
+</pre>
+    <button onclick="ej2()">ej2</button><br /><br />
+
+    <pre>
+Hemos definido el patron los modificadores g (global) e i (insensitive):
+
+    let patron = /el/gi;
+Estamos buscando el patrón 'el' dentro de la oración 'El auto tiene el mejor motor que elegimos'. Como vemos la cadena 'el' se repite tres veces en la oración sin tener en cuenta mayúsculas y minúsculas:
+
+El auto tiene el mejor motor que elegimos
+Utilizamos el método exec ya que el método test solo tiene en cuenta la primera ocurrencia.
+
+Para que tenga sentido la llamada de sucesivas veces del método exec debemos activar el modificador g (global)
+
+Si no activamos el modificador global cada vez que llamamos al método exec la búsqueda comienza desde el principio.
+</pre>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="divParrafos">
+
+    </div>
+
+    Color párrafos
+    <input type="text" id="colorFuente">
+    <button onclick="cambiarColor()">Cambiar color
+    <button onclick="insertarP()">insertar nuevo parrafo al principio</button>
+
+    <script>
+        let contador = 1;
+
+        function cambiarColor() {
+            var color = document.getElementById('colorFuente').value;
+            let listaP = document.getElementsByTagName('p'); //los bytagname los trata como array
+            for (let i = 0; i < listaP.length; i++) {
+                listaP[i].style.color = color;
+            }
+        }
+
+        function insertarP() {
+            let padre;
+            padre = document.getElementById("divParrafos"); //padre == div
+            padre.insertAdjacentHTML("beforeend", "<p>Parrafo " + contador + "</p>");
+            contador++;
+        }
+    </script>
+</body>
+
+</html>

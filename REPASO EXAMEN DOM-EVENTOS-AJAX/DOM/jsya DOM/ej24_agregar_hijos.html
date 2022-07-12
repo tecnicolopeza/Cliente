@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+</head>
+
+<body>
+    <form method="post" action="#">
+        Ingrese su nombre:
+        <input type="text" name="nombre" id="nombre"><br>
+        <fieldset id="fs">
+            <legend>Ingrese los nombres de sus hijos</legend>
+            <input type="button" onclick="agregarHijo()" value="Presione el botón para agregar un hijo.">
+            <br>
+        </fieldset>
+        <input type="submit" value="Registrar">
+    </form>
+    <script>
+        let cantidad = 0
+
+        function agregarHijo() {
+            cantidad++
+            let nuevohijo = document.createElement('input')
+            nuevohijo.type = 'text'
+            nuevohijo.name = 'nombre' + cantidad
+            nuevohijo.id = 'nombre' + cantidad
+            document.getElementById('fs').appendChild(nuevohijo)
+            document.getElementById('fs').appendChild(document.createElement('br'))
+        }
+    </script>
+</body>
+
+</html>

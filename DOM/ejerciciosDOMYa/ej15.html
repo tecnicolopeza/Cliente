@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>
+        Disponer un div con tres párrafos. Ingresar en un control de tipo text un valor entero entre 0 y 2.<br> Luego borrar el párrafo que coincida con el valor ingresado (el valor ingresado representa la posición del nodo elemento a borrar).
+    </h3>
+
+    <div id="divP">
+        <p>Párrafo 1</p>
+        <p>Párrafo 2</p>
+        <p>Párrafo 3</p>
+    </div><br>
+
+    <label for="posicion">¿Qué párrafo desea borrar sabiendo que el primero empieza en 0? </label><br><br>
+    <input type="number" name="posicion" id="pos" min="0" max="2"><br><br>
+    <input type="submit" value="borrar" onclick="borrarP()">
+
+    <script>
+        function borrarP() {
+            let padre = document.getElementById('divP'); //primero buscamos al padre
+            let posParrafo = document.getElementById('pos').value; //tomamos la posicion a borrar .value para los inputs
+            padre.removeChild(padre.children[posParrafo]); //borra el hijo con esa posicion
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>
+        Expresiones regulares: cuantificadores o repeticiones {x} {x,y} {x,}
+    </h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+    <button onclick="ej3()">ej3</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Ingresar una oración y mostrar si se ingresó un número que tiene al menos 2 dígitos"
+            );
+
+            let oracion = prompt("Ingrese una palabra");
+            let patron = /[0-9]{2,}/;
+            if (patron.test(oracion))
+                alert("La oración tiene un número de al menos 2 dígitos");
+            else alert("La oración no tiene un número de al menos 2 dígitos");
+        }
+
+        function ej2() {
+            alert(
+                "Ingresar una patente de un auto de argentina y luego mostrar un mensaje si es correcto o no su valor. Toda patente está constituida por 2 letras, tres números y finalmente 2 letras (ej. aa123bb )"
+            );
+            let patente = prompt('Ingrese una patente');
+            let patron = /^[a-z]{2}[0-9]{3}[a-z]{2}$/;
+            if (patron.test(patente))
+                alert('La patente ingresada es correcta');
+            else
+                alert('La patente ingresada no es correcta');
+        }
+
+        function ej3() {
+            alert("Ingresar una oración y mostrar si se ingresó uno o más números con exactamente 5 dígitos que contengan un espacio en blanco antes y después del número, por ejemplo: Las ventas del més fueron 70000 pares.");
+            let oracion = prompt('Ingrese una oracion');
+            let patron = /\s[0-9]{5}\s/;
+            if (patron.test(oracion))
+                alert('La oración tiene un número de 5 dígitos');
+            else
+                alert('La oración no tiene un número de 5 dígitos');
+        }
+    </script>
+</body>
+
+</html>

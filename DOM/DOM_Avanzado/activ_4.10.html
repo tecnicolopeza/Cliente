@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let contador = 1;
+
+        function añadirParrafo() {
+            let texto;
+            let padre;
+            let hijo;
+
+            padre = document.getElementById('parrafos'); //padre == div
+
+            hijo = document.createElement('p'); //creamos p
+            texto = document.createTextNode('Párrafo ' + contador);
+            hijo.appendChild(texto);
+
+            padre.appendChild(hijo);
+            contador++;
+        }
+
+        function añadirParrafo2() {
+            //hecho con insertAdjacentHTML("donde","<html codes>");
+            let refDiv = document.getElementById("parrafos");
+            refDiv.insertAdjacentHTML("beforeend", "<p>Párrafo " + contador + "</p>");
+            contador++;
+        }
+    </script>
+
+    <div id="parrafos">
+    </div>
+    <button onclick="añadirParrafo()">Añadir párrafo VERSION appendChild</button>
+    <button onclick="añadirParrafo2()">Añadir párrafo VERSION insertAdjacentHTML</button>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        
+      function verCalificacionDecimal(nota) {
+        var nota;
+        
+        if(nota<5){
+            nota="INSUFUCIENTE";
+        }else if(nota>=5 && nota<6){
+            nota="SUFICIENTE";
+        }else if(nota>=6 && nota<7){
+            nota="BIEN";
+        }else if(nota>=7 && nota<9){
+            nota="NOTABLE";
+        }else if(nota>=9 && nota<=10){
+            nota="SOBRESALIENTE";
+        }else{
+            nota="NOTA NO VALIDA";
+        }
+
+        return nota;
+      }
+
+      function testeo() {
+        var nota = [-1.5, 0, 3.5, 4.9, 5.6, 6.9, 8.9, 9.1, 10, 11];
+        var valoresEsperados = [
+          "VALOR INCORRECTO",
+          "INSUFICIENTE",
+          "INSUFICIENTE",
+          "INSUFICIENTE",
+          "SUFICIENTE",
+          "BIEN",
+          "NOTABLE",
+          "SOBRESALIENTE",
+          "SOBRESALIENTE",
+          "VALOR INCORRECTO",
+        ];
+
+        var ok = true;
+
+        for (var i = 0;i<nota.length; i++) {
+          if (verCalificacionDecimal(nota[i] == valoresEsperados[i])) {
+            console.log(nota[i] + " = " + valoresEsperados[i] + " => OK");
+          } else {
+            console.log(nota[i] + " = " + valoresEsperados[i] + " => FALLA");          
+            ok = false;
+          }
+        }
+
+        if (ok) {
+          console.log("PASA => Ha superado todas las comprobaciones");
+        } else {
+          console.log("NO PASA => Ha superado todas las comprobaciones");
+        }
+      }
+        testeo();
+
+    </script>
+
+    <input type="button" value="Pulsar" onclick="testeo();">
+    
+  </body>
+</html>

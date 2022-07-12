@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const vec = [100, 22, 17, 50, 3];
+        vec.sort((x, y) => {
+            if (x > y)
+                return 1;
+            else
+                return -1;
+        })
+
+        document.write(vec.toString());
+    </script>
+
+    <script>
+        const vec = [100, 22, 17, 50, 3, 78];
+        const pares = vec.filter(elemento => elemento % 2 == 0);
+        document.write('Vector completo:' + vec.toString());
+        document.write('<br>');
+        document.write('Vector generado con elementos pares:' + pares.toString());
+    </script>
+
+    <script>
+        window.addEventListener(
+            'DOMContentLoaded',
+            setTimeout(() => alert('pasó 3 segundos desde que se cargó la página'), 3000),
+            false);
+    </script>
+
+
+    <!--Cuando definimos un método con funciones flecha no existe el contexto 
+de this para acceder a las propiedades del objeto. 
+Es decir que las funciones flecha son más adecuadas cuando las trabajamos 
+como funciones independientes y no como métodos de un objeto.-->
+    <script>
+        var objeto1 = {
+            x: 10,
+            metodo1: function() {
+                alert(this.x);
+            },
+            metodo2: () => {
+                alert(this.x);
+            }
+        }
+        objeto1.metodo1(); //10
+        objeto1.metodo2(); //undefined
+    </script>
+
+</body>
+
+</html>

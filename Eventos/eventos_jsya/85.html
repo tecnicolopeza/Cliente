@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Expresiones regulares: agrupación en subpatrones ()</h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Elaborar una expresión regular que permita validar si se ingresó correctamente un valor entero o real y que eventualmente lleve el caracter + o - al principio. Validar que si se ingresa la coma debe ingresarse la parte real"
+            );
+
+            let nro = prompt("ingrese un número entero o real:");
+            let patron = /^[+-]?\d+(\,\d+)?$/;
+            if (patron.test(nro)) alert("Correcto");
+            else alert("Incorrecto");
+        }
+
+        function ej2() {
+            alert(
+                "Ingresar una hora con el formato hh:mm:ss, plantear una expresión regular que valide si es correcta."
+            );
+            let hora = prompt('ingrese una hora con el formato hh:mm:ss');
+            let patron = /^(0[1-9]|1\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
+            if (patron.test(hora))
+                alert('Correcto');
+            else
+                alert('Incorrecto');
+        }
+    </script>
+</body>
+
+</html>

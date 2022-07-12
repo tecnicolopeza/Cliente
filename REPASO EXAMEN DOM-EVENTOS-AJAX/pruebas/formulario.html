@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="functions.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            width: 40%;
+            font-weight: bolder;
+        }
+        
+        #btnform {
+            padding: 5px;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Comida instituto</h1>
+    <form action="" method="post">
+        <fieldset>
+            <legend>Datos personales</legend>
+            <label for="profesor">Profesor</label>
+            <input type="radio" name="categoria" id="profesor" value="profesor" required>
+            <label for="alumno">Alumno</label>
+            <input type="radio" name="categoria" id="alumno" value="alumno" required>
+            <br>
+            <label for="nombre">Nombre(*):</label>
+            <input type="text" name="nombre" id="nombre" maxlength="30" required><br>
+            <label for="email">Email(*):</label>
+            <input type="email" name="email" id="email" required placeholder="example@example.com"><br>
+            <label for="email2">Confirmar email(*):</label>
+            <input type="email" name="email2" id="email2" required placeholder="example@example.com"><br>
+            <label for="fecNac">Fecha nacimiento(*):</label>
+            <input type="date" name="fecNac" id="fecNac" required>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos reserva</legend>
+            <label for="bebida">Bebida</label>
+            <select name="bebida" id="bebida">
+                <option value="agua">Agua</option>
+                <option value="refresco">Refresco</option>
+                <option value="cerveza">Cerveza</option>
+                <option value="vino">Vino</option>
+            </select>
+            <input type="checkbox" name="alergia" id="alergia">
+            <label for="alergia">Marque si tiene alguna alergia:</label><br>
+            <textarea name="alergias" id="alergias" cols="50" rows="10"></textarea>
+        </fieldset>
+
+        <input type="submit" value="Enviar" id="btnform">
+        <input type="reset" value="Borrar" id="btnform">
+    </form>
+
+</body>
+
+</html>

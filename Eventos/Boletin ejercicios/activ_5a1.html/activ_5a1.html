@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        
+        h2 {
+            color: cornflowerblue;
+        }
+        
+        button {
+            border-radius: 3px;
+            padding: 5px;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            cursor: pointer;
+            background-color: greenyellow;
+        }
+        
+        div {
+            border: 3px solid black;
+            margin: 0px 0px 30px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Eventos</h2>
+    <h4>Actividad 5a1 (activ_5a1.html)</h4>
+    <p>
+        Crea un formulario que tenga dos botones con id boton1 y boton2 respectivamente. Crea también dos div con id div1 div2.<br> Haz que los siguientes eventos tengan una única función manejadora de eventos llamada manejadorEventos:
+    </p>
+    </ul>
+    <li>Clic sobre boton1</li>
+    <li>Clic sobre boton2</li>
+    <li>Ratón entra dentro de div1</li>
+    <li>Ratón entra dentro de div2</li>
+    </ul>
+    <br> En el manejador de eventos escribe el código necesario para que en la consola se muestre el objeto que ha generado <br> el evento así como el tipo de evento (click o mouseenter).
+
+    <h3>Manejador de eventos compartido(Ver consola de depuración)</h3>
+    <button onclick="console.log('Has pinchado el boton 1')">Boton 1</button> <button onclick="console.log('Has pinchado el boton 2')">Boton 2</button>
+
+    <br> <br>
+    <p>Div 1</p>
+    <!--onmouseenter para que no cuente ele entrar y salir de los hijos-->
+    <div id="div1" onmouseenter="console.log('El raton entró en el div 1')">
+        <p>Hola</p>
+        <p>Hola</p>
+    </div>
+    <p>Div 2</p>
+    <div id="div2" onmouseenter="console.log('El raton entró en el div 2')">
+        <p>Hola</p>
+        <p>Hola</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>10 - Accediendo a un conjunto de marcas HTML similares a partir de un Nodo (getElementsByTagName)</h1>
+    <h3>Problema:Confeccionar una página que muestre dos div que contengan 3 párrafos cada uno. Cuando se presione un botón ocultar todos los párrafos del segundo div.</h3>
+
+    <div id="div1">
+        DIV 1
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+
+    <div id="div2">
+        DIV 2
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+
+    <button onclick="ocultar()">Ocultar elementos p div 2</button>
+    <script>
+        function ocultar() {
+            var padre = document.getElementById('div2');
+            var hijos = padre.getElementsByTagName('p');
+
+            for (let elemento of hijos) {
+                elemento.style.visibility = 'hidden';
+            }
+        }
+    </script>
+</body>
+
+</html>

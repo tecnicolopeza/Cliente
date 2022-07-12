@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=91&codigo=91&inicio=80 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Formularios reactivos - validaciones estándares de Angular</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>91 - Formularios reactivos - validaciones estándares de Angular</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Una funcionalidad muy importante de un formulario es la validación de las entradas de datos del usuario y la información que se le provee al mismo indicando los datos mal cargados.</p>
+<p>Cuando utilizamos formularios reactivos la lógica de la validación se encuentra en la clase (archivo *.js) y no en la vista (archivo *.html)</p>
+<p>El framework de Angular provee una clase llamada 'Validators' que contiene una serie de métodos estáticos para validar entradas de datos muy comunes como la estructura de un email, valores numéricos máximos y mínimos, cantidad mínima y máxima de caracteres etc.</p>
+<p>La asignación de los métodos de validación se hace cuando se crea el objeto de la clase FormControl. Veremos con un ejemplo como configuramos distintos métodos de validación a los controles de un formulario.</p>
+
+
+
+<h3>Problema</h3>
+<p>Confeccionar un formulario de contacto que permita cargar el nombre, mail y un mensaje. Implementar las siguientes validaciones a los controles del formulario:</p>
+<ul>
+<li>Los tres controles no pueden quedar vacíos.</li>
+<li>El nombre debe tener como mínimo 10 caracteres.</li>
+<li>El email ingresado debe ser correcto.</li>
+<li>El mensaje no puede superar los 500 caracteres.</li>
+</ul>
+<p>Cuando se presione un botón mostrar un mensaje indicando si todos los controles se encuentran correctamente cargados.</p>
+
+<ul>
+<li><p>Crearemos primero el proyecto:</p>
+<pre>
+ng new proyecto059
+</pre>
+</li>
+
+
+<li><p>Importamos la clase 'ReactiveFormModule' modificando el archivo 'app.module.ts':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+<strong>import { ReactiveFormsModule } from '@angular/forms';</strong>
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+<strong>    ReactiveFormsModule</strong>
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+</pre>
+</li>
+
+
+
+<li><p>Modificamos la vista de la componente que muestra el formulario reactivo  y eventualmente los mensajes de error de entrada de datos (app.component.html):</p>
+<pre class="recuadro">
+&lt;form [formGroup]="formularioContacto" (ngSubmit)="submit()"&gt;
+  &lt;p&gt;Nombre:
+    &lt;input type="text" formControlName="nombre" required&gt;
+    &lt;span *ngIf="this.formularioContacto.get('nombre')?.errors?.['required']"&gt;
+      (El nombre no puede quedar vacío)
+    &lt;/span&gt;
+    &lt;span *ngIf="this.formularioContacto.get('nombre')?.errors?.['minlength']"&gt;
+      (Debe tener como mínimo 10 caracteres)
+    &lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Mail:
+    &lt;input type="text" formControlName="mail"&gt;
+    &lt;span *ngIf="this.formularioContacto.get('mail')?.errors?.['required']"&gt;
+      (El mail no puede quedar vacío)
+    &lt;/span&gt;
+    &lt;span *ngIf="this.formularioContacto.get('mail')?.errors?.['email']"&gt;
+      (El mail no es válido)
+    &lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;Mensaje&lt;br&gt;
+    &lt;textarea rows="10" cols="70" formControlName="mensaje"&gt;&lt;/textarea&gt;
+  &lt;/p&gt;
+  &lt;div *ngIf="this.formularioContacto.get('mensaje')?.errors?.['required']"&gt;
+    (El mensaje no puede quedar vacío)
+  &lt;/div&gt;
+  &lt;div *ngIf="this.formularioContacto.get('mensaje')?.errors?.['maxlength']"&gt;
+    (Debe tener como máximo 500 caracteres)
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Confirmar&lt;/button&gt;
+&lt;/form&gt;
+&lt;div&gt;{{resultado}}&lt;/div&gt;
+</pre>
+<p>Analizaremos este archivo en conjunto luego de presentar 'app.component.ts'</p>
+</li>
+
+
+<li><p>La clase asociada a la vista es (app.component.ts):</p>
+<pre class="recuadro">
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  resultado!: string;
+
+  formularioContacto = new FormGroup({
+    nombre: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    mail: new FormControl('', [Validators.required, Validators.email]),
+    mensaje: new FormControl('', [Validators.required, Validators.maxLength(500)])
+  });
+
+  submit() {
+    if (this.formularioContacto.valid)
+      this.resultado = "Todos los datos son válidos";
+    else
+      this.resultado = "Hay datos inválidos en el formulario";
+  }
+
+}
+</pre>
+
+<p>Lo primero que debemos hacer es importar la clase 'Validators':</p>
+<pre>
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+</pre>
+<p>Cuando creamos los objetos de la clase FormControl debemos pasar como segundo parámetro del constructor los nombres de métodos que se le aplicarán a cada control de formulario:</p>
+<pre>
+  formularioContacto = new FormGroup({
+    nombre: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    mail: new FormControl('', [Validators.required, Validators.email]),
+    mensaje: new FormControl('', [Validators.required, Validators.maxLength(500)])
+  });
+</pre>
+<p>Por ejemplo para el 'nombre' configuramos que se apliquen las validaciones: [Validators.required, Validators.minLength(10)], luego en la vista podemos verificar que validaciones se cumplen y cuales no:</p>
+<pre>
+  &lt;p&gt;Nombre:
+    &lt;input type="text" formControlName="nombre" required&gt;
+    &lt;span *ngIf="this.formularioContacto.get('nombre')?.errors?.['required']"&gt;
+      (El nombre no puede quedar vacío)
+    &lt;/span&gt;
+    &lt;span *ngIf="this.formularioContacto.get('nombre')?.errors?.['minlength']"&gt;
+      (Debe tener como mínimo 10 caracteres)
+    &lt;/span&gt;
+  &lt;/p&gt;
+</pre>
+<p>Mediante la directiva *ngIf validamos si se debe mostrar el mensaje de error dependiendo si el atributo this.formularioContacto.get('nombre')?.errors? existe o no.</p>
+<p>De forma similar se hacen las validaciones para los otros controles.</p>
+<p>Cuando se presiona el botón analizamos la propiedad 'valid' del objeto FormGroup, si almacena true significa que todos los controles de validación del formulario se verifican correctos:</p>
+<pre>
+  submit() {
+    if (this.formularioContacto.valid)
+      this.resultado = "Todos los datos son válidos";
+    else
+      this.resultado = "Hay datos inválidos en el formulario";
+  }
+</pre>
+
+</ul>
+
+
+
+
+<p>Si ejecutamos la aplicación tenemos una interfaz similar a:</p>
+<img src="imagentema/foto153.jpg" alt="Formularios reactivos angular ReactiveFormsModule FormControl FormGroup validaciones Validators" border="0"><br>
+
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto059/" target="_blank">aquí</a>.</p>
+
+<h3>Acotaciones</h3>
+<p>Para conocer todos los métodos de validación que nos provee Angular podemos visitar su documentación oficial y analizar la clase <a href="https://angular.io/api/forms/Validators" target="_blank">Validators</a>.</p>
+
+<div class="botonretorno"><a href="index20ff.html?inicio=80">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=91&codigo=91&inicio=80 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:14 GMT -->
+</html>

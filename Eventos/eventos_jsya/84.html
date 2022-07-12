@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>
+        Expresiones regulares: metacarácter punto
+    </h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Estamos indicando que la cadena debe comenzar con una letra 'a' luego hemos dispuesto tres metacaracteres punto donde se verifican verdadero cualquiera sea el carácter del string y finalmente indicamos que finaliza con la letra 'a'."
+            );
+
+            let cadena = prompt('Ingrese una cadena de cinco caracteres que comience y finalice con a');
+            let patron = /^a...a$/;
+            if (patron.test(cadena))
+                document.write('cadena correcta');
+            else
+                document.write('cadena incorrecta');
+        }
+
+        function ej2() {
+            alert(
+                "Es importante recordar que siempre que necesitemos utilizar alguno de los metacaracteres como dato a buscar es necesario escaparlo con la barra invertida, por ejemplo si queremos verificar si un número tiene el formato 999.99:"
+            );
+            let nro = prompt('Ingrese un número con el formato 999.99');
+            let patron = /^\d{3}\.\d{2}$/;
+            if (patron.test(nro))
+                document.write('nro correcto');
+            else
+                document.write('nro incorrecto');
+        }
+    </script>
+</body>
+
+</html>

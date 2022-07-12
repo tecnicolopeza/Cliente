@@ -1,0 +1,7 @@
+Hola Javier perdona que haya tenido que copiar algunos de los ejercicios, 
+estoy poniendome al dia en tu asignatura  porque me quedé un poco atrás.
+Empecé a realizar todos los ejercicios de 0 desde DOM
+y no me ha dado tiempo a repasar bien las expresiones regulares por lo que los últimos
+de expresiones tuve que pedirlos para poder entregarlos en la entrega y solo me dió
+tiempo a tratar de entenderlos. 
+Perdón por las molestias, pero quería aclararlo.

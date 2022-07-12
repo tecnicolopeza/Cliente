@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=13&codigo=13&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Componentes: enlace de propiedades (Property Binding)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>13 - Componentes: enlace de propiedades (Property Binding)</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Hemos visto como enviar datos simples mediante propiedades mediante 'property binding'. Ahora veremos en profundidad el concepto de Property Binding (enlace de propiedades) muy utilizada si tenemos que enviar una estructura de datos compleja a una componente hija.</p>
+<p>Vimos que si teníamos que enviar un dato de tipo string a una propiedad de una componente lo indicamos inmediatamente al valor a enviar:</p>
+<pre>
+&lt;app-dado valor="3"&gt;&lt;/app-dado&gt;
+</pre>
+<p>En algunas situaciones podemos recuperar el dato del modelo mediante interpolación (pero la componente hija lo recibe siempre como un string):</p>
+<pre>
+&lt;app-dado valor="{{valor}}"&gt;&lt;/app-dado&gt;
+</pre>
+<p>El problema se presenta si queremos enviar una estructura de datos más compleja como puede ser un arreglo. En estos casos el concepto de enlace de propiedades nos resuelve el problema:</p>
+<pre>
+&lt;app-listadoarticulos [datos]="articulos"&gt;&lt;/app-listadoarticulos&gt;
+</pre>
+<p>Si tenemos la componente app-listadoarticulos y tenemos que enviar el vector 'articulos' disponemos el nombre de la propiedad entre corchetes [datos]<br>
+<p>Esto corchetes indican a Angular que busque en el modelo la variable 'articulos':</p>
+<pre>
+  articulos = [{codigo:1, descripcion:'papas', precio:10.55},
+               {codigo:2, descripcion:'manzanas', precio:12.10},
+               {codigo:3, descripcion:'melon', precio:52.30},
+               {codigo:4, descripcion:'cebollas', precio:17},
+               {codigo:5, descripcion:'calabaza', precio:20},
+              ];
+</pre>
+
+<h3>Problema</h3>
+<p>En la componente AppComponent definir un arreglo con los datos de 5 artículos. Luego crear una segunda componente llamada 'listadoarticulos' que reciba mediante una propiedad el arreglo y su objetivo sea mostrar en una tabla HTML todos los datos.</p>
+
+
+<ol>
+<li>
+<p>Desde la línea de comandos de Node.js procedemos a crear el proyecto008:</p>
+<pre>
+f:\angularya&gt; ng new proyecto008
+</pre>
+</li>
+
+<li>
+<p>Primero descendemos a la carpeta proyecto008 y nuevamente desde la línea de comandos procedemos a crear la componente 'listadoarticulos' escribiendo:</p>
+<pre>
+f:\angularya\proyecto008&gt; ng generate component listadoarticulos
+</pre>
+<li>
+<p>En nuestro tercer paso vamos a implementar la vista de la componente 'listadoarticulos' y su modelo. Abrimos el archivo 'listadoarticulos.component.ts' y codificamos:</p>
+<pre class="recuadro">
+import { Component, OnInit,Input } from '@angular/core';
+
+@Component({
+  selector: 'app-listadoarticulos',
+  templateUrl: './listadoarticulos.component.html',
+  styleUrls: ['./listadoarticulos.component.css']
+})
+export class ListadoarticulosComponent implements OnInit {
+
+  @Input() datos:any;
+  
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+</pre>
+<p>Luego veremos formas más robustas de definir el tipo de datos de la propiedad 'datos' (con any recibimos cualquier tipo de dato)</p>
+</li>
+
+<li>
+<p>Codificamos ahora el archivo 'listadoarticulos.component.html':</p>
+<pre class="recuadro">
+&lt;div&gt;
+  &lt;table border="1"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Codigo&lt;/td&gt;&lt;td&gt;Descripcion&lt;/td&gt;&lt;td&gt;Precio&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr *ngFor="let art of datos"&gt;
+      &lt;td&gt;{{art.codigo}}&lt;/td&gt;
+      &lt;td&gt;{{art.descripcion}}&lt;/td&gt;
+      &lt;td&gt;{{art.precio}}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+</li>
+
+
+<li>
+<p>Abrimos ahora el archivo 'app.component.html' y remplazamos su contenido con la definición de una etiqueta app-listadoarticulos con el  enlace a la propiedad:</p>
+<pre class="recuadro">
+&lt;app-listadoarticulos [datos]="articulos"&gt;&lt;/app-listadoarticulos&gt;
+</pre>
+<p>Son fundamentales encerrar entre corchetes el nombre de la propiedad para que angular entienda que hay un enlace y rescate los datos del modelo de la variable 'articulos' y no envíe el string 'articulos'.</p>
+</li>
+<li>
+<p>La clase AppComponent define la propiedad articulos que es la que se enlaza con la propiedad de la etiqueta app-listadoarticulos:</p>
+<pre class="recuadro">
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  articulos = [{codigo:1, descripcion:'papas', precio:10.55},
+               {codigo:2, descripcion:'manzanas', precio:12.10},
+               {codigo:3, descripcion:'melon', precio:52.30},
+               {codigo:4, descripcion:'cebollas', precio:17},
+               {codigo:5, descripcion:'calabaza', precio:20},
+              ];
+}
+
+</pre>
+
+<p>Si ejecutamos ahora el proyecto:</p>
+<pre>
+ng server -o
+</pre>
+<img src="imagentema/foto031.jpg" border="0" alt="componentes con enlace de propiedades de tipo arreglo"><br>
+</li>
+</ol>
+
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto008/" target="_blank">aquí</a>.</p>
+
+
+
+<div class="botonretorno"><a href="index2904.html?inicio=0">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=13&codigo=13&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:12 GMT -->
+</html>

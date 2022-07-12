@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=43&codigo=43&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Angular Material: formularios - mat-slide-toggle</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>43 - Angular Material: formularios - mat-slide-toggle</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Otro control de formulario disponible en Angular Material con un objetivo similar a los checkbox de HTML es la componente 'mat-slide-toggle'.</p>
+<p>La componente 'mat-slide-toggle' puede estar encendida o apagada. El cambio se produce mediante un clic del mouse o el arrastre (de uso común en un dispositivo táctil)</p>
+
+<h3>Problema</h3>
+<p>Definir un formulario web que permita cargar dos valores numéricos y mediante 4 'mat-slide-toggle' permitir indicar si queremos sumar, restar, multiplicar y/o dividir los valores ingresados. Efectuar la operación al presionar un botón.</p>
+
+<ul>
+<li><p>Crearemos primero el proyecto</p>
+<pre>
+ng new proyecto025
+</pre>
+</li>
+
+<li><p>Procedemos a instalar todas las dependencias de Angular Material ayudados por Angular CLI mediante el comando 'add' (Cargar la librería HammerJS para que funcione correctamente el control mat-slide-toggle):</p>
+<pre>
+ng add @angular/material
+</pre>
+</li>
+
+<li>
+<p>Modificamos el archivo 'app.module.ts' donde debemos importar los módulos de Angular Material que requiere nuestro proyecto:</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+<p>Como vemos aparece el nuevo módulo MatSlideToggleModule.</p>
+</li>
+
+<li>
+<p>Modificamos el archivo 'app.component.ts' con la lógica de nuestra componente que permita operar los dos valores ingresados dependiendo de las selecciones de los mat-slide-toggle:</p>
+<pre class="recuadro">
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  valor1!:number;
+  valor2!:number;
+  resultado!:string;
+  opcion1=false;
+  opcion2=false;
+  opcion3=false;
+  opcion4=false;
+
+  
+  operar() {
+    this.resultado='';
+    if (this.opcion1) {
+      let ope = this.valor1 + this.valor2;
+      this.resultado+=`La suma es ${ope} `;
+    }
+    if (this.opcion2) {
+      let ope = this.valor1 - this.valor2;
+      this.resultado+=`La resta es ${ope} `;
+    }
+    if (this.opcion3) {
+      let ope = this.valor1 * this.valor2;
+      this.resultado+=`El producto es ${ope} `;
+    }
+    if (this.opcion4) {
+      let ope = this.valor1 / this.valor2;
+      this.resultado+=`La division es ${ope} `;
+    }
+  }
+}
+</pre>
+
+<p>Codificamos la interfaz visual en el archivo 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div class="contenedor"&gt;
+
+  &lt;mat-form-field&gt;
+    &lt;input matInput [(ngModel)]="valor1" type="number" placeholder="Ingrese primer valor"&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field&gt;
+      &lt;input matInput [(ngModel)]="valor2" type="number" placeholder="Ingrese segundo valor"&gt;
+  &lt;/mat-form-field&gt;
+  
+  &lt;mat-slide-toggle [(ngModel)]="opcion1"&gt;Sumar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion2"&gt;Restar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion3"&gt;Multiplicar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion4"&gt;Dividir&lt;/mat-slide-toggle&gt;
+
+  &lt;button mat-raised-button color="primary" (click)="operar()"&gt;Operar&lt;/button&gt;
+  &lt;p&gt;{{resultado}}&lt;/p&gt;
+  
+&lt;/div&gt;
+</pre>
+</li>
+
+<li>
+<p>La hoja de estilo de la componente que se encuentra en 'app.component.css' es:</p>
+<pre class="recuadro">
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 600px;
+} 
+</pre>
+</li>
+
+
+<li>
+<p>Si ejecutamos ahora la aplicación podemos comprobar cual es la estética de la componente mat-slide-toggle:</p>
+<img src="imagentema/foto089.jpg" alt="Angular Material mat-slide-toggle" border="0"><br>
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto025/" target="_blank">aquí</a>.</p>
+</li>
+
+<li>
+<p>En el archivo 'app.component.html' definimos el selector 'mat-slide-toggle':</p>
+<pre>
+  &lt;mat-slide-toggle [(ngModel)]="opcion1"&gt;Sumar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion2"&gt;Restar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion3"&gt;Multiplicar&lt;/mat-slide-toggle&gt;
+  &lt;mat-slide-toggle [(ngModel)]="opcion4"&gt;Dividir&lt;/mat-slide-toggle&gt;
+</pre>
+<P>En el archivo 'app.component.ts' definimos cuatro atributos donde se almacenan cual de los mat-checkbox se encuentran seleccionados:</p>
+<pre>
+export class AppComponent {
+  valor1=null;
+  valor2=null;
+  resultado=null;
+  opcion1=false;
+  opcion2=false;
+  opcion3=false;
+  opcion4=false;
+</pre>
+<p>En el archivo 'app.module.ts' importamos todos los módulos necesarios para trabajar con este formulario de Material:</p>
+<pre>
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+</pre>
+<p>Y los añadimos en la propiedad imports del decorador:</p>
+<pre>
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule
+  ],
+</pre>
+
+</li>
+
+</ul>
+
+<div class="botonretorno"><a href="index1e61.html?inicio=40">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=43&codigo=43&inicio=40 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:53 GMT -->
+</html>

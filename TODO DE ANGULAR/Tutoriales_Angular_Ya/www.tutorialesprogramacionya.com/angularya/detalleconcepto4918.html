@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=70&codigo=70&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>ng-bootstrap y ngx-bootstrap</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>70 - ng-bootstrap y ngx-bootstrap</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Son dos bibliotecas de componentes de Angular basadas en el Bootstrap original.</p>
+<p>Ambas librerías nos ofrecen componentes con la hoja de estilo de Bootstrap pero sin la necesidad de utilizar las librerías JQuery, Popper y la librería Javascript propia de Bootstrap original.</p>
+<ul>
+<li>
+<p>  <a href="https://ng-bootstrap.github.io/" target="_blank">ng-bootstrap</a></p>
+</li>
+
+
+<li>
+<p>  <a href="https://valor-software.com/ngx-bootstrap/#/" target="_blank">ngx-bootstrap</a>   </p>
+</li>
+
+</ul>
+
+<p>ng-bootstrap y ngx-bootstrap son dos proyectos diferentes de dos equipos de desarrolladores diferentes que intentan lograr más o menos lo mismo que es usar Bootstrap en Angular sin el uso de jQuery y utilizar componentes nativas de Angular.</p>
+
+<p>ngx-bootstrap es compatible con Bootstrap 3, 4 y 5, ng-bootstrap es compatible solo Bootstrap 4 y en beta para Bootstrap 5.</p>
+
+<h3>Pasos para instalar ng-bootstrap en Angular 9.</h3>
+<ul>
+<li>
+<p>Se sigue requiriendo el archivo de la hoja de estilo bootstrap.css, así que lo primero que debemos hacer referencia al mismo, recordemos que tenemos tres formas de hacerlo, la forma más sencilla es mediante CDN indicando en el archivo index.html:</p>
+<pre>
+&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"&gt;
+</pre>
+<p>Las otras dos formas que ya vimos son localizandolo en la capeta 'assets' o mediante npm.</p>
+</li>
+
+<li>
+<p>En segundo paso instalamos el módulo de ng-bootstrap mediante el administrador de paquetes de Node.JS:</p>
+
+<pre>
+npm install --save @ng-bootstrap/ng-bootstrap
+</pre>
+</li>
+
+<li>
+<p>También debemos instalar el módulo:</p>
+<pre>
+ng add @angular/localize
+</pre>
+</li>
+
+<li>
+<p>Modificamos el archivo 'app.module.ts' agregando el módulo 'NgbModule':</p>
+<pre>
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgbModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+<p>Si visitamos el sitio oficial de <a href="https://ng-bootstrap.github.io/" target="_blank">ng-bootstrap</a> podremos ver otras formas de instalar algunas componentes y no todas con el objetivo que nuestra aplicación tenga el menor tamaño posible.</p>
+<p>Con estos cuatro pasos ya tenemos configurado ng-bootstrap listo para comenzar nuestro proyecto.</p>
+</li>
+</ul>
+
+
+<h3>Pasos para instalar ngx-bootstrap en Angular 13.</h3>
+<p>Si nos decidimos a utilizar ngx-bootstrap en nuestro proyecto debemos dar los siguientes pasos:</p>
+<ul>
+<li>
+<p>La forma más sencilla es utilizar Angular CLI para instalar todas las dependencias de ngx-bootstrap (de forma idéntica a como instalamos en su momento Angular Material):</p>
+<pre>
+ng add ngx-bootstrap 
+</pre>
+<img src="imagentema/foto127.jpg" alt="Instalación ngx-bootstrap" border="0"><br>
+</li>
+
+<li>
+<p>Luego debemos modificar el archivo 'app.module.ts' a medida que requerimos importar componentes, por ejemplo si queremos trabajar con la componente 'alert' debemos implementar el siguiente cambio:</p>
+<pre>
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<strong>import { AlertModule } from 'ngx-bootstrap/alert';</strong>
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+<strong>    AlertModule.forRoot(),</strong>
+    BrowserModule,
+    BrowserAnimationsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+</pre>
+</li>
+
+<li>
+<p>Se sigue requiriendo el archivo de la hoja de estilo bootstrap.css, así que lo primero que debemos hacer referencia al mismo, mediante CDN indicando en el archivo index.html:</p>
+<pre>
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"&gt;
+</pre>
+
+</li>
+
+
+</ul>
+<div class="botonretorno"><a href="indexd6cc.html?inicio=60">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=70&codigo=70&inicio=60 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:07:06 GMT -->
+</html>

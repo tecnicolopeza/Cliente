@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Confeccionar una página que contenga una lista de tipo (ul) y no defina marcas de tipo (li) inicialmente.<br> Luego al presionar un botón agregar dos marcas de tipo (li) con sus respectivos textos.<br> Luego de presionar una vez el botón no permitir
+        agregar más elementos (li).
+    </h3>
+
+    <ul id="lista">
+    </ul>
+
+    <button onclick="crearLi()">Crear 2 li</button>
+
+    <script>
+        function crearLi() {
+            let texto;
+            let padre;
+            let hijo;
+
+            /*falta que no se puedan insertar mas*/
+
+            padre = document.getElementById('lista');
+
+            hijo = document.createElement('li'); //creamos el primer li
+            texto = document.createTextNode('li 1 - texto creado');
+            hijo.appendChild(texto);
+
+            padre.appendChild(hijo); //añadimos el li al ul
+
+            //SEGUNDO LI
+            hijo = document.createElement('li'); //creamos el primer li
+            texto = document.createTextNode('li 2 - texto creado'); //creamos el texto
+            hijo.appendChild(texto); //insertamos el texto en el li
+            padre.appendChild(hijo); //añadimos el li al ul
+
+        }
+    </script>
+
+</body>
+
+</html>

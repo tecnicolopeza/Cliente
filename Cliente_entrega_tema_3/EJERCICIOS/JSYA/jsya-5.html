@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p style="font-weight: bold; font-size: 18px;">
+      1. Realizar la carga del lado de un cuadrado, mostrar por pantalla el<br>
+      perímetro del mismo (El perímetro de un cuadrado se calcula multiplicando
+      el valor del lado por cuatro).<br><br>
+      2. Escribir un programa en el cual se ingresen cuatro números, calcular<br>
+      e informar la suma de los dos primeros y el producto del tercero y el cuarto.<br><br>
+      3. Realizar un programa que lea cuatro valores numéricos e informar su suma y producto. <br><br>
+      4. Se debe desarrollar un programa que pida el ingreso del precio de un artículo y la cantidad que<br>
+      lleva el cliente. Mostrar lo que debe abonar el comprador (Ingresar por teclado un precio sin decimales,<br>
+     es decir un entero: 2, 7, 90 etc.)<br><br>
+    </p>
+
+
+    <script>
+        
+        document.write("EJERCICIO 1<br>");
+        document.write("--------------<br>");
+
+        var lado = prompt("Introduce el largo del lado del cuadrado: ");
+        document.write("El perímetro es ",lado," por 4.<br>");
+        document.write("Perímetro = ",lado*4);
+
+        document.write("<br><br>EJERCICIO 2<br>");
+        document.write("--------------<br>");
+        
+        //en la suma hay que hacer parseFloat o los concatena
+        var n1,n2,n3,n4;
+        n1 = parseFloat(prompt("Introduce el primer numero: <br>"));
+        n2 = parseFloat(prompt("Introduce el segundo numero: <br>"));
+        n3 = parseFloat(prompt("Introduce el tercer numero: <br>"));
+        n4 = parseFloat(prompt("Introduce el cuarto numero: <br>"));
+
+        document.write("Suma de el primer y segundo numero = ",n1+n2,"<br>");
+        document.write("Producto de el tercer y cuarto numero = ",n3*n4);
+
+        document.write("<br><br>EJERCICIO 3<br>");
+        document.write("--------------<br>");
+
+        document.write("Suma de el primer y segundo numero = ",n1+n2+n3+n4,"<br>");
+        document.write("Producto de el tercer y cuarto numero = ",n1*n2*n3*n4);
+        
+
+        document.write("<br><br>EJERCICIO 4<br>");
+        document.write("--------------<br>");
+
+        var precio_producto = parseFloat(prompt("Introduce el precio de producto: "));
+        var cantidad = parseFloat(prompt("Introduce la cantidad que se lleva del producto: "));
+
+        document.write("Debe abonar ",precio_producto*cantidad,"€");
+
+
+    </script>
+  
+</body>
+</html>

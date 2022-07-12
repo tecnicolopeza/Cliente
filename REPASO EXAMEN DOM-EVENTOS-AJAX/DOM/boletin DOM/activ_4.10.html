@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="parrafos"></div>
+    <button onclick="nuevoParrafo()">Añadir parrafo</button>
+
+    <script>
+        let contarP = 0;
+
+        function nuevoParrafo() {
+            contarP++;
+            var punteroDiv = document.getElementById('parrafos');
+            var nodeP = document.createElement("p");
+            var nodeTexto = document.createTextNode("Párrafo número " + contarP);
+            nodeP.appendChild(nodeTexto);
+            punteroDiv.appendChild(nodeP);
+        }
+    </script>
+</body>
+
+</html>

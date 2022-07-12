@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Actividad 2.5: Conversión hexadecimal a decimal Crea una función llamada
+      hexa2decimal que reciba como argumento de entrada un número hexadecimal en
+      formato string (p.e. “2FD”) y devuelva el correspondiente número
+      convertido a decimal (en formato number). Los caracteres hexadecimales
+      podrán estar tanto en mayúsculas como minúsculas (p.e. se podrá usar “2FD”
+      o “2fd”). Prepara una función de testeo con dos arrays de valores de
+      entrada y valores esperados (usa al menos 6 números hexadecimales de
+      entrada mezclando tanto mayúsculas como minúsculas para los dígitos
+      hexadecimales). Para preparar los arrays del testeo puedes usar la
+      calculadora, conversores online, etc.
+    </p>
+
+    <script>
+      //AB5 --> 5 POSICION 0 | POSICION 1 | A POSICION 2
+      function hexa2decimal(hexa) {
+        var hexa;
+        var decimal = parseInt(decimal);
+
+        switch (hexa) {
+          case "0":
+            decimal = 0;
+            break;
+          case "1":
+            decimal = 1;
+            break;
+          case "2":
+            decimal = 2;
+            break;
+          case "3":
+            decimal = 3;
+            break;
+          case "4":
+            decimal = 4;
+            break;
+          case "5":
+            decimal = 5;
+            break;
+          case "6":
+            decimal = 6;
+            break;
+          case "7":
+            decimal = 7;
+            break;
+          case "8":
+            decimal = 8;
+            break;
+          case "9":
+            decimal = 9;
+            break;
+          case "A":
+            decimal = 10;
+            break;
+          case "B":
+            decimal = 11;
+            break;
+          case "C":
+            decimal = 12;
+            break;
+          case "D":
+            decimal = 13;
+            break;
+          case "E":
+            decimal = 14;
+            break;
+          case "F":
+            decimal = 15;
+            break;
+          default:
+            break;
+        }
+
+        return decimal;
+      }
+
+      var cadena = "3F8";
+      var res;
+      var resF = 0;
+      var contador = cadena.length;
+      for (let i = 0; i < cadena.length; i++) {
+        //document.write(hexa2decimal(cadena.charAt(i))+"-");
+        res = (hexa2decimal(cadena.charAt(i)))*Math.pow(16,(contador-1));
+        //document.write(res+"-");
+        resF = resF+res;
+        contador--;
+      }
+      document.write("Resultado en decimal: "+resF);
+    </script>
+  </body>
+</html>

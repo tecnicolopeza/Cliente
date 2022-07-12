@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../JASMINE/jasmine-standalone-3.9.0/src/volumenCono.js"></script>
+</head>
+
+<body>
+
+    <form action="">
+        Introduce el radio:
+        <input type="number" name="radio" id="radio" required><br><br> Introduce la altura:
+        <input type="number" name="altura" id="altura" required><br><br>
+        <input type="submit" value="calculo" onclick="calcular();" required>
+    </form>
+
+    <script>
+        function calcular() {
+            let rad = document.getElementById("radio").value;
+            let h = document.getElementById("altura").value;
+            let volumen = volumenCono(rad, h);
+            document.write("El volumen es " + volumen);
+        }
+    </script>
+
+</body>
+
+</html>

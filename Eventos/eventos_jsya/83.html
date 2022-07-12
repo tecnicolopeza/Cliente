@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>
+        Expresiones regulares: alternancia |
+    </h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                "Validar el ingreso de un típo y nro de factura. Para que sea correcto el primer carácter debe ser a,b o c y el nro debe tener uno o más dígitos."
+            );
+
+            let factura = prompt('Ingrese tipo y nro de factura:');
+            let patron = /^[a|b|c]\d+$/;
+            if (patron.test(factura))
+                document.write('Se ingresó un tipo y nro de factura correcta');
+            else
+                document.write('Se ingresó un tipo y nro de factura incorrecta');
+        }
+
+        function ej2() {
+            alert(
+                "Validar si una palabra comienza con los caracteres va o ba"
+            );
+            let palabra = prompt('Ingrese una palabra que comience con va o ba:');
+            let patron = /^[va|ba]/;
+            if (patron.test(palabra))
+                document.write('La palabra comienza con va o ba');
+            else
+                document.write('La palabra no comienza con va o ba');
+        }
+    </script>
+</body>
+
+</html>

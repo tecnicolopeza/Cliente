@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Problemas 79: []conjunto de caracteres opcionales</h1>
+
+    <button onclick="ej1()">ej1</button><br /><br />
+    <button onclick="ej2()">ej2</button><br /><br />
+    <button onclick="ej3()">ej3</button><br /><br />
+    <button onclick="ej4()">ej4</button><br /><br />
+    <button onclick="ej5()">ej5</button><br /><br />
+
+    <script>
+        function ej1() {
+            alert(
+                " Controlar si la palabra ingresada comienza con el primer carácter alfabético ya sea en mayúsculas o en minúsculas:"
+            );
+
+            let palabra = prompt('Ingrese una palabra');
+            let patron = /^[a-zA-Z]/;
+            if (patron.test(palabra))
+                alert('La palabra comienza con un carácter alfabético (mayúscula o minúscula)');
+            else
+                alert('La palabra no comienza con un carácter alfabético (mayúscula o minúscula)');
+        }
+
+        function ej2() {
+            alert(
+                "Ingresar una palabra y luego mostrar un mensaje si finaliza con vocal."
+            );
+
+            let palabra = prompt('Ingrese una palabra');
+            let patron = /[aeiouAEIOUáéíóú]$/;
+            if (patron.test(palabra))
+                alert('La palabra finaliza con vocal');
+            else
+                alert('La palabra no finaliza con vocal');
+
+        }
+
+        function ej3() {
+            alert(
+                "Ingresar una clave que no finalice en vocal."
+            );
+
+            let palabra = prompt('Ingrese una palabra');
+            let patron = /[^aeiouAEIOUáéíóú]$/;
+            if (patron.test(palabra))
+                alert('La palabra no finaliza con vocal');
+            else
+                alert('La palabra finaliza con vocal');
+        }
+
+        function ej4() {
+            alert(
+                "Ingresar una palabra y luego mostrar un mensaje si contiene una vocal en alguna parte de la palabra."
+            );
+            let palabra = prompt('Ingrese una palabra');
+            let patron = /[aeiouAEIOUáéíóú]/;
+            if (patron.test(palabra))
+                alert('La palabra tiene al menos una vocal');
+            else
+                alert('La palabra no tiene vocales');
+        }
+
+        function ej5() {
+            alert(
+                "Ingresar una oración por teclado y luego mostrar un mensaje si el string ingresado contiene al menos uno de los caracteres que son un comando o metacaracter para las expresiones regulares:"
+            );
+            let oracion = prompt('Ingrese una oracion');
+            let patron = /[\^$.*+?=!:|\\/()\[\]{}]/;
+            if (patron.test(oracion))
+                alert('La oración tiene al menos un carácter ^ $. * +? =! : | \ / () [] {}');
+            else
+                alert('La oración no tiene ningún carácter ^ $. * +? =! : | \ / () [] {}');
+        }
+    </script>
+</body>
+
+</html>

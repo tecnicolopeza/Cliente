@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=16&codigo=16&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4669394804436935",
+    enable_page_level_ads: true
+  });
+</script>
+
+<title>Router: definición de rutas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta name="keywords" content="Angular, programación, tutorial">
+<meta name="description" content="El objetivo de este tutorial 
+es presentar los conceptos básicos del framework Angular">
+<meta name="author" content="Diego Moisset">
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="estilos.css">
+
+<style>
+html,body {
+	background-color: #D3E9D0;
+	font-family: sans-serif,arial;
+
+}
+</style>
+
+<style>
+.uno { width: 320px; height: 100px; }
+@media(min-width: 500px) { .uno { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .uno { width: 336px; height: 280px; } }
+
+.dos { width: 320px; height: 100px; }
+@media(min-width: 500px) { .dos { width: 320px; height: 100px; } }
+@media(min-width: 800px) { .dos { width: 336px; height: 280px; } }
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80268657-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="titulodetalle">
+<h1>16 - Router: definición de rutas</h1></div>
+
+  </div>
+</div>  
+
+
+<div class="row">
+  <div class="col-md-12">
+
+<div class="cuerpodetalle">
+<div style="display:block;float:left;margin: 5px;"> 
+ <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable1 -->
+<ins class="adsbygoogle uno"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="4716538363"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+</div> 
+
+
+<p>Angular incluye un módulo especial si queremos administrar nuestra aplicación mediante rutas.</p>
+<p>Las rutas están dadas por la url, ejemplos de rutas pueden ser:</p>
+<pre>
+http://localhost:4200/clientes
+http://localhost:4200/proveedores
+http://localhost:4200/contacto
+</pre>
+<p>Luego según la ruta especificada mostramos una vista distinta, generalmente indicando un nombre de componente.</p>
+<p>Lo más conveniente es utilizar la aplicación Angular CLI para que nos ayude con la generación del módulo de rutas (Router)</p>
+<h3>Problema</h3>
+<p>Implementar una aplicación que muestre dos enlaces en la parte superior de la página que acceda el primero al juego de tres dados que habíamos desarrollado en ejercicios anteriores. El segundo enlace debe mostrar mediante otra ruta el nombre del programador, versión y fecha de desarrollo.</p>
+
+
+<ol>
+<li>
+<p>Desde la línea de comandos de Node.js procedemos a crear el proyecto011 y solicitaremos que nos cree el archivo de routing:</p>
+<pre>
+f:\angularya&gt; ng new proyecto011
+</pre>
+<p>La primera opción que nos muestra Angular CLI [Would you like to add Angular routing?] respondemos 'y' (si) para que cree las rutas:</p> 
+<img src="imagentema/foto037b.jpg" border="0" alt="Router Angular CLI"><br>
+<p>La otra sintaxis alternativa para crear las rutas es pasar el parámetro --routing cuando creamos el proyecto:</p>
+<pre>
+f:\angularya&gt; ng new proyecto011 --routing
+</pre>
+</li>
+
+<li>
+<p>En la carpeta app se crea el archivo 'app-routing.module.ts':</p>
+
+<pre class="recuadro">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</pre>
+
+<p>Debemos modificar y cargar las dos rutas de nuestra aplicación e importar las componentes que visualizan dichas rutas:</p>
+<pre class="recuadro">
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { JuegodadosComponent } from './juegodados/juegodados.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+
+const routes: Routes = [
+  {
+    path:'juegodados',
+    component:JuegodadosComponent
+  },
+  {
+    path:'acercade',
+    component:AcercadeComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+</pre>
+
+<p>Por el momento debe mostrar un error cuando iniciamos los nombres de las componentes 'JuegodadosComponent' y 'AcercadeComponent' debido que no las hemos codificado aún.</p>
+<p>En la propiedad path estamos indicando que si en el navegador disponemos:</p>
+<pre>
+http://localhost:4200/juegodados
+</pre>
+<p>Luego se muestra la componente JuegodadosComponent.</p>
+</li>
+
+<li>
+<p>Desde la línea de comandos de Node.js procedemos a crear cada una de las tres componentes que faltan en la aplicación:</p>
+<pre>
+f:\angularya\proyecto011&gt; ng generate component juegodados
+</pre>
+<p>Codificamos dos archivos:</p>
+<p>juegodados.component.ts</p>
+<pre class="recuadro">
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-juegodados',
+  templateUrl: './juegodados.component.html',
+  styleUrls: ['./juegodados.component.css']
+})
+export class JuegodadosComponent implements OnInit {
+  valor1: number;
+  valor2: number;
+  valor3: number;
+  resultado: string="";
+  constructor() {
+    this.valor1 = this.retornarAleatorio();
+    this.valor2 = this.retornarAleatorio();
+    this.valor3 = this.retornarAleatorio();
+  }
+
+  retornarAleatorio() {
+    return Math.trunc(Math.random() * 6) + 1;
+  }
+
+  tirar() {
+    this.valor1 = this.retornarAleatorio();
+    this.valor2 = this.retornarAleatorio();
+    this.valor3 = this.retornarAleatorio();
+    if (this.valor1==this.valor2 && this.valor1==this.valor3)    
+      this.resultado='Ganó';
+    else
+      this.resultado='Perdió';
+  }
+  
+  ngOnInit() {
+  }
+
+}
+</pre>
+
+<p>juegodados.component.html</p>
+<pre class="recuadro">
+&lt;app-dado [valor]="valor1"&gt;&lt;/app-dado&gt;
+&lt;app-dado [valor]="valor2"&gt;&lt;/app-dado&gt;
+&lt;app-dado [valor]="valor3"&gt;&lt;/app-dado&gt;
+&lt;hr&gt;
+&lt;button (click)="tirar()"&gt;Tirar&lt;/button&gt;  
+&lt;hr&gt;
+&lt;p&gt;Resultado:{{resultado}}&lt;/p&gt;
+</pre>
+
+<p>Generamos ahora la componente 'dado':</p>
+<pre>
+f:\angularya\proyecto011&gt; ng generate component dado
+</pre>
+<p>Codificamos sus tres archivos:</p>
+<p>dado.component.ts</p>
+<pre class="recuadro">
+import { Component, OnInit,Input } from '@angular/core';
+
+@Component({
+  selector: 'app-dado',
+  templateUrl: './dado.component.html',
+  styleUrls: ['./dado.component.css']
+})
+export class DadoComponent implements OnInit {
+
+  @Input() valor: number=0;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+</pre>
+
+<p>dado.component.html</p>
+<pre class="recuadro">
+&lt;div class="forma"&gt;
+  {{valor}}
+&lt;/div&gt;
+</pre>
+
+<p>dado.component.css</p>
+<pre class="recuadro">
+.forma {
+  width: 5rem;  
+  height: 5rem;
+  font-size: 3rem;
+  color:white;
+  background-color: black;
+  border-radius: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin:10px;
+}
+</pre>
+
+<p>Finalmente creamos la última componente:</p>
+<pre>
+f:\angularya\proyecto011&gt; ng generate component acercade
+</pre>
+
+<p>Modificamos el archivo 'acercade.component.html':</p>
+<pre class="recuadro">
+&lt;h1&gt;Programa: xxxxxxxxx&lt;/h1&gt;
+&lt;p&gt;Desarrollado: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/p&gt;
+&lt;p&gt;Fecha: xxxxxxxx&lt;/p&gt;
+</pre>
+</li>
+
+
+
+<li>
+<p>Si abrimos ahora el archivo app.module.ts tenemos declarados las 4 componentes e importado el módulo AppRoutingModule':</p>
+<pre class="recuadro">
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { JuegodadosComponent } from './juegodados/juegodados.component';
+import { DadoComponent } from './dado/dado.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    JuegodadosComponent,
+    DadoComponent,
+    AcercadeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</pre>
+
+
+<li>
+<p>Nos queda modificar la componente principal 'app.component.html':</p>
+<pre class="recuadro">
+&lt;div style="text-align:center"&gt;
+  &lt;a routerLink="/juegodados"&gt;Juego de dados&lt;/a&gt; - 
+  &lt;a routerLink="/acercade"&gt;Acerca de ...&lt;/a&gt;
+  &lt;div&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>Mediante la etiqueta 'router-outlet' indicamos el lugar que debe mostrar la componente especificada por la ruta configurada en el archivo 'app-routing.module.ts'</p>
+<p>Para cambiar de ruta mediante hipervínculos debemos iniciar la propiedad 'routerLink' asignando la ruta respectiva.</p>
+
+<p>Si ejecutamos ahora el proyecto:</p>
+<pre>
+ng server -o
+</pre>
+<p>Podemos ver distintos resultados según la ruta indicada:</p>
+<img src="imagentema/foto037.jpg" border="0" alt="Router Angular"><br>
+<p>Si accedemos al primer hipervínculo (tener en cuenta que no se recarga la página, no hay una petición al servidor, sino se resuelve la ruta con aplicación Angular en el navegador):</p>
+<img src="imagentema/foto038.jpg" border="0" alt="Router Angular"><br>
+<p>Finalmente si accedemos a la otra ruta:</p>
+<img src="imagentema/foto039.jpg" border="0" alt="Router Angular"><br>
+
+<p>Podemos probar esta aplicación en la web <a href="https://scratchya.com.ar/angular/proyecto011/" target="_blank">aquí</a>.</p>
+</li>
+
+</ol>
+
+
+
+
+<div class="botonretorno"><a href="index2904.html?inicio=0">Retornar</a></div> 
+
+<div>
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--publi-->
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- adaptable2 -->
+<ins class="adsbygoogle dos"
+     style="display:inline-block"
+     data-ad-client="ca-pub-4669394804436935"
+     data-ad-slot="5774469161"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+</div>  
+
+</div>
+
+<script type="text/javascript">
+function cambiar()
+{
+  var lista=document.getElementsByTagName('pre');
+  for(f=0;f<lista.length;f++)
+  {
+   lista[f].style.display='block';
+  }
+  document.getElementById('solucion').style.display='none';
+}
+
+</script>
+
+</body>
+
+
+<!-- Mirrored from www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=16&codigo=16&inicio=0 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jan 2022 19:06:16 GMT -->
+</html>

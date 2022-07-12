@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>EJERCICIO 2</p>
+
+    <script>
+        // V = Π h r²
+        function retornarVolumen(radio, altura) {
+            var volumen;
+            
+            volumen = 3.14*altura*(radio*radio);
+
+            return volumen;
+        }
+
+        var radio = parseFloat(prompt("Radio: "));
+        var altura = parseFloat(prompt("Altura: "));
+        document.write("El volumen del cilindro es:" + retornarVolumen(radio, altura));
+
+    </script>
+
+    <p>EJERCICIO 3</p>
+
+    <script>
+        /*Desarrollar una función que retorne la cantidad de dígitos que tiene una variable entera positiva de hasta 5 dígitos.*/
+        /*Apartado 3) Prepara el programa para que pueda trabajar con números de hasta 7 dígitos*/
+
+        function cDigitos(n) {
+            
+            if(n<10){
+                return 1;
+            }else if(n<100){
+                return 2;
+            }else if(n<1000){
+                return 3;
+            }else if(n<10000){´
+                return 4;
+            }else if(n<100000){
+                return 5;
+            }else if(n<1000000){
+                return 6;
+            }else if(n<10000000){
+                return 7;
+            }
+
+        }
+
+        var valor = parseInt(prompt("Ingrese un numero de hasta 7 digitos:"));
+        document.write("Tiene " , cDigitos(valor)," digitos");
+    </script>
+
+</body>
+</html>
