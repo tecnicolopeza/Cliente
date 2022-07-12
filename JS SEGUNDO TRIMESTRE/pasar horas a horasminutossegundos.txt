@@ -1,9 +1,0 @@
-Pasar horas a horas/minutos/segundos
-
-3.6873h a ...
-
-Nos quedamos con la parte entera es decir 3 horas por ejemplo un int al numero
-nos quedamos con 0.6873 horas y lo multiplicamos por 60min = 41.238min 
-volvemos a quedarnos con los minutos 41min y hacemos los 0.238 x60 seg y nos da 14.28segundos
-
-3h 41min 14 segundos
