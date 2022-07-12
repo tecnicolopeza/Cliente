@@ -1,0 +1,7 @@
+<h1>Hora situación geográfica actual</h1>
+
+<div [ngClass]="estilo == 'small' ? 'caja-reloj-pequeno' : 'caja-reloj'">
+    <p>
+        {{reloj | date:'HH:mm:ss'}}
+    </p>
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Librerias de JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="estilos.css">
+    <title>API AJAX JQUERY</title>
+</head>
+
+<body>
+
+    <form method="post" action="#" id="formConsultarTiempo">
+        <h2>Country:</h2>
+        <input type="text" id="pais" name="pais" size="40" required>
+        <h2>City:</h2>
+        <input type="text" id="ciudad" name="ciudad" size="40" required>
+        <br>
+        <input type="submit" id="consultarTiempo" name="consultarTiempo" value="Counsult">
+        <a href="index.html" id="resetear">Reset table</a>
+    </form>
+    <table id="cuidades">
+        <thead>
+            <th>Country</th>
+            <th>City</th>
+            <th>Sky</th>
+            <th>Temp. Min</th>
+            <th>Temp. Max</th>
+            <th>Humidity</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="resultados"></div>
+</body>
+
+<script>
+    var x;
+    x = $(document);
+    x.ready(inicializarEventos);
+
+    function inicializarEventos() {
+        var x;
+        x = $("#consultarTiempo");
+        x.click(presionSubmit);
+    }
+
+    function presionSubmit() {
+        let pais = document.getElementById("pais").value;
+        let ciudad = document.getElementById("ciudad").value;
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            url: "http://api.openweathermap.org/data/2.5/weather",
+            data: "q=" + ciudad + "," + pais + "&units=metric&appid=fff70737bb887cd2adb9bd7e2a052d1c",
+            beforeSend: inicioEnvio,
+            success: llegadaDatos,
+            timeout: 4000,
+            error: problemas
+        });
+        return false;
+    }
+
+    function inicioEnvio() {
+        var x = $("#resultados");
+        x.html('<img src="cargando.gif">');
+    }
+
+    function llegadaDatos(datos) {
+
+        var puntero = $('#cuidades tbody');
+        var punteroResultados = $("#resultados");
+
+        $("#resultados").text('');
+
+        // console.log(datos);
+        puntero.append('<tr><td>' + pais.value +
+            '</td><td>' + datos.name +
+            '</td><td>' + datos.weather[0].description +
+            '</td><td>' + datos.main.temp_min + 'ºC' +
+            '</td><td>' + datos.main.temp_max + 'ºC' +
+            '</td><td>' + datos.main.humidity + '%' +
+            '</td></tr>');
+
+        punteroResultados.append('<iframe class="iframe" src="https://maps.google.com/?ll=' + datos.coord.lat + ',' + datos.coord.lon + '&z=14&t=m&output=embed" height="250px" width="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>');
+
+    }
+
+    function problemas() {
+        $("#resultados").text('Problemas en el servidor.');
+    }
+</script>
+
+</html>

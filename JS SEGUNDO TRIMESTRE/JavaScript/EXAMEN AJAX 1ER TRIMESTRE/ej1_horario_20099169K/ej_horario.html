@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myTable {
+            border: 4px solid black;
+        }
+        
+        #myTable td {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Horario 2º DAW Tarde Curso 2021-2022</h1>
+    <br>
+    <button onclick="generarHorario()">Crear horario</button>
+    <div id="divTabla" style="border-top: 2px solid black; margin-top: 1rem;">
+    </div>
+    <script>
+        function generarHorario() {
+
+            //datos para rellenar la tabla
+            let encabezados = [{
+                dia: "Lunes"
+            }, {
+                dia: "Martes"
+            }, {
+                dia: "Miércoles"
+            }, {
+                dia: "Jueves"
+            }, {
+                dia: "Viernes"
+            }];
+            let horario = [{
+                hora: "15:00-16:00",
+                asignaturas: ["-", "-", "-", "-", "DWS"]
+            }, {
+                hora: "16:00-17:00",
+                asignaturas: ["DWS", "EIE", "DWS", "DAW", "DWS"]
+            }, {
+                hora: "17:00-18:00",
+                asignaturas: ["DWS", "EIE", "DWS", "DAW", "DWS"]
+            }, {
+                hora: "18:00-19:00",
+                asignaturas: ["DWS", "HLC", "DIW", "DAW", "DWC"]
+            }, {
+                hora: "19:00-20:00",
+                asignaturas: ["DIW", "HLC", "HLC", "DWC", "DWC"]
+            }, {
+                hora: "20:00-21:00",
+                asignaturas: ["DIW", "DIW", "EIE", "DWC", "DWC"]
+            }, {
+                hora: "21:00-22:00",
+                asignaturas: ["DIW", "DIW", "EIE", "DWC", "-"]
+            }, ];
+
+            var puntero = document.getElementById('divTabla');
+            var x = document.createElement("TABLE");
+            x.setAttribute("id", "myTable");
+            puntero.appendChild(x); //mete la tabla en el div
+            for (let i = 0; i < 8; i++) { //numero de tr
+                var y = document.createElement("TR");
+                y.setAttribute("id", "myTr" + i);
+                document.getElementById("myTable").appendChild(y); //tr lo mete en la tabla
+                for (let j = 0; j < 6; j++) {
+                    if (i == 0 && j == 0) { //primer campo vacio
+                        var z = document.createElement("TD");
+                        var t = document.createTextNode("");
+                        z.appendChild(t);
+                        document.getElementById("myTr" + i).appendChild(z); //mete los td en el tr actual
+                    } else if (i == 0) {
+                        var z = document.createElement("TD");
+                        var t = document.createTextNode(encabezados[j - 1].dia);
+                        z.appendChild(t);
+                        document.getElementById("myTr" + i).appendChild(z);
+                    } else if (j == 0) { //meter horas
+                        var z = document.createElement("TD");
+                        var t = document.createTextNode(horario[i - 1].hora); //aqui cogemos el valor de horario
+                        z.appendChild(t);
+                        document.getElementById("myTr" + i).appendChild(z);
+                    } else {
+                        var z = document.createElement("TD");
+                        var t = document.createTextNode(horario[i - 1].asignaturas[j - 1]); //metemos las asignaturas
+                        z.appendChild(t);
+                        document.getElementById("myTr" + i).appendChild(z);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

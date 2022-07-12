@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            margin: 0 1rem 0 1rem;
+            /* background-color: yellow; */
+        }
+        
+        p {
+            display: inline;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hoja de cálculo dinámica unidimensional</h1>
+    <br>
+    <label for="nCeldas">Celdas</label>
+    <input type="number" name="nCeldas" id="nCeldas">
+    <button onclick="crearCeldas()">Crear</button>
+
+    <div id="celdas" style="margin-top: 2rem;"></div>
+
+    <script>
+        addEventListener('load', iniciar);
+
+
+        function iniciar() {
+            addEventListener('onFocus', cambiarColor);
+        }
+
+        function crearCeldas() {
+            let contador = 0;
+            var nCeldas = document.getElementById('nCeldas').value;
+            var divCeldas = document.getElementById('celdas');
+            for (let i = 0; i < nCeldas; i++) {
+                var input = document.createElement('input');
+                input.setAttribute('id', 'numeros');
+                input.setAttribute("onFocus", "cambiarColor(this)");
+                divCeldas.appendChild(input);
+                contador++;
+            }
+            var p = document.createElement('p');
+            p.setAttribute('id', 'suma');
+            var texto = document.createTextNode('Suma: ');
+            p.appendChild(texto);
+            divCeldas.appendChild(p);
+        }
+
+        function cambiarColor(control) {
+            control.target.setAttribute('background-color:', 'yellow');
+        }
+    </script>
+</body>
+
+</html>

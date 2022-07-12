@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function calcular(){
+            var radio;
+            var altura;
+            var volumen;
+            radio=parseFloat(prompt("Introduzca el radio del cono:"));
+            if(isNaN(radio)){
+                alert("Valor introducido no numérico");
+                return;
+            }
+            altura=parseFloat(prompt("Introduzca la altura del cono:"));
+            if(isNaN(altura)){
+                alert("Valor introducido no numérico");
+                return;
+            }
+            //Calculamos el volumen del cono
+            volumen=volumenCono(radio,altura);
+            alert(`El volumen de un cono de radio ${radio} y altura ${altura} es de ${volumen}`);
+        }
+    </script>
+    <h1>Calcular volumen de un cono</h1>
+    <input type="button" onclick="calcular();"  value="Calcular volumen">
+    <script src="src/volumencono.js"></script>
+</body>
+</html>
